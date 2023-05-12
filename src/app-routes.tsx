@@ -1,11 +1,10 @@
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Composer from "./pages/composer/composer";
 import ContentTemplate from "./components/ui/layout/content-template";
 import Articles from "./pages/articles/articles";
 import withProtectedRoute from "./components/auth/with-protected-route";
-import { useContext } from "react";
-import AuthContext from "./components/auth/auth-conext";
 import LoginPage from "./pages/login/login-page";
+import Authors from "./pages/authors/authors";
 
 export enum RoutePaths {
   Dashboard = "/dashboard",
@@ -44,7 +43,7 @@ const AppRoutes = () => {
       <Route
         path={RoutePaths.Authors}
         element={withProtectedRoute(
-          <ContentTemplate WrappedComponent={<div>Authors</div>} />
+          <ContentTemplate WrappedComponent={<Authors />} />
         )}
       />
       <Route

@@ -1,9 +1,9 @@
 import { AxiosRequestConfig } from "axios";
-import { ApiConfig } from "../openapi/api-config";
+import { ApiConfig } from "../api-config";
 import {
   ArticleSummariesResponse,
   DefaultApiFp as ArticlesApi,
-} from "../openapi/generated-clients/api";
+} from "../openapi/generated-clients/api-blog/api";
 
 export const getSummaries = async (
   page = 1,

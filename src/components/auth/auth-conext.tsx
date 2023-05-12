@@ -17,8 +17,6 @@ interface AuthProviderProps {
 }
 
 export const AuthProvider = ({ children, initialToken }: AuthProviderProps) => {
-  console.log(initialToken);
-
   if (initialToken) {
     // Store token in local storage
     storeToken(initialToken);

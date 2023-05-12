@@ -1,44 +1,17 @@
 import { MouseEventHandler, useMemo } from "react";
 import { useTable } from "react-table";
 import * as S from "./table.styled";
-import { ArticleSummaryDto } from "../../../../api/openapi/generated-clients";
+import { ArticleSummaryDto } from "../../../../api/openapi/generated-clients/api-blog";
 
-type TableProps = {
-  onRowClick: ((row: any) => void) | undefined;
-  data: ArticleSummaryDto[];
+type TableProps<T> = {
+  onRowClick?: ((row: T) => void) | undefined;
+  data: T[];
+  columns: any;
+  hiddenColumns?: string[];
 };
 
-function Table({ onRowClick, data }: TableProps) {
-  const columns: any = useMemo(
-    () => [
-      { Header: " ", Cell: ({ row }: any) => row.index + 1 , width: "5%" },
-      {
-        Header: "Summary",
-        accessor: "summary", // is hidden
-      },
-      {
-        Header: "Title",
-        accessor: "title",
-        width: "30%"
-      },
-      {
-        Header: "Date",
-        accessor: "date",
-        width: "15%"
-      },
-      {
-        Header: "Category",
-        accessor: "category",
-        width: "15%"
-      },
-      {
-        Header: "Author",
-        accessor: "author",
-      },
-    ],
-    []
-  );
-  const initialState = { hiddenColumns: ["summary"] };
+function Table<T>({ onRowClick, data, columns, hiddenColumns }: TableProps<T>) {
+  const initialState = { hiddenColumns };
 
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     useTable({
@@ -70,7 +43,7 @@ function Table({ onRowClick, data }: TableProps) {
             >
               {row.cells.map((cell) => {
                 return (
-                  <S.TableCell {...cell.getCellProps()} >
+                  <S.TableCell {...cell.getCellProps()}>
                     {cell.render("Cell")}
                   </S.TableCell>
                 );

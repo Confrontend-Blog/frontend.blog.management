@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const TableWrapper = styled.table`
   background-color: #fff;
   border-collapse: collapse;
+  width: 100%;
 `;
 
 export const TableHeader = styled.th<{ width?: string | number }>`

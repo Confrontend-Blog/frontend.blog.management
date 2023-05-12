@@ -13,7 +13,7 @@ const LoginPage = () => {
 
   return (
     <div>
-      <h1>Login</h1>
+      <h1>Login 1</h1>
       <CuiButton onClick={handleLogin}> Login via Google </CuiButton>
     </div>
   );

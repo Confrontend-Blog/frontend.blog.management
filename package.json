@@ -8,7 +8,7 @@
     "build": "tsc && vite build",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "api:clients": "node ./node_modules/@openapitools/openapi-generator-cli/main.js generate -i ./openapi/specs/api-blog.json -g typescript-axios -o ./api/openapi/generated-clients --type-mappings=typescript-functional"
+    "generate-clients": "sh ./generate-clients.sh"
   },
   "dependencies": {
     "@Confrontend/chatly": "^1.0.8",
