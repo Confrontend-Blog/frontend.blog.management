@@ -4,7 +4,6 @@ import {
   UsersResponse,
   DefaultApiFp as UsersApi,
 } from "../openapi/generated-clients/api-user/api";
-import { getStoredToken } from "../../src/components/auth/client-token-storage";
 
 export const getUsers = async (
   page = 1,
@@ -17,7 +16,6 @@ export const getUsers = async (
     },
   };
   const { apiConfig } = ApiConfig;
-  //apiConfig.accessToken = getStoredToken() || "";
 
   console.log(apiConfig);
 

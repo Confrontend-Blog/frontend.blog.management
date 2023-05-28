@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 const useTokenFromUrl = (): string | null => {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
-  const token = searchParams.get("token");
+  const token = searchParams.get("firebase_token");
 
   return token;
 };

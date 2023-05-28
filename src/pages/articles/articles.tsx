@@ -1,7 +1,7 @@
 import { Collapse, IconButton } from "@mui/material";
 import Table from "../../components/ui/table/table";
 import * as S from "./article.styled";
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState } from "react";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import { ArticleSummaryDto } from "../../../api/openapi/generated-clients/api-blog";
 

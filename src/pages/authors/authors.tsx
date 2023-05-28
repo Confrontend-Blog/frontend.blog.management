@@ -15,7 +15,7 @@ function Authors() {
     {
       Header: "Name",
       accessor: "displayName", // is hidden
-      width: "20%"
+      width: "20%",
     },
     {
       Header: "Email",
@@ -24,7 +24,7 @@ function Authors() {
     {
       Header: "Active",
       accessor: "active",
-      width: "20%"
+      width: "20%",
     },
   ];
 
@@ -32,8 +32,6 @@ function Authors() {
     const fetchData = async () => {
       const res = await getUsers(1, 100);
       if (res && res.users) {
-        console.log(res.users);
-
         setUsers(
           res.users.map((user: UserDto) => {
             return {
@@ -48,6 +46,10 @@ function Authors() {
 
     fetchData();
   }, []);
+
+  useEffect(() => {
+    console.log(users);
+  }, [users]);
 
   return (
     <div>

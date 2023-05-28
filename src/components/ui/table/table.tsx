@@ -1,7 +1,5 @@
-import { MouseEventHandler, useMemo } from "react";
 import { useTable } from "react-table";
 import * as S from "./table.styled";
-import { ArticleSummaryDto } from "../../../../api/openapi/generated-clients/api-blog";
 
 type TableProps<T> = {
   onRowClick?: ((row: T) => void) | undefined;
@@ -10,8 +8,19 @@ type TableProps<T> = {
   hiddenColumns?: string[];
 };
 
-function Table<T>({ onRowClick, data, columns, hiddenColumns }: TableProps<T>) {
-  const initialState = { hiddenColumns };
+function Table<T extends object>({
+  onRowClick,
+  data,
+  columns,
+  hiddenColumns,
+}: TableProps<T>) {
+  const initialState = hiddenColumns
+    ? { hiddenColumns }
+    : { hiddenColumns: [""] };
+
+  console.log({ onRowClick });
+  console.log({ data });
+  console.log({ hiddenColumns });
 
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     useTable({
@@ -39,7 +48,7 @@ function Table<T>({ onRowClick, data, columns, hiddenColumns }: TableProps<T>) {
           return (
             <S.TableRow
               {...row.getRowProps()}
-              onClick={() => onRowClick && onRowClick(row)}
+              // onClick={() => onRowClick && onRowClick(row)}
             >
               {row.cells.map((cell) => {
                 return (

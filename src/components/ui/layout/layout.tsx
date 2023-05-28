@@ -1,7 +1,6 @@
 import TopBar from "../navigation/top-bar";
 import * as S from "./layout.styled";
 
-import { BrowserRouter as Router } from "react-router-dom";
 import AppRoutes from "../../../app-routes";
 import SideMenu from "../menu/side-menu";
 

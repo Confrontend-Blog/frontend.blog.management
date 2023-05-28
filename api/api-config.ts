@@ -1,4 +1,3 @@
-import { getStoredToken } from "../src/components/auth/client-token-storage";
 import { Configuration as ApiConfiguration } from "./openapi/generated-clients/api-blog";
 
 const developmentConfig = {
@@ -16,6 +15,7 @@ export const articlesEndpoint = "articles";
 export const usersEndpoint = "users";
 
 // Application wide api configs for auto-generated clients.
+
 export const ApiConfig = {
   isJsonMime: function (mimeType: string | undefined | null): boolean {
     return Boolean(
@@ -28,7 +28,6 @@ export const ApiConfig = {
       withCredentials: true,
       headers: {
         Accept: "application/json",
-        Authorization: `Bearer ${getStoredToken()}`,
       },
     },
     basePath: environmentConfig.baseUrl,

@@ -1,3 +1,5 @@
+type token = "firebase_token";
+
 export function storeToken(token: string): void {
   try {
     localStorage.setItem("token", token);
@@ -6,18 +8,18 @@ export function storeToken(token: string): void {
   }
 }
 
-export function getStoredToken(): string | null {
+export function getStoredToken(token: token): string | null {
   try {
-    return localStorage.getItem("token");
+    return localStorage.getItem(token);
   } catch (error) {
     console.error("Error getting token from localStorage:", error);
     return null;
   }
 }
 
-export function removeToken(): void {
+export function removeToken(token: string): void {
   try {
-    localStorage.removeItem("token");
+    localStorage.removeItem(token);
   } catch (error) {
     console.error("Error removing token from localStorage:", error);
   }

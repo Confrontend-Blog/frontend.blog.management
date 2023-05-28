@@ -1,4 +1,4 @@
-import { List, ListItem, ListItemIcon, ButtonBase } from "@mui/material";
+import { List, ListItemIcon, ButtonBase } from "@mui/material";
 import { Link, useLocation } from "react-router-dom";
 
 import * as S from "./menu-items.styled";

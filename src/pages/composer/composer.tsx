@@ -1,7 +1,6 @@
 import { useState } from "react";
 import * as S from "./composer.styled";
 import debounce from "lodash/debounce";
-import { Autocomplete, TextField } from "@mui/material";
 import { titleToSlug } from "../../utils/string.util";
 import { convertToMarkdown } from "../../utils/markdown.util";
 
@@ -111,7 +110,7 @@ const Composer = ({ cancelCb }: ArticleCreateProps) => {
           defaultValue={categories[0]}
           PopperComponent={S.AutocompletePopper}
           value={category}
-          onChange={(event, newValue) => {
+          onChange={(newValue) => {
             setCategory(newValue?.toString() || "");
           }}
           options={categories}

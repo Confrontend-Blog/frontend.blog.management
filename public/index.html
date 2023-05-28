@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/logo-mini.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog Management</title>
+    <script src="/system.js"></script>
+    <script type="systemjs-importmap">
+      {
+        "imports": {
+          "react": "/react.development.js",
+          "react-dom": "/react-dom.development.js",
+          "@mui/material": "/material-ui.production.min.js"
+        }
+      }
+    </script>
+  </head>
+
+  <body>
+    <div id="main"></div>
+    <script>
+      Promise.all([
+        System.import('react'),
+        System.import('react-dom'),
+        System.import('@mui/material'),
+      ]).then(function () {
+        return System.import('/assets/App-0f121a97.js');
+      }).catch(function (err) {
+        console.error(err);
+      });
+    </script>
+
+    
+  </body>
+</html>
