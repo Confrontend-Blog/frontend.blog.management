@@ -12,3 +12,5 @@
 ## sources
 
 https://github.com/single-spa/single-spa/issues/1049
+
+https://single-spa.js.org/docs/recommended-setup/

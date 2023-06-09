@@ -6,11 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Blog Management</title>
     <script src="/system.js"></script>
+    <script type="systemjs-importmap">
+      {
+        "imports": {
+          "react": "/react.development.js",
+          "react-dom": "/react-dom.development.js",
+          "@mui/material": "/material-ui.production.min.js"
+        }
+      }
+    </script>
   </head>
-
   <body>
+    <div id="Frontend_Portal_Chat"></div>
     <div id="main"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <script>
+      window.Frontend_Portal_Chat = 'Frontend_Portal_Chat'
+      System.import('/main-host.js')
+      System.import('http://127.0.0.1:4174/main.js');
+
+    </script>
 
     
   </body>

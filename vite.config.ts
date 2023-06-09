@@ -6,14 +6,18 @@ export default defineConfig({
   plugins: [react()],
   build: {
     rollupOptions: {
-      output:{
+      input: "src/main.tsx",
+      output: {
+        entryFileNames: `[name]-host.js`,
+        chunkFileNames: `[name]-host.js`,
+        assetFileNames: `[name]-host.[ext]`,
         format: "system",
       },
-      external: [
-        "@mui/material",
-        "react",
-        "react-dom",
-      ],
+      // external: [
+      //   "@mui/material",
+      //   "react",
+      //   "react-dom",
+      // ],
     },
   },
 });
