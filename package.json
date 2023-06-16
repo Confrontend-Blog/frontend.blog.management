@@ -4,9 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "copy-systemjs": "copyfiles -f node_modules/systemjs/dist/system.js public",
-    "dev": "yarn copy-systemjs && vite",
-    "build": "yarn copy-systemjs && tsc && vite build",
+    "dev": "yarn vite",
+    "build": "yarn tsc && vite build",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "generate-clients": "sh ./generate-clients.sh"
@@ -28,7 +27,6 @@
     "single-spa": "^5.9.4",
     "single-spa-react": "^5.0.1",
     "styled-components": "^5.3.9",
-    "systemjs": "^6.14.1",
     "turndown": "^7.1.2",
     "yarn": "^1.22.19"
   },
