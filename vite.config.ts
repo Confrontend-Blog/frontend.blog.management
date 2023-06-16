@@ -13,11 +13,11 @@ export default defineConfig({
         assetFileNames: `[name]-host.[ext]`,
         format: "system",
       },
-      // external: [
-      //   "@mui/material",
-      //   "react",
-      //   "react-dom",
-      // ],
+      external: [
+        "@mui/material",
+        "react",
+        "react-dom",
+      ],
     },
   },
 });

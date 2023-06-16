@@ -1,6 +1,6 @@
 // import "systemjs";
 
-import React, { lazy, Suspense } from "react";
+import  { lazy, Suspense } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ReactDOM from "react-dom/client";
 // import "./index.css";
@@ -8,7 +8,7 @@ import UserInactive from "./pages/user-inactive/user-inactive.tsx";
 const App = lazy(() => import("./App"));
 
 ReactDOM.createRoot(document.getElementById("main") as HTMLElement).render(
-  <React.StrictMode>
+
     <BrowserRouter>
       <Routes>
         <Route path="/inactive" element={<UserInactive />} />
@@ -22,5 +22,5 @@ ReactDOM.createRoot(document.getElementById("main") as HTMLElement).render(
         />
       </Routes>
     </BrowserRouter>
-  </React.StrictMode>
+
 );
