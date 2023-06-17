@@ -101,8 +101,6 @@ const darkTheme = {
 } as const;
 
 export const theme = (isDark: boolean) => {
-  console.log("theme", isDark);
-
   return createTheme(isDark ? darkTheme : lightTheme);
 };
 

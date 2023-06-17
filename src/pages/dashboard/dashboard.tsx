@@ -17,7 +17,6 @@ const Dashboard = () => {
               <h5>Up 0.1% compared to same day last month</h5>
             </div>
           }
-          style={{ backgroundColor: theme.palette.primary.main }}
         />
         <Tile
           title={"Top Article Today"}
@@ -28,7 +27,6 @@ const Dashboard = () => {
               <h5>Online since: 15.04.2023</h5>
             </div>
           }
-          style={{ backgroundColor: theme.palette.primary.main }}
         />
         <Tile
           title={"Top Author Today"}
@@ -39,7 +37,6 @@ const Dashboard = () => {
               <h5>Likes: 1.4k</h5>
             </div>
           }
-          style={{ backgroundColor: theme.palette.primary.main }}
         />
         <Tile
           title={"Visits Overview"}
@@ -51,7 +48,6 @@ const Dashboard = () => {
               <h5>27% Texas</h5>
             </div>
           }
-          style={{ backgroundColor: theme.palette.primary.main }}
         />
       </S.Container>
     </>

@@ -88,7 +88,7 @@ const Composer = ({ cancelCb }: ArticleCreateProps) => {
       <form onSubmit={onSubmit}>
         <S.StyledTextField
           fullWidth
-          variant="standard"
+          variant="filled"
           label="Title"
           value={title}
           onChange={onTitleChange}
@@ -99,19 +99,18 @@ const Composer = ({ cancelCb }: ArticleCreateProps) => {
         </S.Slug>
         <S.StyledTextField
           fullWidth
-          variant="standard"
+          variant="filled"
           label="Summary"
           value={summary}
           onChange={(e) => setSummary(e.target.value)}
           required
         />
         <S.StyledAutocomplete
-          fullWidth
           defaultValue={categories[0]}
           PopperComponent={S.AutocompletePopper}
           value={category}
-          onChange={(newValue) => {
-            setCategory(newValue?.toString() || "");
+          onChange={(event, newValue) => {
+            setCategory(newValue?.toString() || categories[0]);
           }}
           options={categories}
           renderInput={(params) => (
@@ -129,19 +128,13 @@ const Composer = ({ cancelCb }: ArticleCreateProps) => {
           value={content}
           onChange={onBodyChange}
         />
-
         <S.Footer>
-          <span>
-            <CuiButton
-              bgColor="#222"
-              disabled={!title || !content || !slug || !category}
-            >
-              Create
-            </CuiButton>
-            <CuiButton bgColor="#222" onClick={cancelCb}>
-              Cancel
-            </CuiButton>
-          </span>
+          <CuiButton
+            bgColor="#222"
+            disabled={!title || !content || !slug || !category}
+          >
+            Create
+          </CuiButton>
         </S.Footer>
       </form>
     </S.ArticleCreateContainer>

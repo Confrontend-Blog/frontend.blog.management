@@ -36,7 +36,9 @@ export const Header = styled.div`
   vertical-align: middle;
 `;
 
-export const StyledTextField = styled(TextField)``;
+export const StyledTextField = styled(TextField)`
+
+`;
 
 export const SummaryQuill = styled(ReactQuill)`
   background-color: ${v.bg};
@@ -93,13 +95,14 @@ export const ReactQuillWrapper = styled.div``;
 export const Footer = styled.div`
   display: flex;
   padding-top: 1em;
-  justify-content: flex-end;
-  align-items: right;
+  justify-content: flex-start;
+  align-items: left;
   vertical-align: middle;
   border-top: 1px solid ${v.color} !important;
 `;
 
 export const StyledAutocomplete = styled(Autocomplete)`
+  width: 20%;
   .MuiInputBase-root {
     background-color: ${v.bg};
   }

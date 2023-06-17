@@ -14,7 +14,7 @@ function Articles() {
     ArticleSummaryDto[] | undefined
   >([] as ArticleSummaryDto[]);
 
-  const columns: any = [
+  const columns = [
     { Header: " ", Cell: ({ row }: any) => row.index + 1, width: "5%" },
     {
       Header: "Summary",
@@ -44,24 +44,24 @@ function Articles() {
   useEffect(() => {
     const fetchData = async () => {
       const res = await getSummaries(1, 100);
-      console.log(res?.summaries);
       setArticleSummaries(res?.summaries);
     };
 
     fetchData();
   }, []);
 
-  const onRowClick = (row: any) => {
-    setDetails(row.values?.summary || "");
+  const onRowClick = (row: ArticleSummaryDto) => {
+    setDetails(row.summary || "");
     setIsCollapsed(false);
   };
   return (
     <S.Wrapper isCollapsed={isCollapsed}>
       {articleSummaries?.length && (
-        <Table
+        <Table<ArticleSummaryDto>
           data={articleSummaries}
           onRowClick={onRowClick}
           columns={columns}
+          hiddenColumns={["summary"]}
         />
       )}
 
@@ -81,7 +81,12 @@ function Articles() {
             )}
           </IconButton>
           <Collapse in={!isCollapsed} orientation="vertical">
-            {!isCollapsed && <div>{details}</div>}
+            {!isCollapsed && (
+              <div>
+                <h3>Summary</h3>
+                {details}
+              </div>
+            )}
           </Collapse>
         </div>
       </div>

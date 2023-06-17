@@ -18,10 +18,6 @@ function Table<T extends object>({
     ? { hiddenColumns }
     : { hiddenColumns: [""] };
 
-  console.log({ onRowClick });
-  console.log({ data });
-  console.log({ hiddenColumns });
-
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     useTable({
       columns,
@@ -48,7 +44,7 @@ function Table<T extends object>({
           return (
             <S.TableRow
               {...row.getRowProps()}
-              // onClick={() => onRowClick && onRowClick(row)}
+              onClick={() => onRowClick && onRowClick(row.original)}
             >
               {row.cells.map((cell) => {
                 return (

@@ -1,6 +1,5 @@
 import { DefaultTheme, ThemeProvider } from "styled-components";
-// import "./App.css";
-// import "./styles/quill.snow.css";
+import "./styles/quill.snow.css";
 import Layout from "./components/ui/layout/layout";
 import { AppGlobalStyle } from "./styles/global.styled";
 import { theme } from "./styles/theme";
