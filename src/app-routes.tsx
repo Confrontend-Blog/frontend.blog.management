@@ -5,6 +5,8 @@ import Articles from "./pages/articles/articles";
 import withProtectedRoute from "./components/auth/with-protected-route";
 import LoginPage from "./pages/login/login-page";
 import Authors from "./pages/authors/authors";
+import Dashboard from "./pages/dashboard/dashboard";
+import Settings from "./pages/settings/settings";
 
 export enum RoutePaths {
   Dashboard = "/dashboard",
@@ -23,7 +25,7 @@ const AppRoutes = () => {
       <Route
         path={RoutePaths.Dashboard}
         element={withProtectedRoute(
-          <ContentTemplate WrappedComponent={<div>Dashboard</div>} />
+          <ContentTemplate WrappedComponent={<Dashboard />} />
         )}
       />
       <Route
@@ -61,7 +63,7 @@ const AppRoutes = () => {
       <Route
         path={RoutePaths.Settings}
         element={withProtectedRoute(
-          <ContentTemplate WrappedComponent={<div>Settings</div>} />
+          <ContentTemplate WrappedComponent={<Settings />} />
         )}
       />
       <Route
