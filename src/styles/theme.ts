@@ -12,7 +12,7 @@ const colors = {
   white: "#fff",
 };
 
-const appTheme = {
+const lightTheme = {
   palette: {
     action: {
       active: colors.greyDark,
@@ -85,6 +85,25 @@ const appTheme = {
   },
 } as const;
 
-export const theme = createTheme(appTheme);
+const darkTheme = {
+  ...lightTheme,
+  palette: {
+    background: {
+      default: colors.white,
+      paper: colors.greyDark,
+    },
+    text: {
+      disabled: colors.greyMedium,
+      primary: colors.greyLight,
+      secondary: colors.greyDark,
+    },
+  },
+} as const;
 
-export type CustomizedMuiThemeType = typeof appTheme;
+export const theme = (isDark: boolean) => {
+  console.log("theme", isDark);
+
+  return createTheme(isDark ? darkTheme : lightTheme);
+};
+
+export type CustomizedMuiThemeType = typeof lightTheme;

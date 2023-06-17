@@ -9,9 +9,13 @@ import { AuthProvider } from "./components/auth/auth-conext";
 import useTokenFromUrl from "./components/auth/use-token-from-url";
 import { useMemo } from "react";
 import { getStoredToken } from "./components/auth/client-token-storage";
+import { useThemeStore } from "./stores/themeStore";
 
 function App() {
   const tokenFromUrl = useTokenFromUrl();
+  const isDark = useThemeStore((state) => state.isDark);
+  console.log(isDark);
+  
   const token = useMemo(() => {
     console.log("Computing token value...");
     return tokenFromUrl || getStoredToken('firebase_token');
@@ -19,7 +23,7 @@ function App() {
 
   return (
     <AuthProvider initialFirebaseToken={token}>
-      <ThemeProvider theme={theme as DefaultTheme}>
+      <ThemeProvider theme={theme(isDark) as DefaultTheme}>
         <AppGlobalStyle />
         <Layout />
       </ThemeProvider>
