@@ -1,5 +1,6 @@
-import Switch from "@mui/material/Switch";
 import { FormControlLabel } from "@mui/material";
+import Switch from "@mui/material/Switch";
+
 import { useThemeStore } from "../../stores/theme-store";
 
 export default function Settings() {

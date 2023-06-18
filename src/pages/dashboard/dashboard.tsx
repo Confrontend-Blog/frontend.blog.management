@@ -1,6 +1,5 @@
 import Tile from "../../components/ui/tile/tile";
 import { theme } from "../../styles/theme";
-
 import * as S from "./dashboard.styled";
 
 const Dashboard = () => {

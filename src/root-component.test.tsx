@@ -5,6 +5,7 @@ import {
   waitForElementToBeRemoved,
 } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
+
 import { RootComponent } from "./root-component";
 
 jest.mock("./pages/user-inactive/user-inactive.tsx", () => () => (

@@ -1,4 +1,5 @@
 import { create } from "zustand";
+
 import { UsersResponse } from "../../api/openapi/generated-clients/api-user";
 
 interface UserState {

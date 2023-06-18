@@ -1,6 +1,6 @@
-import styled from "styled-components";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import ListItemText from "@mui/material/ListItemText";
+import styled from "styled-components";
 
 export const Wrapper = styled.span`
   grid-area: menu;

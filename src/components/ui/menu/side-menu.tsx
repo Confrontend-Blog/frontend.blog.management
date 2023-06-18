@@ -1,9 +1,10 @@
 import { ButtonBase, ListItem, ListItemIcon } from "@mui/material";
 import { Link } from "react-router-dom";
-import MenuItems from "./menu-items";
-import * as S from "./side-menu.styled";
+
 import { RoutePaths } from "../../../root-component";
 import { useLogout } from "../logout/logout";
+import MenuItems from "./menu-items";
+import * as S from "./side-menu.styled";
 
 function SideMenu() {
   const logout = useLogout();

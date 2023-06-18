@@ -1,12 +1,12 @@
-import styled from "styled-components";
-import DashboardIcon from "@mui/icons-material/Dashboard";
-import AuthorIcon from "@mui/icons-material/People";
-import ArticleIcon from "@mui/icons-material/Description";
-import SettingsIcon from "@mui/icons-material/Settings";
-import EditNoteIcon from "@mui/icons-material/EditNote";
 import ChatIcon from "@mui/icons-material/Chat";
+import DashboardIcon from "@mui/icons-material/Dashboard";
+import ArticleIcon from "@mui/icons-material/Description";
+import EditNoteIcon from "@mui/icons-material/EditNote";
+import AuthorIcon from "@mui/icons-material/People";
+import SettingsIcon from "@mui/icons-material/Settings";
 import { ListItem, ListItemText } from "@mui/material";
 import { OverridableComponent } from "@mui/material/OverridableComponent";
+import styled from "styled-components";
 
 const createStyledIcon = (IconComponent: OverridableComponent<any>) => {
   return styled(IconComponent)`

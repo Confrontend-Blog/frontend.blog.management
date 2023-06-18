@@ -1,4 +1,5 @@
-import { ReactNode, MouseEvent } from "react";
+import { MouseEvent, ReactNode } from "react";
+
 import * as S from "./cui-button.styled";
 
 export type CuiButtonProps = {

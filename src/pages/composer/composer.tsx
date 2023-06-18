@@ -1,11 +1,11 @@
-import { useState } from "react";
-import * as S from "./composer.styled";
 import debounce from "lodash/debounce";
-import { titleToSlug } from "../../utils/string.util";
-import { convertToMarkdown } from "../../utils/markdown.util";
+import { useState } from "react";
 
 import { createArticle } from "../../../api/clients/create-article";
 import CuiButton from "../../components/ui/button/cui-button";
+import { convertToMarkdown } from "../../utils/markdown.util";
+import { titleToSlug } from "../../utils/string.util";
+import * as S from "./composer.styled";
 
 interface ArticleCreateProps {
   cancelCb: () => void;

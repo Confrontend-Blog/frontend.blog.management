@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import Table from "../../components/ui/table/table";
-import { UserDto } from "../../../api/openapi/generated-clients/api-user";
+
 import { getUsers } from "../../../api/clients/get-users";
+import { UserDto } from "../../../api/openapi/generated-clients/api-user";
+import Table from "../../components/ui/table/table";
 import { useUserStore } from "../../stores/user-store";
 
 type User = Omit<UserDto, "id" | "googleId" | "active"> & {

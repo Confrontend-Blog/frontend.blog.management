@@ -1,13 +1,13 @@
-import { Routes, Route } from "react-router-dom";
-import Composer from "./pages/composer/composer";
+import { Route, Routes } from "react-router-dom";
+
+import withProtectedRoute from "./components/routing/with-protected-route";
 import ContentTemplate from "./components/ui/layout/content-template";
 import Articles from "./pages/articles/articles";
-
 import Authors from "./pages/authors/authors";
+import Composer from "./pages/composer/composer";
 import Dashboard from "./pages/dashboard/dashboard";
 import Settings from "./pages/settings/settings";
 import { RoutePaths } from "./root-component";
-import withProtectedRoute from "./components/routing/with-protected-route";
 
 const AppRoutes = () => {
   return (

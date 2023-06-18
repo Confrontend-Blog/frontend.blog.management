@@ -1,4 +1,5 @@
 import { useTable } from "react-table";
+
 import * as S from "./table.styled";
 
 type TableProps<T> = {

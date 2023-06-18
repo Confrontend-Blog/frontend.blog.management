@@ -1,9 +1,9 @@
-import { lazy, Suspense } from "react";
+import { lazy,Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 
+import LoginPage from "./pages/login/login-page.tsx";
 // import "./index.css";
 import UserInactive from "./pages/user-inactive/user-inactive.tsx";
-import LoginPage from "./pages/login/login-page.tsx";
 
 /** Security: Only fetch application code  chunk for authenticated user. */
 const App = lazy(() => import("./App"));
