@@ -1,28 +1,34 @@
 import { createContext, ReactNode } from "react";
 import { storeToken, Token } from "../utils/auth/client-token-storage";
+import jwtDecode from "jwt-decode";
 
 interface AuthContextValue {
-  token: Token | null;
-  setToken: (value: string | null) => void;
+  username: string;
+  accessToken: string;
+  firebaseToken: string;
+  setAccessToken: (value: string | null) => void;
 }
 
 const AuthContext = createContext<AuthContextValue>({
-  token: null,
-  setToken: () => null,
+  username: "",
+  accessToken: "",
+  firebaseToken: "",
+  setAccessToken: () => null,
 });
 
 interface AuthProviderProps {
-  initialAccessToken: Token | null;
+  auth: AuthContextValue | null;
   children: ReactNode;
 }
 
-export const AuthProvider = ({
-  children,
-  initialAccessToken,
-}: AuthProviderProps) => {
-  if (initialAccessToken) {
+export const AuthProvider = ({ auth, children }: AuthProviderProps) => {
+  let username = "";
+
+  if (auth?.accessToken) {
     // Store token in local storage
-    storeToken(initialAccessToken);
+    storeToken(auth?.accessToken);
+    const decodedToken = jwtDecode(auth?.accessToken || "") as { name: string };
+    username = decodedToken?.name || "User";
   }
 
   // TODO: add logic for silent token renewal
@@ -35,8 +41,10 @@ export const AuthProvider = ({
   // };
 
   const value: AuthContextValue = {
-    token: initialAccessToken,
-    setToken: () => null,
+    username,
+    accessToken: auth?.accessToken || "",
+    firebaseToken: "",
+    setAccessToken: () => null,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

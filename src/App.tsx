@@ -23,15 +23,15 @@ function App() {
     return tokenFromUrl || (getStoredToken("access_token") as Token);
   }, [tokenFromUrl]);
 
-  useEffect(() => {
-    const decodedToken = jwtDecode(token || "") as { name: string };
-    setLoggedInUser(decodedToken?.name || "User");
-    console.log(decodedToken?.name);
-    
-  }, [token]);
-
   return (
-    <AuthProvider initialAccessToken={token}>
+    <AuthProvider
+      auth={{
+        username: "",
+        accessToken: token,
+        firebaseToken: "",
+        setAccessToken: () => null,
+      }}
+    >
       <ThemeProvider theme={theme(isDark) as DefaultTheme}>
         <AppGlobalStyle />
         <Layout />
