@@ -5,7 +5,7 @@ import { UserDto } from "../../../api/openapi/generated-clients/api-user";
 import Table from "../../components/ui/table/table";
 import { useUserStore } from "../../stores/user-store";
 
-type User = Omit<UserDto, "id" | "googleId" | "active"> & {
+export type User = Omit<UserDto, "id" | "googleId" | "active"> & {
   active: "Active" | "Inactive";
 };
 
@@ -17,7 +17,7 @@ function Authors() {
     { Header: " ", Cell: ({ row }: any) => row.index + 1, width: "5%" },
     {
       Header: "Name",
-      accessor: "displayName", // is hidden
+      accessor: "displayName",
       width: "20%",
     },
     {

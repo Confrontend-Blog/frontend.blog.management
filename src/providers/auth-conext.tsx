@@ -1,13 +1,13 @@
 import jwtDecode from "jwt-decode";
 import { createContext,ReactNode } from "react";
 
-import { storeToken,Token } from "../utils/auth/client-token-storage";
+import { storeToken } from "../utils/auth/client-token-storage";
 
 interface AuthContextValue {
-  username: string;
+  username?: string;
   accessToken: string;
-  firebaseToken: string;
-  setAccessToken: (value: string | null) => void;
+  firebaseToken?: string;
+  setAccessToken?: (value: string | null) => void;
 }
 
 const AuthContext = createContext<AuthContextValue>({

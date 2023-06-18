@@ -1,8 +1,9 @@
 import { AxiosRequestConfig } from "axios";
+
 import { ApiConfig } from "../api-config";
 import {
-  UsersResponse,
   DefaultApiFp as UsersApi,
+  UsersResponse,
 } from "../openapi/generated-clients/api-user/api";
 
 export const getUsers = async (
