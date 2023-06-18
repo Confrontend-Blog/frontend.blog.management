@@ -4,20 +4,31 @@ import Layout from "./components/ui/layout/layout";
 import { AppGlobalStyle } from "./styles/global.styled";
 import { theme } from "./styles/theme";
 
-import { AuthProvider } from "./components/auth/auth-conext";
-import useTokenFromUrl from "./components/auth/use-token-from-url";
-import { useMemo } from "react";
-import { Token, getStoredToken } from "./components/auth/client-token-storage";
-import { useThemeStore } from "./stores/themeStore";
+import { AuthProvider } from "./providers/auth-conext";
+import useTokenFromUrl from "./utils/auth/token-utils";
+import { useEffect, useMemo } from "react";
+import { Token, getStoredToken } from "./utils/auth/client-token-storage";
+import { useThemeStore } from "./stores/theme-store";
+import { useUserStore } from "./stores/user-store";
+import jwtDecode from "jwt-decode";
 
 function App() {
-  const tokenFromUrl = useTokenFromUrl('access_token');
+  const { setLoggedInUser } = useUserStore();
+  const tokenFromUrl = useTokenFromUrl("access_token");
+
   const isDark = useThemeStore((state) => state.isDark);
 
   const token = useMemo(() => {
     console.log("Computing token value...");
-    return tokenFromUrl || getStoredToken("access_token") as Token;
+    return tokenFromUrl || (getStoredToken("access_token") as Token);
   }, [tokenFromUrl]);
+
+  useEffect(() => {
+    const decodedToken = jwtDecode(token || "") as { name: string };
+    setLoggedInUser(decodedToken?.name || "User");
+    console.log(decodedToken?.name);
+    
+  }, [token]);
 
   return (
     <AuthProvider initialAccessToken={token}>

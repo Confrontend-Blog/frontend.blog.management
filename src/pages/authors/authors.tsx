@@ -2,13 +2,15 @@ import { useEffect, useState } from "react";
 import Table from "../../components/ui/table/table";
 import { UserDto } from "../../../api/openapi/generated-clients/api-user";
 import { getUsers } from "../../../api/clients/get-users";
+import { useUserStore } from "../../stores/user-store";
 
 type User = Omit<UserDto, "id" | "googleId" | "active"> & {
   active: "Active" | "Inactive";
 };
 
 function Authors() {
-  const [users, setUsers] = useState<User[] | null>([] as User[]);
+  const { setUsersInStore } = useUserStore();
+  const [tableUsers, setTableUsers] = useState<User[] | null>([] as User[]);
 
   const columns = [
     { Header: " ", Cell: ({ row }: any) => row.index + 1, width: "5%" },
@@ -30,9 +32,11 @@ function Authors() {
 
   useEffect(() => {
     const fetchData = async () => {
+      // TODO pagination
       const res = await getUsers(1, 100);
+      setUsersInStore(res);
       if (res && res.users) {
-        setUsers(
+        setTableUsers(
           res.users.map((user: UserDto) => {
             return {
               displayName: user.displayName,
@@ -49,9 +53,9 @@ function Authors() {
 
   return (
     <div>
-      {users?.length && (
+      {tableUsers?.length && (
         <Table<User>
-          data={users}
+          data={tableUsers}
           //  onRowClick={onRowClick}
           columns={columns}
         />

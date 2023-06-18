@@ -1,5 +1,5 @@
 import { createContext, ReactNode } from "react";
-import { storeToken, Token } from "./client-token-storage";
+import { storeToken, Token } from "../utils/auth/client-token-storage";
 
 interface AuthContextValue {
   token: Token | null;

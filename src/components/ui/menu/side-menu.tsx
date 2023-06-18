@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import MenuItems from "./menu-items";
 import * as S from "./side-menu.styled";
 import { RoutePaths } from "../../../root-component";
-import { useLogout } from "../../auth/logout";
+import { useLogout } from "../logout/logout";
 
 function SideMenu() {
   const logout = useLogout();

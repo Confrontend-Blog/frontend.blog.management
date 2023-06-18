@@ -1,6 +1,6 @@
 import Switch from "@mui/material/Switch";
 import { FormControlLabel } from "@mui/material";
-import { useThemeStore } from "../../stores/themeStore";
+import { useThemeStore } from "../../stores/theme-store";
 
 export default function Settings() {
   const isDark = useThemeStore((state) => state.isDark);

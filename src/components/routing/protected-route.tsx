@@ -1,7 +1,7 @@
 import { ReactNode, useContext } from "react";
 import { Navigate } from "react-router-dom";
 
-import AuthContext from "./auth-conext";
+import AuthContext from "../../providers/auth-conext";
 import { RoutePaths } from "../../root-component";
 
 const ProtectedRoute = ({
