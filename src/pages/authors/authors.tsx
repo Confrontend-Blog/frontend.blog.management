@@ -10,7 +10,7 @@ type User = Omit<UserDto, "id" | "googleId" | "active"> & {
 function Authors() {
   const [users, setUsers] = useState<User[] | null>([] as User[]);
 
-  const columns: any = [
+  const columns = [
     { Header: " ", Cell: ({ row }: any) => row.index + 1, width: "5%" },
     {
       Header: "Name",
@@ -46,10 +46,6 @@ function Authors() {
 
     fetchData();
   }, []);
-
-  useEffect(() => {
-    console.log(users);
-  }, [users]);
 
   return (
     <div>

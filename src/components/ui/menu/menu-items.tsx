@@ -2,7 +2,7 @@ import { List, ListItemIcon, ButtonBase } from "@mui/material";
 import { Link, useLocation } from "react-router-dom";
 
 import * as S from "./menu-items.styled";
-import { RoutePaths } from "../../../app-routes";
+import { RoutePaths } from "../../../root-component";
 
 const MenuItems = () => {
   const location = useLocation();

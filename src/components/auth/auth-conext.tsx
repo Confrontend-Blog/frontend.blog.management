@@ -1,9 +1,9 @@
 import { createContext, ReactNode } from "react";
-import { storeToken } from "./client-token-storage";
+import { storeToken, Token } from "./client-token-storage";
 
 interface AuthContextValue {
-  token: string | null;
-  setToken?: (value: string | null) => void;
+  token: Token | null;
+  setToken: (value: string | null) => void;
 }
 
 const AuthContext = createContext<AuthContextValue>({
@@ -12,17 +12,17 @@ const AuthContext = createContext<AuthContextValue>({
 });
 
 interface AuthProviderProps {
-  initialFirebaseToken: string | null;
+  initialAccessToken: Token | null;
   children: ReactNode;
 }
 
 export const AuthProvider = ({
   children,
-  initialFirebaseToken,
+  initialAccessToken,
 }: AuthProviderProps) => {
-  if (initialFirebaseToken) {
+  if (initialAccessToken) {
     // Store token in local storage
-    storeToken(initialFirebaseToken);
+    storeToken(initialAccessToken);
   }
 
   // TODO: add logic for silent token renewal
@@ -35,7 +35,8 @@ export const AuthProvider = ({
   // };
 
   const value: AuthContextValue = {
-    token: initialFirebaseToken,
+    token: initialAccessToken,
+    setToken: () => null,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

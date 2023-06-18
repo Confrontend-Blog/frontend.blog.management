@@ -1,11 +1,12 @@
 import { useLocation } from "react-router-dom";
+import { Token } from "./client-token-storage";
 
-const useTokenFromUrl = (): string | null => {
+const useTokenFromUrl = (param:string): Token | null => {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
-  const token = searchParams.get("firebase_token");
+  const token = searchParams.get(param);
 
-  return token;
+  return token as Token;
 };
 
 export default useTokenFromUrl;

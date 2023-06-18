@@ -1,10 +1,13 @@
 import { ButtonBase, ListItem, ListItemIcon } from "@mui/material";
 import { Link } from "react-router-dom";
-import { RoutePaths } from "../../../app-routes";
 import MenuItems from "./menu-items";
 import * as S from "./side-menu.styled";
+import { RoutePaths } from "../../../root-component";
+import { useLogout } from "../../auth/logout";
 
 function SideMenu() {
+  const logout = useLogout();
+
   return (
     <S.Wrapper>
       <S.LogoWrapper>
@@ -14,8 +17,8 @@ function SideMenu() {
         <MenuItems />
       </S.MenuItemsWrapper>
       <S.MenuFooter>
-        <Link to={RoutePaths.Authors}>
-          <ButtonBase>
+        <Link to={RoutePaths.Login}>
+          <ButtonBase onClick={logout}>
             <ListItem>
               <ListItemIcon>
                 <S.LogoutIcon />

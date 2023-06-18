@@ -3,25 +3,16 @@ import Composer from "./pages/composer/composer";
 import ContentTemplate from "./components/ui/layout/content-template";
 import Articles from "./pages/articles/articles";
 import withProtectedRoute from "./components/auth/with-protected-route";
-import LoginPage from "./pages/login/login-page";
 import Authors from "./pages/authors/authors";
 import Dashboard from "./pages/dashboard/dashboard";
 import Settings from "./pages/settings/settings";
+import { RoutePaths } from "./root-component";
 
-export enum RoutePaths {
-  Dashboard = "/dashboard",
-  Composer = "/composer",
-  Authors = "/authors",
-  Articles = "/articles",
-  Messages = "/messages",
-  Settings = "/settings",
-  Login = "/login",
-}
+
 
 const AppRoutes = () => {
   return (
     <Routes>
-      <Route path={RoutePaths.Login} element={<LoginPage />} />
       <Route
         path={RoutePaths.Dashboard}
         element={withProtectedRoute(

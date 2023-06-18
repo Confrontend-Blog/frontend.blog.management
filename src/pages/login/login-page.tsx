@@ -13,8 +13,8 @@ const LoginPage = () => {
 
   return (
     <div>
-      <h1>Login 1</h1>
-      <CuiButton onClick={handleLogin}> Login via Google </CuiButton>
+      <h1>You need to log in</h1>
+      <CuiButton bgColor="#555" onClick={handleLogin}> Login via Google </CuiButton>
     </div>
   );
 };

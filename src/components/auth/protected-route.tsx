@@ -1,15 +1,17 @@
-import { ReactNode } from "react";
+import { ReactNode, useContext } from "react";
 import { Navigate } from "react-router-dom";
-import { RoutePaths } from "../../app-routes";
+
+import AuthContext from "./auth-conext";
+import { RoutePaths } from "../../root-component";
 
 const ProtectedRoute = ({
   WrappedComponent,
 }: {
   WrappedComponent: ReactNode;
 }) => {
-  // const { token } = useContext(AuthContext);
+  const { token } = useContext(AuthContext);
 
-  return true ? (
+  return token ? (
     <>{WrappedComponent}</>
   ) : (
     <Navigate to={RoutePaths.Login} replace />
