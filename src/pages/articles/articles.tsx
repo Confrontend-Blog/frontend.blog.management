@@ -9,7 +9,7 @@ import * as S from "./article.styled";
 
 function Articles() {
   const [isCollapsed, setIsCollapsed] = useState(true);
-  const [details, setDetails] = useState("");
+  const [details, setDetails] = useState("test");
   const [articleSummaries, setArticleSummaries] = useState<
     ArticleSummaryDto[] | undefined
   >([] as ArticleSummaryDto[]);
@@ -51,9 +51,12 @@ function Articles() {
   }, []);
 
   const onRowClick = (row: ArticleSummaryDto) => {
+    console.log(1312312312312);
+    
     setDetails(row.summary || "");
     setIsCollapsed(false);
   };
+  
   return (
     <S.Wrapper isCollapsed={isCollapsed}>
       {articleSummaries?.length && (
@@ -67,7 +70,7 @@ function Articles() {
 
       <div>
         <div>
-          <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
+          <IconButton data-testid="expand" onClick={() => setIsCollapsed(!isCollapsed)}>
             {isCollapsed ? (
               <ExpandMore
                 fontSize="large"

@@ -21,7 +21,8 @@ export const Wrapper = styled.span<WrapperProps>`
       text-align: center;
       position: fixed;
       height: 100%;
-      background-color: ${({ theme }) => theme.palette.primary.main};
+      /* background-color: ${({ theme }) => theme.palette.primary.main}; */
+      background-color: red;
       border-left: 1px solid #99999950;
       // TODO fix
       width: -webkit-fill-available;
