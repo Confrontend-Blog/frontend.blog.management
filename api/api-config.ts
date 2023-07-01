@@ -29,8 +29,6 @@ const production = {
 const environmentConfig =
   import.meta.env.VITE_ENVIRONMENT === "development" ? development : localhost;
 
-console.log("ApiConfig", getStoredToken("access_token"));
-
 export const articlesEndpoint = "articles";
 export const usersEndpoint = "users";
 
