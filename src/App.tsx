@@ -7,21 +7,12 @@ import { AuthProvider } from "./providers/auth-conext";
 import { useThemeStore } from "./stores/theme-store";
 import { AppGlobalStyle } from "./styles/global.styled";
 import { theme } from "./styles/theme";
-import { useAccessToken } from "./utils/auth/use-token";
 
-function App() {
+function App({ accessToken }: { accessToken: string }) {
   const isDark = useThemeStore((state) => state.isDark);
-  const token = useAccessToken();
 
   return (
-    <AuthProvider
-      auth={{
-        username: "",
-        accessToken: token,
-        firebaseToken: "",
-        setAccessToken: () => null,
-      }}
-    >
+    <AuthProvider accessToken={accessToken}>
       <ThemeProvider theme={theme(isDark) as DefaultTheme}>
         <AppGlobalStyle />
         <Layout />

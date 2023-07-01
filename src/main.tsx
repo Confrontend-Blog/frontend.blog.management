@@ -7,9 +7,7 @@ import { BrowserRouter } from "react-router-dom";
 import { RootComponent } from "./root-component.tsx";
 
 ReactDOM.createRoot(document.getElementById("main") as HTMLElement).render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <RootComponent />
-    </BrowserRouter>
-  </React.StrictMode>
+  <BrowserRouter>
+    <RootComponent />
+  </BrowserRouter>
 );

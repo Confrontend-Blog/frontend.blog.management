@@ -22,13 +22,12 @@ export const Wrapper = styled.span<WrapperProps>`
       position: fixed;
       height: 100%;
       /* background-color: ${({ theme }) => theme.palette.primary.main}; */
-      background-color: red;
       border-left: 1px solid #99999950;
       // TODO fix
       width: -webkit-fill-available;
     }
     top: 0;
     flex: 0 0 ${({ isCollapsed }) => (isCollapsed ? "0%" : "20%")};
-    overflow: auto; /* add scrollbars if content overflows */
+    overflow: auto; /* adds scrollbars if content overflows */
   }
 `;

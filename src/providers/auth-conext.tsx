@@ -1,7 +1,7 @@
 import jwtDecode from "jwt-decode";
-import { createContext,ReactNode } from "react";
+import { createContext, ReactNode } from "react";
 
-import { storeToken } from "../utils/auth/client-token-storage";
+import { useAccessToken } from "../utils/auth/use-token";
 
 interface AuthContextValue {
   username?: string;
@@ -18,17 +18,19 @@ const AuthContext = createContext<AuthContextValue>({
 });
 
 interface AuthProviderProps {
-  auth: AuthContextValue | null;
   children: ReactNode;
+  accessToken: string;
 }
 
-export const AuthProvider = ({ auth, children }: AuthProviderProps) => {
+export const AuthProvider = ({ children, accessToken }: AuthProviderProps) => {
   let username = "";
 
-  if (auth?.accessToken) {
-    // Store token in local storage
-    storeToken(auth?.accessToken);
-    const decodedToken = jwtDecode(auth?.accessToken || "") as { name: string };
+  if (accessToken) {
+    console.log(accessToken);
+    // FIXME
+    const decodedToken = jwtDecode(accessToken || "") as { name: string };
+    console.log("decodedToken", decodedToken);
+
     username = decodedToken?.name || "User";
   }
 
@@ -43,7 +45,8 @@ export const AuthProvider = ({ auth, children }: AuthProviderProps) => {
 
   const value: AuthContextValue = {
     username,
-    accessToken: auth?.accessToken || "",
+    accessToken: accessToken || "",
+    // TODO
     firebaseToken: "",
     setAccessToken: () => null,
   };

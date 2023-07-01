@@ -1,34 +1,54 @@
+import { getStoredToken } from "../src/utils/auth/client-token-storage";
 import { Configuration as ApiConfiguration } from "./openapi/generated-clients/api-blog";
 
-const developmentConfig = {
+export const CLIENT_ID =
+  "949870185516-6ht2coid8u4adoslg7bbcok8bf1j27r4.apps.googleusercontent.com";
+export const BASE_URI = "http://localhost:8080";
+// FIXME: Replace with backend redirect URI (not working)
+// export const BASE_URI = "https://article-service-dev-c5zdjekmoq-ey.a.run.app";
+
+const localhost = {
   baseUrl: "http://localhost:8080",
 };
 
-const productionConfig = {
+// GCP Cloud Run development instance url
+const development = {
+  baseUrl: "https://article-service-dev-c5zdjekmoq-ey.a.run.app",
+  // baseUrl: "http://localhost:8080",
+};
+
+/**
+ * https://article-service-dev-c5zdjekmoq-ey.a.run.app/auth/google/redirect?code=4%2F0AZEOvhXREWafQJCd3P6wlL4iVQQCdA1w1pFEsiNyAcvOc9WB7tI-jbNvqb1xdpaN3DPGJQ&scope=email+profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&authuser=1&prompt=none
+ */
+
+const production = {
   baseUrl: "TODO",
 };
 
+// For now switch between localhost and development, add prod later
 const environmentConfig =
-  process.env.NODE_ENV === "development" ? developmentConfig : productionConfig;
+  import.meta.env.VITE_ENVIRONMENT === "development" ? development : localhost;
+
+console.log("ApiConfig", getStoredToken("access_token"));
 
 export const articlesEndpoint = "articles";
 export const usersEndpoint = "users";
 
-// Application wide api configs for auto-generated clients.
+export const getHeaders = () => ({
+  Accept: "application/json",
+  Authorization: `Bearer ${getStoredToken("access_token")}`,
+});
 
+// Application wide api configs for auto-generated clients.
 export const ApiConfig = {
   isJsonMime: function (mimeType: string | undefined | null): boolean {
     return Boolean(
       mimeType !== null && mimeType !== undefined && mimeType.includes("json")
     );
   },
-
   apiConfig: new ApiConfiguration({
     baseOptions: {
-      withCredentials: true,
-      headers: {
-        Accept: "application/json",
-      },
+      withCredentials: false,
     },
     basePath: environmentConfig.baseUrl,
   }),

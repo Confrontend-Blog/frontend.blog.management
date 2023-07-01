@@ -1,6 +1,6 @@
 import { AxiosRequestConfig } from "axios";
 
-import { ApiConfig } from "../api-config";
+import { ApiConfig, getHeaders } from "../api-config";
 import {
   ArticleSummariesResponse,
   DefaultApiFp as ArticlesApi,
@@ -15,6 +15,7 @@ export const getSummaries = async (
       page,
       limit,
     },
+    headers: getHeaders(),
   };
   const { apiConfig } = ApiConfig;
   try {

@@ -9,7 +9,7 @@ import * as S from "./article.styled";
 
 function Articles() {
   const [isCollapsed, setIsCollapsed] = useState(true);
-  const [details, setDetails] = useState("test");
+  const [details, setDetails] = useState("Select a row to see details");
   const [articleSummaries, setArticleSummaries] = useState<
     ArticleSummaryDto[] | undefined
   >([] as ArticleSummaryDto[]);
@@ -51,8 +51,6 @@ function Articles() {
   }, []);
 
   const onRowClick = (row: ArticleSummaryDto) => {
-    console.log(1312312312312);
-    
     setDetails(row.summary || "");
     setIsCollapsed(false);
   };

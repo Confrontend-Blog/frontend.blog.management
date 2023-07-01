@@ -1,6 +1,6 @@
 import { AxiosRequestConfig } from "axios";
 
-import { ApiConfig } from "../api-config";
+import { ApiConfig, getHeaders } from "../api-config";
 import {
   DefaultApiFp as UsersApi,
   UsersResponse,
@@ -15,10 +15,9 @@ export const getUsers = async (
       page,
       limit,
     },
+    headers: getHeaders(),
   };
   const { apiConfig } = ApiConfig;
-
-  console.log(apiConfig);
 
   try {
     const res = await UsersApi(apiConfig).usersControllerFindAll(options);
