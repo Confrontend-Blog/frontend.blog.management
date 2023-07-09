@@ -1,8 +1,8 @@
+import { Button } from "@Confrontend/ui-library";
 import debounce from "lodash/debounce";
 import { useState } from "react";
 
 import { createArticle } from "../../../api/clients/create-article";
-import CuiButton from "../../components/ui/button/cui-button";
 import { convertToMarkdown } from "../../utils/markdown.util";
 import { titleToSlug } from "../../utils/string.util";
 import * as S from "./composer.styled";
@@ -129,12 +129,12 @@ const Composer = ({ cancelCb }: ArticleCreateProps) => {
           onChange={onBodyChange}
         />
         <S.Footer>
-          <CuiButton
+          <Button
             bgColor="#222"
             disabled={!title || !content || !slug || !category}
           >
             Create
-          </CuiButton>
+          </Button>
         </S.Footer>
       </form>
     </S.ArticleCreateContainer>

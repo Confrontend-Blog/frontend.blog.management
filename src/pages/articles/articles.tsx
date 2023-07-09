@@ -1,10 +1,10 @@
+import { Table } from "@Confrontend/ui-library";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import { Collapse, IconButton } from "@mui/material";
 import { useEffect, useState } from "react";
 
 import { getSummaries } from "../../../api/clients/get-article-summaries";
 import { ArticleSummaryDto } from "../../../api/openapi/generated-clients/api-blog";
-import Table from "../../components/ui/table/table";
 import * as S from "./article.styled";
 
 function Articles() {
@@ -54,7 +54,7 @@ function Articles() {
     setDetails(row.summary || "");
     setIsCollapsed(false);
   };
-  
+
   return (
     <S.Wrapper isCollapsed={isCollapsed}>
       {articleSummaries?.length && (
@@ -68,7 +68,10 @@ function Articles() {
 
       <div>
         <div>
-          <IconButton data-testid="expand" onClick={() => setIsCollapsed(!isCollapsed)}>
+          <IconButton
+            data-testid="expand"
+            onClick={() => setIsCollapsed(!isCollapsed)}
+          >
             {isCollapsed ? (
               <ExpandMore
                 fontSize="large"

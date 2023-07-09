@@ -3,9 +3,6 @@ import { Configuration as ApiConfiguration } from "./openapi/generated-clients/a
 
 export const CLIENT_ID =
   "949870185516-6ht2coid8u4adoslg7bbcok8bf1j27r4.apps.googleusercontent.com";
-export const BASE_URI = "http://localhost:8080";
-// FIXME: Replace with backend redirect URI (not working)
-// export const BASE_URI = "https://article-service-dev-c5zdjekmoq-ey.a.run.app";
 
 const localhost = {
   baseUrl: "http://localhost:8080",
@@ -26,7 +23,7 @@ const production = {
 };
 
 // For now switch between localhost and development, add prod later
-const environmentConfig =
+export const environmentConfig =
   import.meta.env.VITE_ENVIRONMENT === "development" ? development : localhost;
 
 export const articlesEndpoint = "articles";

@@ -2,7 +2,7 @@ import { ButtonBase, ListItem, ListItemIcon } from "@mui/material";
 import { Link } from "react-router-dom";
 
 import { RoutePaths } from "../../../root-component";
-import { useLogout } from "../logout/logout";
+import { useLogout } from "../../../utils/auth/logout";
 import MenuItems from "./menu-items";
 import * as S from "./side-menu.styled";
 

@@ -1,5 +1,5 @@
-import Tile from "../../components/ui/tile/tile";
-import { theme } from "../../styles/theme";
+import { Tile } from "@Confrontend/ui-library";
+
 import * as S from "./dashboard.styled";
 
 const Dashboard = () => {
