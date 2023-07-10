@@ -22,9 +22,7 @@ const LoginPage = ({ isAuthenticated }: { isAuthenticated: boolean }) => {
     <S.PageWrapper>
       <span>
         <h1>You need to log in</h1>
-        <Button bgColor="#555" onClick={handleLogin}>
-          Login via Google{" "}
-        </Button>
+        <Button onClick={handleLogin}>Login via Google </Button>
         <div>// TODO redirect to dashboard if logged in :)</div>
       </span>
     </S.PageWrapper>

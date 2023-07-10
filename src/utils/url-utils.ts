@@ -1,17 +1,13 @@
 import { useLocation } from "react-router-dom";
 
-import { Token } from "./auth/client-token-storage";
-
-const useParamFromUrl = (param: string): Token | null => {
+const useParamFromUrl = (param: string): string | null => {
   const location = useLocation();
   console.log(location);
-  
+
   const searchParams = new URLSearchParams(location.search);
   console.log(searchParams);
 
-  const token = searchParams.get(param);
-
-  return token as Token;
+  return searchParams.get(param);
 };
 
 export default useParamFromUrl;

@@ -129,10 +129,7 @@ const Composer = ({ cancelCb }: ArticleCreateProps) => {
           onChange={onBodyChange}
         />
         <S.Footer>
-          <Button
-            bgColor="#222"
-            disabled={!title || !content || !slug || !category}
-          >
+          <Button disabled={!title || !content || !slug || !category}>
             Create
           </Button>
         </S.Footer>

@@ -7,10 +7,10 @@
   resolved "https://npm.pkg.github.com/download/@Confrontend/chatly/1.0.8/09a6784712f75d50c4aecb7d804663a83bdb75f4#09a6784712f75d50c4aecb7d804663a83bdb75f4"
   integrity sha512-wylQ1hPyN5VcBn9twd+6jR3xdRS0oWwpAQSV4VhE6IniC/zfDMh37SFgo7gNYtOg53K4ZEQgAw65Wyh4xYsjEA==
 
-"@Confrontend/ui-library@^1.14.0":
-  version "1.14.0"
-  resolved "https://npm.pkg.github.com/download/@Confrontend/ui-library/1.14.0/699854bca77a4f4cf6602f7e6621288ea65784cf#699854bca77a4f4cf6602f7e6621288ea65784cf"
-  integrity sha512-UsJfFKIBcEqx2i8snfSs2HxoMcOcsLF28x2dE4PVPzBBTax+8oV29RfsKfdO7hi1H7QtR/d+nQ5h6Bp6xg0VwA==
+"@Confrontend/ui-library@^1.16.0":
+  version "1.16.0"
+  resolved "https://npm.pkg.github.com/download/@Confrontend/ui-library/1.16.0/a2870ecd5d2f1c89bb25c12ce85266949af00e95#a2870ecd5d2f1c89bb25c12ce85266949af00e95"
+  integrity sha512-BkKhP51Ee6KyNkm3aNG812YGTBcA7sJ2OGJ1oUsn2kjvPte+SK4XlhPKBXd23OHkSwtVcWKIdhkYjEIAisDb3g==
   dependencies:
     chart.js "^4.3.0"
     react-chartjs-2 "^5.2.0"
