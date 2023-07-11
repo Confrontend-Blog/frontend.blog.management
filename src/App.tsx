@@ -8,16 +8,14 @@ import { useThemeStore } from "./stores/theme-store";
 import { AppGlobalStyle } from "./styles/global.styled";
 import { theme } from "./styles/theme";
 
-function App({ accessToken }: { accessToken: string }) {
+function App() {
   const isDark = useThemeStore((state) => state.isDark);
 
   return (
-    <AuthProvider accessToken={accessToken}>
-      <ThemeProvider theme={theme(isDark) as DefaultTheme}>
-        <AppGlobalStyle />
-        <Layout />
-      </ThemeProvider>
-    </AuthProvider>
+    <ThemeProvider theme={theme(isDark) as DefaultTheme}>
+      <AppGlobalStyle />
+      <Layout />
+    </ThemeProvider>
   );
 }
 

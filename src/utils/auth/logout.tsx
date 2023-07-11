@@ -10,7 +10,8 @@ export const useLogout = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    removeToken("access_token");
+    console.log("handleLogout");
+    removeToken("app-token");
     setAccessToken && setAccessToken(null);
     // FIXME logout redirects to dashboard
     navigate(RoutePaths.Login);

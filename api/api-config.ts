@@ -31,7 +31,7 @@ export const usersEndpoint = "users";
 
 export const getHeaders = () => ({
   Accept: "application/json",
-  Authorization: `Bearer ${getStoredToken("access_token")}`,
+  Authorization: `Bearer ${getStoredToken("app-token")}`,
 });
 
 // Application wide api configs for auto-generated clients.

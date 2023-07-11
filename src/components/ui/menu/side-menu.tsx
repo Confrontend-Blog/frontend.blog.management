@@ -18,16 +18,14 @@ function SideMenu() {
         <MenuItems />
       </S.MenuItemsWrapper>
       <S.MenuFooter>
-        <Link to={RoutePaths.Login}>
-          <ButtonBase onClick={logout}>
-            <ListItem>
-              <ListItemIcon>
-                <S.LogoutIcon />
-              </ListItemIcon>
-              <S.StyledListItemText primary="Logout" />
-            </ListItem>
-          </ButtonBase>
-        </Link>
+        <ButtonBase onClick={logout}>
+          <ListItem>
+            <ListItemIcon>
+              <S.LogoutIcon />
+            </ListItemIcon>
+            <S.StyledListItemText primary="Logout" />
+          </ListItem>
+        </ButtonBase>
       </S.MenuFooter>
     </S.Wrapper>
   );

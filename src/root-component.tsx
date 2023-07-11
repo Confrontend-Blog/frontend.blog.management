@@ -4,6 +4,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import LoginPage from "./pages/login/login-page.tsx";
 // import "./index.css";
 import UserInactive from "./pages/user-inactive/user-inactive.tsx";
+import { AuthProvider } from "./providers/auth-conext.tsx";
 import { useAuthenticate } from "./utils/auth/useAuthenticate.ts";
 
 /** Security: Only fetch application code  chunk for authenticated user. */
@@ -21,31 +22,30 @@ export enum RoutePaths {
 }
 
 const RootComponent = () => {
-  const { accessToken, isLoading } = useAuthenticate();
+  const { isLoading, token } = useAuthenticate();
 
   return (
-    <Routes>
-      <Route path={RoutePaths.Inactive} element={<UserInactive />} />
-      <Route
-        path={RoutePaths.Login}
-        element={<LoginPage isAuthenticated={!!accessToken} />}
-      />
-      <Route
-        path="*"
-        element={
-          isLoading ? (
-            // TODO Loading spinner
-            <div>Loading...</div>
-          ) : accessToken ? (
-            <Suspense fallback={<div>Loading...</div>}>
-              <App accessToken={accessToken} />
-            </Suspense>
-          ) : (
-            <Navigate to={RoutePaths.Login} replace />
-          )
-        }
-      />
-    </Routes>
+    <AuthProvider accessToken={token}>
+      <Routes>
+        <Route path={RoutePaths.Inactive} element={<UserInactive />} />
+        <Route path={RoutePaths.Login} element={<LoginPage />} />
+        <Route
+          path="*"
+          element={
+            isLoading ? (
+              // TODO Loading spinner
+              <div>Loading...</div>
+            ) : token ? (
+              <Suspense fallback={<div>Loading...</div>}>
+                <App />
+              </Suspense>
+            ) : (
+              <Navigate to={RoutePaths.Login} replace />
+            )
+          }
+        />
+      </Routes>
+    </AuthProvider>
   );
 };
 

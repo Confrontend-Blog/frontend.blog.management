@@ -1,13 +1,13 @@
 import jwtDecode from "jwt-decode";
-import { createContext, ReactNode } from "react";
-
-import { useAccessToken } from "../utils/auth/use-token";
+import { createContext, ReactNode, useState } from "react";
 
 interface AuthContextValue {
   username?: string;
-  accessToken: string;
+  accessToken: string | null;
   firebaseToken?: string;
   setAccessToken?: (value: string | null) => void;
+
+  setIsAuthenticated?: (value: boolean) => void;
 }
 
 const AuthContext = createContext<AuthContextValue>({
@@ -15,21 +15,20 @@ const AuthContext = createContext<AuthContextValue>({
   accessToken: "",
   firebaseToken: "",
   setAccessToken: () => null,
+  setIsAuthenticated: () => null,
 });
 
 interface AuthProviderProps {
   children: ReactNode;
-  accessToken: string;
+  accessToken: string | null;
 }
 
 export const AuthProvider = ({ children, accessToken }: AuthProviderProps) => {
   let username = "";
 
   if (accessToken) {
-    console.log(accessToken);
     // FIXME
     const decodedToken = jwtDecode(accessToken || "") as { name: string };
-    console.log("decodedToken", decodedToken);
 
     username = decodedToken?.name || "User";
   }
@@ -43,12 +42,19 @@ export const AuthProvider = ({ children, accessToken }: AuthProviderProps) => {
   //   setTokenState(value);
   // };
 
+  const setAccessToken = (value: string | null) => {
+    console.log("setAccessToken", value);
+    // TODO improve prop overriding
+    accessToken = value;
+  };
+
   const value: AuthContextValue = {
     username,
     accessToken: accessToken || "",
-    // TODO
+    // TODO firebaseToken
     firebaseToken: "",
-    setAccessToken: () => null,
+    setAccessToken,
+    setIsAuthenticated: () => null,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

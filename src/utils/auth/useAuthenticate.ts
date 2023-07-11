@@ -1,21 +1,31 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import { environmentConfig } from "../../../api/api-config";
+import AuthContext from "../../providers/auth-conext";
 import useParamFromUrl from "../url-utils";
-import { storeToken } from "./client-token-storage";
+import {
+  getStoredToken,
+  removeToken,
+  storeToken,
+} from "./client-token-storage";
 
 export const useAuthenticate = () => {
-  console.log("useAuthenticate");
-
   const userInfo = useParamFromUrl("userInfo");
+
+  const { setAccessToken } = useContext(AuthContext);
+
   const [isLoading, setIsLoading] = useState(true);
-  const [accessToken, setAccessToken] = useState<string | undefined>();
+  const [token, setToken] = useState<string | null>(null);
+  console.log({ token });
+
+  // TODO find a better solution
+  const isLoggedOut = !getStoredToken("app-token");
 
   useEffect(() => {
     const authenticate = async () => {
       try {
         const response = await fetch(
-          `${environmentConfig.baseUrl}/auth/authenticate`,
+          `${environmentConfig.baseUrl}/auth/app-token`,
           {
             method: "POST",
             body: JSON.stringify({ userInfo }),
@@ -27,8 +37,13 @@ export const useAuthenticate = () => {
         const data = await response.json();
         const token = data.accessToken;
         if (token) {
+          console.log({ token });
+
           storeToken(token);
-          setAccessToken(token);
+          setToken(token);
+          setAccessToken && setAccessToken(token);
+        } else {
+          removeToken("app-token");
         }
       } catch (error) {
         console.error("Login failed", error);
@@ -36,8 +51,9 @@ export const useAuthenticate = () => {
         setIsLoading(false);
       }
     };
-    authenticate();
-  }, [userInfo]);
 
-  return { accessToken, isLoading };
+    authenticate();
+  }, []);
+
+  return isLoggedOut ? { token: null, isLoading: false } : { token, isLoading };
 };

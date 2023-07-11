@@ -1,9 +1,9 @@
 // TODO improve typing
-export type Token = "firebase_token" | "access_token";
+export type Token = "firebase_token" | "app-token";
 
 export function storeToken(token: string): void {
   try {
-    localStorage.setItem("access_token", token);
+    localStorage.setItem("app-token", token);
   } catch (error) {
     console.error("Error setting token in localStorage:", error);
   }
