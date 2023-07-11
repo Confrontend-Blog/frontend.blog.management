@@ -2,7 +2,6 @@ import { Button } from "@Confrontend/ui-library";
 import { useContext } from "react";
 import { Navigate } from "react-router-dom";
 
-import { CLIENT_ID, environmentConfig } from "../../../api/api-config";
 import AuthContext from "../../providers/auth-conext";
 import { RoutePaths } from "../../root-component";
 import * as S from "./login-page.styled";
@@ -16,7 +15,11 @@ const LoginPage = () => {
   }
 
   const handleLogin = () => {
-    const authURL = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${CLIENT_ID}&redirect_uri=${environmentConfig.baseUrl}/auth/google/redirect&response_type=code&scope=openid%20email%20profile`;
+    const authURL = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${
+      import.meta.env.VITE_CLIENT_ID
+    }&redirect_uri=${
+      import.meta.env.VITE_BASE_URL
+    }/auth/google/redirect&response_type=code&scope=openid%20email%20profile`;
     window.location.href = authURL;
   };
 

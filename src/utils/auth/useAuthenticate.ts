@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from "react";
 
-import { environmentConfig } from "../../../api/api-config";
 import AuthContext from "../../providers/auth-conext";
 import useParamFromUrl from "../url-utils";
 import {
@@ -25,7 +24,7 @@ export const useAuthenticate = () => {
     const authenticate = async () => {
       try {
         const response = await fetch(
-          `${environmentConfig.baseUrl}/auth/app-token`,
+          `${import.meta.env.VITE_BASE_URL}/auth/app-token`,
           {
             method: "POST",
             body: JSON.stringify({ userInfo }),
