@@ -12,7 +12,7 @@ const MenuItems = () => {
     <List>
       <Link to={RoutePaths.Dashboard}>
         <ButtonBase>
-          <S.StyledListItem isActive={isActiveRoute(RoutePaths.Dashboard)}>
+          <S.StyledListItem $isActive={isActiveRoute(RoutePaths.Dashboard)}>
             <ListItemIcon>
               <S.StyledDashboardIcon />
             </ListItemIcon>
@@ -22,7 +22,7 @@ const MenuItems = () => {
       </Link>
       <Link to={RoutePaths.Composer}>
         <ButtonBase>
-          <S.StyledListItem isActive={isActiveRoute(RoutePaths.Composer)}>
+          <S.StyledListItem $isActive={isActiveRoute(RoutePaths.Composer)}>
             <ListItemIcon>
               <S.StyledComposerIcon />
             </ListItemIcon>
@@ -32,7 +32,7 @@ const MenuItems = () => {
       </Link>
       <Link to={RoutePaths.Authors}>
         <ButtonBase>
-          <S.StyledListItem isActive={isActiveRoute(RoutePaths.Authors)}>
+          <S.StyledListItem $isActive={isActiveRoute(RoutePaths.Authors)}>
             <ListItemIcon>
               <S.StyledAuthorIcon />
             </ListItemIcon>
@@ -42,7 +42,7 @@ const MenuItems = () => {
       </Link>
       <Link to={RoutePaths.Articles}>
         <ButtonBase>
-          <S.StyledListItem isActive={isActiveRoute(RoutePaths.Articles)}>
+          <S.StyledListItem $isActive={isActiveRoute(RoutePaths.Articles)}>
             <ListItemIcon>
               <S.StyledArticleIcon />
             </ListItemIcon>
@@ -52,7 +52,7 @@ const MenuItems = () => {
       </Link>
       <Link to={RoutePaths.Messages}>
         <ButtonBase>
-          <S.StyledListItem isActive={isActiveRoute(RoutePaths.Messages)}>
+          <S.StyledListItem $isActive={isActiveRoute(RoutePaths.Messages)}>
             <ListItemIcon>
               <S.StyledChatIcon />
             </ListItemIcon>
@@ -62,7 +62,7 @@ const MenuItems = () => {
       </Link>
       <Link to={RoutePaths.Settings}>
         <ButtonBase>
-          <S.StyledListItem isActive={isActiveRoute(RoutePaths.Settings)}>
+          <S.StyledListItem $isActive={isActiveRoute(RoutePaths.Settings)}>
             <ListItemIcon>
               <S.StyledSettingsIcon />
             </ListItemIcon>

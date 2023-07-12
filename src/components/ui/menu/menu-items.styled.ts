@@ -32,9 +32,9 @@ export const StyledListItemText = styled(ListItemText)`
   }
 `;
 
-export const StyledListItem = styled(ListItem)<{ isActive?: boolean }>`
-  ${({ isActive, theme }) =>
-    isActive &&
+export const StyledListItem = styled(ListItem)<{ $isActive?: boolean }>`
+  ${({ $isActive, theme }) =>
+    $isActive &&
     `
     & .MuiSvgIcon-root {
       color: ${theme.palette.info.main};

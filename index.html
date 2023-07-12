@@ -20,26 +20,20 @@
 
 <body>
   <div id="main"></div>
-
   <script>
     window.Frontend_Portal_Chat = 'Frontend_Portal_Chat'
     try {
-      let moduleInstance;
       window.loadMicroFEModule = async function () {
         try {
-          // main-test.js is from react-performance project 
-          if (moduleInstance && moduleInstance.unmount) {
-            moduleInstance.unmount();
-          }
-          // main-test.js is from react-performance project 
-          moduleInstance = await System.import("http://127.0.0.1:4173/main-test.js");
-          console.log("unmount", moduleInstance.unmount);
-          // handle the loaded module, e.g., render a component
-          // handle the loaded module, e.g., render a component
+          // Import the chat microfrontend
+          await System.import("http://127.0.0.1:4173/main-chat-fe.js");
         } catch (error) {
-          console.error("Failed to load the chat module", error);
+          console.error("Failed to load the chat microfrontend", error);
         }
       };
+
+      // Call this function to load the microfrontend as soon as the page is loaded
+      window.loadMicroFEModule();
 
     } catch (error) {
       console.log(error)

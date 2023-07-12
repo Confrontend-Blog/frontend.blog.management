@@ -1,34 +1,27 @@
-
-// import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 declare global {
   interface Window {
-    hasLoadedMicrofrontend: boolean;
+    chatMicroFrontend?: {
+      mount: (containerId: string) => void;
+      unmount: (containerId: string) => void;
+    };
   }
 }
 
-
 function Messages() {
-  // const [isMicroFrontendLoaded, setIsMicroFrontendLoaded] = useState(false);
+  // TODO create better container
+  const containerId = "root";
 
-  // useEffect(() => {
-  //   console.log(1);
-    
+  useEffect(() => {
+    // Mount the microfrontend when the component is rendered
+    window.chatMicroFrontend?.mount(containerId);
 
-  //   System.import("http://127.0.0.1:4174/main-chat-fe.js")
-  //     .then(() => {
-  //       setIsMicroFrontendLoaded(true);
-  //     })
-  //     .catch((err) => {
-  //       console.error("Failed to load microfrontend", err);
-  //     });
-  // }, []);
+    // Unmount the microfrontend when the component is unmounted
+    return () => window.chatMicroFrontend?.unmount(containerId);
+  }, []);
 
-  // if (!isMicroFrontendLoaded) {
-  //   return <div>Loading...</div>;
-  // }
-
-  return <div></div>;
+  return <div id={containerId} />;
 }
 
 export default Messages;
