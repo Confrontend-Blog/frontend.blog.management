@@ -1,3 +1,4 @@
+import React from "react";
 import { Route, Routes } from "react-router-dom";
 
 import withProtectedRoute from "./components/routing/with-protected-route";
@@ -6,6 +7,7 @@ import Articles from "./pages/articles/articles";
 import Authors from "./pages/authors/authors";
 import Composer from "./pages/composer/composer";
 import Dashboard from "./pages/dashboard/dashboard";
+import Messages from "./pages/messages/messages";
 import Settings from "./pages/settings/settings";
 import { RoutePaths } from "./root-component";
 
