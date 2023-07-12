@@ -11,7 +11,7 @@ export const Wrapper = styled.span<WrapperProps>`
   align-items: stretch;
   height: 100%;
 
-  > :first-child {
+  > :first-of-type {
     flex: 0 0 ${({ isCollapsed }) => (isCollapsed ? "100%" : "80%")};
   }
 

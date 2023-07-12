@@ -3,6 +3,10 @@
 - integrate [Sentry](https://conf-0g.sentry.io/onboarding/setup-docs/?product=performance-monitoring&product=session-replay) for error logging
 - npmrc with auth token is needed, unless I make the packages public.
 
+## Fixme
+
+- on browser refresh token gets removed
+
 ## ideas
 
 - cache api data in zustand
