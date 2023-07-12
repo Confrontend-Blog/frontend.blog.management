@@ -6,12 +6,40 @@
   <link rel="icon" type="image/svg+xml" href="/logo-mini.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Blog Management</title>
+  <script src="/system.js"></script>
+  <script type="systemjs-importmap">
+      {
+        "imports": {
+          "react": "/react.development.js",
+          "react-dom": "/react-dom.development.js",
+          "@mui/material": "/material-ui.production.min.js"
+        }
+      }
+    </script>
 </head>
 
 <body>
   <div id="main"></div>
-  <script type="module" src="/src/main.tsx"></script>
+  <script>
+    window.Frontend_Portal_Chat = 'Frontend_Portal_Chat'
+    try {
+      window.loadMicroFEModule = async function () {
+        try {
+          // Import the chat microfrontend
+          await System.import("http://127.0.0.1:4173/main-chat-fe.js");
+        } catch (error) {
+          console.error("Failed to load the chat microfrontend", error);
+        }
+      };
 
+      // Call this function to load the microfrontend as soon as the page is loaded
+      window.loadMicroFEModule();
+
+    } catch (error) {
+      console.log(error)
+    }
+  </script>
+  <script type="module" src="/src/main.tsx"></script>
 
 </body>
 

@@ -47,7 +47,13 @@ const AppRoutes = () => {
       <Route
         path={RoutePaths.Messages}
         element={withProtectedRoute(
-          <ContentTemplate WrappedComponent={<div>Messages</div>} />
+          <ContentTemplate
+            WrappedComponent={
+              <>
+                <Messages />
+              </>
+            }
+          />
         )}
       />
       <Route
