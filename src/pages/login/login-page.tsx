@@ -27,7 +27,7 @@ const LoginPage = () => {
     <S.PageWrapper>
       <span>
         <h1>You need to log in</h1>
-        <Button onClick={handleLogin}>Login via Google </Button>
+        <Button onClick={handleLogin}>Login via Google</Button>
       </span>
     </S.PageWrapper>
   );

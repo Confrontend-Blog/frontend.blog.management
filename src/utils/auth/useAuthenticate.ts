@@ -15,7 +15,6 @@ export const useAuthenticate = () => {
 
   const [isLoading, setIsLoading] = useState(true);
   const [token, setToken] = useState<string | null>(null);
-  console.log({ token });
 
   // TODO find a better solution
   const isLoggedOut = !getStoredToken("app-token");
@@ -33,6 +32,20 @@ export const useAuthenticate = () => {
             },
           }
         );
+        const firebase = await fetch(
+          `${import.meta.env.VITE_BASE_URL}/auth/chat-token`,
+          {
+            method: "POST",
+            body: JSON.stringify({ userInfo }),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        // TODO remove me
+        const d = await firebase.json();
+        console.log(d, "<........ firebase");
+
         const data = await response.json();
         const token = data.accessToken;
         if (token) {
