@@ -1,11 +1,11 @@
-import { useState } from "react";
-import * as S from "./composer.styled";
+import { Button } from "@Confrontend/ui-library";
 import debounce from "lodash/debounce";
-import { titleToSlug } from "../../utils/string.util";
-import { convertToMarkdown } from "../../utils/markdown.util";
+import { useState } from "react";
 
 import { createArticle } from "../../../api/clients/create-article";
-import CuiButton from "../../components/ui/button/cui-button";
+import { convertToMarkdown } from "../../utils/markdown.util";
+import { titleToSlug } from "../../utils/string.util";
+import * as S from "./composer.styled";
 
 interface ArticleCreateProps {
   cancelCb: () => void;
@@ -88,7 +88,7 @@ const Composer = ({ cancelCb }: ArticleCreateProps) => {
       <form onSubmit={onSubmit}>
         <S.StyledTextField
           fullWidth
-          variant="standard"
+          variant="filled"
           label="Title"
           value={title}
           onChange={onTitleChange}
@@ -99,19 +99,18 @@ const Composer = ({ cancelCb }: ArticleCreateProps) => {
         </S.Slug>
         <S.StyledTextField
           fullWidth
-          variant="standard"
+          variant="filled"
           label="Summary"
           value={summary}
           onChange={(e) => setSummary(e.target.value)}
           required
         />
         <S.StyledAutocomplete
-          fullWidth
           defaultValue={categories[0]}
           PopperComponent={S.AutocompletePopper}
           value={category}
-          onChange={(newValue) => {
-            setCategory(newValue?.toString() || "");
+          onChange={(event, newValue) => {
+            setCategory(newValue?.toString() || categories[0]);
           }}
           options={categories}
           renderInput={(params) => (
@@ -129,19 +128,10 @@ const Composer = ({ cancelCb }: ArticleCreateProps) => {
           value={content}
           onChange={onBodyChange}
         />
-
         <S.Footer>
-          <span>
-            <CuiButton
-              bgColor="#222"
-              disabled={!title || !content || !slug || !category}
-            >
-              Create
-            </CuiButton>
-            <CuiButton bgColor="#222" onClick={cancelCb}>
-              Cancel
-            </CuiButton>
-          </span>
+          <Button disabled={!title || !content || !slug || !category}>
+            Create
+          </Button>
         </S.Footer>
       </form>
     </S.ArticleCreateContainer>

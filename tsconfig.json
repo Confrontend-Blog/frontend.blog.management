@@ -22,6 +22,6 @@
   "include": [
     "src",
     "styled.d.ts"
-  ],
+, "mocks"  ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

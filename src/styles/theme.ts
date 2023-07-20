@@ -1,6 +1,6 @@
 import { createTheme } from "@mui/material/styles";
 
-const colors = {
+export const colors = {
   blueMedium: "#2196f3",
   greenMedium: "#4caf50",
   greyDark: "#202124",
@@ -12,7 +12,7 @@ const colors = {
   white: "#fff",
 };
 
-const appTheme = {
+const lightTheme = {
   palette: {
     action: {
       active: colors.greyDark,
@@ -85,6 +85,23 @@ const appTheme = {
   },
 } as const;
 
-export const theme = createTheme(appTheme);
+const darkTheme = {
+  ...lightTheme,
+  palette: {
+    background: {
+      default: colors.white,
+      paper: colors.greyDark,
+    },
+    text: {
+      disabled: colors.greyMedium,
+      primary: colors.greyLight,
+      secondary: colors.greyDark,
+    },
+  },
+} as const;
 
-export type CustomizedMuiThemeType = typeof appTheme;
+export const theme = (isDark: boolean) => {
+  return createTheme(isDark ? darkTheme : lightTheme);
+};
+
+export type CustomizedMuiThemeType = typeof lightTheme;

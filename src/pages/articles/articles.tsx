@@ -1,20 +1,20 @@
-import { Collapse, IconButton } from "@mui/material";
-import Table from "../../components/ui/table/table";
-import * as S from "./article.styled";
-import { useEffect, useState } from "react";
+import { Table } from "@Confrontend/ui-library";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
-import { ArticleSummaryDto } from "../../../api/openapi/generated-clients/api-blog";
+import { Collapse, IconButton } from "@mui/material";
+import { useEffect, useState } from "react";
 
 import { getSummaries } from "../../../api/clients/get-article-summaries";
+import { ArticleSummaryDto } from "../../../api/openapi/generated-clients/api-blog";
+import * as S from "./article.styled";
 
 function Articles() {
   const [isCollapsed, setIsCollapsed] = useState(true);
-  const [details, setDetails] = useState("");
+  const [details, setDetails] = useState("Select a row to see details");
   const [articleSummaries, setArticleSummaries] = useState<
     ArticleSummaryDto[] | undefined
   >([] as ArticleSummaryDto[]);
 
-  const columns: any = [
+  const columns = [
     { Header: " ", Cell: ({ row }: any) => row.index + 1, width: "5%" },
     {
       Header: "Summary",
@@ -44,30 +44,34 @@ function Articles() {
   useEffect(() => {
     const fetchData = async () => {
       const res = await getSummaries(1, 100);
-      console.log(res?.summaries);
       setArticleSummaries(res?.summaries);
     };
 
     fetchData();
   }, []);
 
-  const onRowClick = (row: any) => {
-    setDetails(row.values?.summary || "");
+  const onRowClick = (row: ArticleSummaryDto) => {
+    setDetails(row.summary || "");
     setIsCollapsed(false);
   };
+
   return (
     <S.Wrapper isCollapsed={isCollapsed}>
       {articleSummaries?.length && (
-        <Table
+        <Table<ArticleSummaryDto>
           data={articleSummaries}
           onRowClick={onRowClick}
           columns={columns}
+          hiddenColumns={["summary"]}
         />
       )}
 
       <div>
         <div>
-          <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
+          <IconButton
+            data-testid="expand"
+            onClick={() => setIsCollapsed(!isCollapsed)}
+          >
             {isCollapsed ? (
               <ExpandMore
                 fontSize="large"
@@ -81,7 +85,12 @@ function Articles() {
             )}
           </IconButton>
           <Collapse in={!isCollapsed} orientation="vertical">
-            {!isCollapsed && <div>{details}</div>}
+            {!isCollapsed && (
+              <div>
+                <h3>Summary</h3>
+                {details}
+              </div>
+            )}
           </Collapse>
         </div>
       </div>

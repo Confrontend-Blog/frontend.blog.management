@@ -1,8 +1,7 @@
-import TopBar from "../navigation/top-bar";
-import * as S from "./layout.styled";
-
 import AppRoutes from "../../../app-routes";
 import SideMenu from "../menu/side-menu";
+import TopBar from "../navigation/top-bar";
+import * as S from "./layout.styled";
 
 const Layout = () => {
   return (

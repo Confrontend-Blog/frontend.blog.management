@@ -1,14 +1,17 @@
-import * as S from "./top-bar.styled";
-import { useEffect, useState } from "react";
-import NotificationsIcon from "@mui/icons-material/Notifications";
 import ChatIcon from "@mui/icons-material/Chat";
+import NotificationsIcon from "@mui/icons-material/Notifications";
+import { useContext, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+
+import AuthContext from "../../../providers/auth-conext";
 import { urlToPAgeTile } from "../../../utils/string.util";
+import * as S from "./top-bar.styled";
 
 const TopBar = () => {
   const [left, setLeft] = useState(<></>);
   const [right, setRight] = useState(<></>);
   const location = useLocation();
+  const { username } = useContext(AuthContext);
 
   useEffect(() => {
     setLeft(<>{urlToPAgeTile(location.pathname)}</>);
@@ -16,10 +19,10 @@ const TopBar = () => {
       <>
         <ChatIcon />
         <NotificationsIcon />
-        <span>Author</span>
+        <span>{username}</span>
       </>
     );
-  }, [location]);
+  }, [location, username]);
 
   return (
     <S.NavigationWrapper>

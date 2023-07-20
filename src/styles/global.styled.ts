@@ -1,5 +1,5 @@
 import { createGlobalStyle } from "styled-components";
-
+// todo lose the "styled-components"
 const AppGlobalStyle = createGlobalStyle`
   body {
     min-height: 100vh;

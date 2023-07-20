@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+
 import ProtectedRoute from "./protected-route";
 
 const withProtectedRoute = (Component: ReactNode) => {
