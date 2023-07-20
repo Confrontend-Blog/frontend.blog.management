@@ -1,7 +1,12 @@
+## Architecture
+
+![Architecture](assets/architecture.png)
+
 ## TODO
 
 - integrate [Sentry](https://conf-0g.sentry.io/onboarding/setup-docs/?product=performance-monitoring&product=session-replay) for error logging
-- npmrc with auth token is needed, unless I make the packages public.
+- npmrc with auth token is needed. make public later.
+- @Confrontend/ui-library" C should be lowercase.
 
 ## Fixme
 

@@ -15,7 +15,6 @@
     "jest-preview": "jest-preview"
   },
   "dependencies": {
-    "@Confrontend/chatly": "^1.0.8",
     "@Confrontend/ui-library": "^1.16.0",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
