@@ -19,7 +19,7 @@ The application structure is organized as follows:
 ├── dist/: Output directory for the build command.
 ├── mocks/: Mock data for testing.
 ├── openapi/: OpenAPI specs for backend services.
-├── public/: Public assets that are copied to the dist/ folder on build.
+├── public/: Public assets
 ├── src/: The main source files for the application.
 │   ├── Components/: UI components.
 │   ├── Pages/: the various pages of the application.
