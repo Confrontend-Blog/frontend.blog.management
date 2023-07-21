@@ -25,3 +25,8 @@ dist-ssr
 .env
 .yarnrc
 .npmrc
+styled-components.min.js
+material-ui.production.min.js
+react-dom.development.js
+react.development.js
+system.js
