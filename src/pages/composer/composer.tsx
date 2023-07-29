@@ -109,7 +109,7 @@ const Composer = ({ cancelCb }: ArticleCreateProps) => {
           defaultValue={categories[0]}
           PopperComponent={S.AutocompletePopper}
           value={category}
-          onChange={(event, newValue) => {
+          onChange={(newValue) => {
             setCategory(newValue?.toString() || categories[0]);
           }}
           options={categories}

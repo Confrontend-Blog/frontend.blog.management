@@ -1,5 +1,5 @@
 import jwtDecode from "jwt-decode";
-import { createContext, ReactNode, useState } from "react";
+import { createContext, ReactNode } from "react";
 
 interface AuthContextValue {
   username?: string;

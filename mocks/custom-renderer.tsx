@@ -7,7 +7,7 @@ import { DefaultTheme, ThemeProvider } from "styled-components";
 import { AuthProvider } from "../src/providers/auth-conext";
 import { theme } from "../src/styles/theme";
 
-jest.mock('jwt-decode', () => jest.fn(() => ({ name: 'Mock Name' })));
+jest.mock("jwt-decode", () => jest.fn(() => ({ name: "Mock Name" })));
 
 type TestProvidersProps = {
   token: string;
@@ -18,6 +18,8 @@ type TestProvidersProps = {
 const TestProviders = ({ token, isDark, children }: TestProvidersProps) => {
   return (
     <AuthProvider
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       auth={{
         username: "",
         accessToken: token,

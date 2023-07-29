@@ -1,5 +1,4 @@
 import { lazy, Suspense } from "react";
-import React from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 
 import LoginPage from "./pages/login/login-page.tsx";

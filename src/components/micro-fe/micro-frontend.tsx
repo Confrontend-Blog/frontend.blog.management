@@ -1,22 +1,23 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
+
+import { loadMicroFrontend, MicroFe } from "../../utils/micro-fe-utils";
 
 type MicroFrontendProps = {
-  windowObjectName: string;
   containerId: string;
 };
 
-export default function MicroFrontend({
-  containerId,
-  windowObjectName,
-}: MicroFrontendProps) {
+export default function MicroFrontend({ containerId }: MicroFrontendProps) {
   useEffect(() => {
-    const microFe = window[windowObjectName as any] as any;
-    // Mount the microfrontend when the component is rendered
-    microFe?.mount(containerId);
+    let microFe: MicroFe;
+    // TODO handle failed / non ideal state
+    const loader = async () => {
+      microFe = await loadMicroFrontend();
+      microFe.mount(containerId);
+    };
+    loader();
 
-    // Unmount the microfrontend when the component is unmounted
-    return () => microFe?.unmount(containerId);
-  }, [containerId, windowObjectName]);
+    return () => microFe && microFe.unmount(containerId);
+  }, [containerId]);
 
   return <div id={containerId} />;
 }

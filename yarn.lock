@@ -2,11 +2,6 @@
 # yarn lockfile v1
 
 
-"@Confrontend/chatly@^1.0.8":
-  version "1.0.8"
-  resolved "https://npm.pkg.github.com/download/@Confrontend/chatly/1.0.8/09a6784712f75d50c4aecb7d804663a83bdb75f4#09a6784712f75d50c4aecb7d804663a83bdb75f4"
-  integrity sha512-wylQ1hPyN5VcBn9twd+6jR3xdRS0oWwpAQSV4VhE6IniC/zfDMh37SFgo7gNYtOg53K4ZEQgAw65Wyh4xYsjEA==
-
 "@Confrontend/ui-library@^1.16.0":
   version "1.16.0"
   resolved "https://npm.pkg.github.com/download/@Confrontend/ui-library/1.16.0/a2870ecd5d2f1c89bb25c12ce85266949af00e95#a2870ecd5d2f1c89bb25c12ce85266949af00e95"
@@ -2425,6 +2420,11 @@
     "@types/hoist-non-react-statics" "*"
     "@types/react" "*"
     csstype "^3.0.2"
+
+"@types/systemjs@^6.13.1":
+  version "6.13.1"
+  resolved "https://registry.npmjs.org/@types/systemjs/-/systemjs-6.13.1.tgz#fccf8049fdf328bca4cfbad3a9cc7bf088b45048"
+  integrity sha512-Jxo2/uif1WpkabfyvWpFmPWFPDdwKUmyL7xWzjtxNALEu2pgce+eISjbf0Vr+SsK/D9savO5kTRcf+COLK5eiQ==
 
 "@types/testing-library__jest-dom@^5.9.1":
   version "5.14.6"
