@@ -6,7 +6,6 @@ export const usersEndpoint = "users";
 
 export const getHeaders = () => ({
   Accept: "application/json",
-  Authorization: `Bearer ${getStoredToken("app-token")}`,
 });
 
 // Application wide api configs for auto-generated clients.
@@ -18,8 +17,8 @@ export const ApiConfig = {
   },
   apiConfig: new ApiConfiguration({
     baseOptions: {
-      withCredentials: false,
+      credentials: "include",
     },
-    basePath: import.meta.env.VITE_BASE_URL,
+    basePath: `${import.meta.env.VITE_BASE_URL}/api`,
   }),
 };
