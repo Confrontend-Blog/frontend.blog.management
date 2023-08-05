@@ -9,9 +9,9 @@ const ProtectedRoute = ({
 }: {
   WrappedComponent: ReactNode;
 }) => {
-  const { accessToken } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
-  return accessToken ? (
+  return user ? (
     <>{WrappedComponent}</>
   ) : (
     <Navigate to={RoutePaths.Login} replace />

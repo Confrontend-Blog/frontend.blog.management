@@ -6,6 +6,7 @@ import LoginPage from "./pages/login/login-page.tsx";
 import UserInactive from "./pages/user-inactive/user-inactive.tsx";
 import { AuthProvider } from "./providers/auth-conext.tsx";
 import { useAuthenticate } from "./utils/auth/useAuthenticate.ts";
+import { isObjectEmpty } from "./utils/object-utils.ts";
 
 /** Security: Only fetch application code  chunk for authenticated user. */
 const App = lazy(() => import("./App"));
@@ -22,25 +23,22 @@ export enum RoutePaths {
 }
 
 const RootComponent = () => {
-  const { isLoading, token } = useAuthenticate();
+  const user = useAuthenticate();
 
   return (
-    <AuthProvider accessToken={token}>
+    <AuthProvider user={user}>
       <Routes>
         <Route path={RoutePaths.Inactive} element={<UserInactive />} />
         <Route path={RoutePaths.Login} element={<LoginPage />} />
         <Route
           path="*"
           element={
-            isLoading ? (
-              // TODO Loading spinner
-              <div>Loading...</div>
-            ) : token ? (
+            !user || isObjectEmpty(user) ? (
+              <Navigate to={RoutePaths.Login} replace />
+            ) : (
               <Suspense fallback={<div>Loading...</div>}>
                 <App />
               </Suspense>
-            ) : (
-              <Navigate to={RoutePaths.Login} replace />
             )
           }
         />

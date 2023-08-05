@@ -1,4 +1,3 @@
-import { getStoredToken } from "../src/utils/auth/client-token-storage";
 import { Configuration as ApiConfiguration } from "./openapi/generated-clients/api-blog";
 
 export const articlesEndpoint = "articles";

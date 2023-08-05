@@ -1,60 +1,26 @@
-import jwtDecode from "jwt-decode";
 import { createContext, ReactNode } from "react";
 
-interface AuthContextValue {
-  username?: string;
-  accessToken: string | null;
-  firebaseToken?: string;
-  setAccessToken?: (value: string | null) => void;
+import { UserDto } from "../../api/openapi/generated-clients/api-user";
 
-  setIsAuthenticated?: (value: boolean) => void;
+interface AuthContextValue {
+  user: UserDto | null;
+  firebaseToken?: string;
+}
+
+interface AuthProviderProps {
+  user: UserDto | null;
+  children: ReactNode;
 }
 
 const AuthContext = createContext<AuthContextValue>({
-  username: "",
-  accessToken: "",
-  firebaseToken: "",
-  setAccessToken: () => null,
-  setIsAuthenticated: () => null,
+  user: null,
 });
 
-interface AuthProviderProps {
-  children: ReactNode;
-  accessToken: string | null;
-}
-
-export const AuthProvider = ({ children, accessToken }: AuthProviderProps) => {
-  let username = "";
-
-  if (accessToken) {
-    // FIXME
-    const decodedToken = jwtDecode(accessToken || "") as { name: string };
-
-    username = decodedToken?.name || "User";
-  }
-
-  // TODO: add logic for silent token renewal
-  // const refreshToken = (value: string | null) => {
-  //   if (value) {
-  //     // Store token in local storage
-  //     storeToken(value);
-  //   }
-  //   setTokenState(value);
-  // };
-
-  const setAccessToken = (value: string | null) => {
-    console.log("setAccessToken", value);
-    // TODO improve prop overriding
-    accessToken = value;
-  };
+export const AuthProvider = ({ user, children }: AuthProviderProps) => {
+  // TODO firebase
 
   const value: AuthContextValue = {
-    username,
-    accessToken: accessToken || "",
-    // TODO firebaseToken
-    firebaseToken: "",
-    setAccessToken,
-    setIsAuthenticated: () => null,
+    user,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

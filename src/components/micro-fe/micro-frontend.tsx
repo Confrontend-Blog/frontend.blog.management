@@ -8,11 +8,11 @@ type MicroFrontendProps = {
 
 export default function MicroFrontend({ containerId }: MicroFrontendProps) {
   useEffect(() => {
-    let microFe: MicroFe;
-    // TODO handle failed / non ideal state
+    let microFe: MicroFe | undefined;
+    // TODO handle failed/non-ideal state
     const loader = async () => {
       microFe = await loadMicroFrontend();
-      microFe.mount(containerId);
+      microFe && microFe.mount(containerId);
     };
     loader();
 

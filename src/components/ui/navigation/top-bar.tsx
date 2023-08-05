@@ -11,7 +11,7 @@ const TopBar = () => {
   const [left, setLeft] = useState(<></>);
   const [right, setRight] = useState(<></>);
   const location = useLocation();
-  const { username } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
   useEffect(() => {
     setLeft(<>{urlToPAgeTile(location.pathname)}</>);
@@ -19,10 +19,10 @@ const TopBar = () => {
       <>
         <ChatIcon />
         <NotificationsIcon />
-        <span>{username}</span>
+        <span>{user?.displayName}</span>
       </>
     );
-  }, [location, username]);
+  }, []);
 
   return (
     <S.NavigationWrapper>

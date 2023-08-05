@@ -6,7 +6,8 @@ export type MicroFe = {
   unmount: (containerId: string) => void;
 };
 
-export const loadMicroFrontend = async (): Promise<MicroFe> => {
+// Currently there is only 1 micro fe. later the function can be extended to support more. (YAGNI)
+export const loadMicroFrontend = async (): Promise<MicroFe | undefined> => {
   if (!microFrontendPromise) {
     microFrontendPromise = System.import(
       // TODO handle url via a config or env variable
@@ -16,7 +17,7 @@ export const loadMicroFrontend = async (): Promise<MicroFe> => {
         microFrontendModule = module;
         console.log(JSON.stringify(module));
 
-        return module; // protect against mutation
+        return { ...module }; // protect against mutation
       })
       .catch((err) => {
         console.error("Failed to load microfrontend", err);
@@ -25,8 +26,6 @@ export const loadMicroFrontend = async (): Promise<MicroFe> => {
         throw err;
       });
   }
-
-  microFrontendPromise.then(console.log);
 
   return microFrontendPromise;
 };
