@@ -1,12 +1,12 @@
 import { lazy, Suspense } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 
-import LoginPage from "./pages/login/login-page.tsx";
+import LoginPage from "./pages/login/login-page";
 // import "./index.css";
-import UserInactive from "./pages/user-inactive/user-inactive.tsx";
-import { AuthProvider } from "./providers/auth-conext.tsx";
-import { useAuthenticate } from "./utils/auth/useAuthenticate.ts";
-import { isObjectEmpty } from "./utils/object-utils.ts";
+import UserInactive from "./pages/user-inactive/user-inactive";
+import { AuthProvider } from "./providers/auth-conext";
+import { useAuthenticate } from "./utils/auth/useAuthenticate";
+import { isObjectEmpty } from "./utils/object-utils";
 
 /** Security: Only fetch application code  chunk for authenticated user. */
 const App = lazy(() => import("./App"));

@@ -16,11 +16,13 @@ export const getUsers = async (
       limit,
     },
     headers: getHeaders(),
+    withCredentials: true,
   };
   const { apiConfig } = ApiConfig;
 
   try {
     const res = await UsersApi(apiConfig).usersControllerFindAll(options);
+    // pass an instance of axios with set header as parameter res(-->here<---)
     const data = (await res()).data;
     return data;
   } catch (error) {

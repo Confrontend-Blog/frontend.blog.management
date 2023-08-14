@@ -3,8 +3,8 @@ import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import { Collapse, IconButton } from "@mui/material";
 import { useEffect, useState } from "react";
 
-import { getSummaries } from "../../../api/clients/get-article-summaries";
-import { ArticleSummaryDto } from "../../../api/openapi/generated-clients/api-blog";
+import { getSummaries } from "../../api/clients/get-article-summaries";
+import { ArticleSummaryDto } from "../../api/openapi/generated-clients/api-blog";
 import * as S from "./article.styled";
 
 function Articles() {

@@ -5,7 +5,7 @@ import {
   ArticleSummaryDto,
 } from "../api/openapi/generated-clients/api-blog";
 
-const title = faker.lorem.words(5)
+const title = faker.lorem.words(5);
 
 const generateArticles = (): ArticleSummaryDto => ({
   id: faker.string.numeric(10),

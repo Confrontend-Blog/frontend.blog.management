@@ -1,12 +1,8 @@
-import {
-  act,
-  screen,
-  waitFor,
-} from "@testing-library/react";
+import { act, screen, waitFor } from "@testing-library/react";
 
-import { getSummaries } from "../../../api/clients/get-article-summaries";
-import { articlesResponseMock } from "../../../mocks/articles-mock";
-import { customRender } from "../../../mocks/custom-renderer";
+import { getSummaries } from "../../api/clients/get-article-summaries";
+import { articlesResponseMock } from "../../mocks/articles-mock";
+import { customRender } from "../../mocks/custom-renderer";
 import Articles from "./articles";
 
 jest.mock("../../../api/clients/get-article-summaries");

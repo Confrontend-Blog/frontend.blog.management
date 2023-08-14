@@ -25,9 +25,9 @@ const AppRoutes = () => {
           <ContentTemplate
             WrappedComponent={
               <Composer
-                cancelCb={function (): void {
-                  throw new Error("Function not implemented.");
-                }}
+              // cancelCb={function (): void {
+              //   throw new Error("Function not implemented.");
+              // }}
               />
             }
           />

@@ -2,6 +2,7 @@ import { Configuration as ApiConfiguration } from "./openapi/generated-clients/a
 
 export const articlesEndpoint = "articles";
 export const usersEndpoint = "users";
+export const baseUrl = `${import.meta.env.VITE_BACKEND_URL}/api`;
 
 export const getHeaders = () => ({
   Accept: "application/json",
@@ -18,6 +19,6 @@ export const ApiConfig = {
     baseOptions: {
       credentials: "include",
     },
-    basePath: `${import.meta.env.VITE_BASE_URL}/api`,
+    basePath: baseUrl,
   }),
 };

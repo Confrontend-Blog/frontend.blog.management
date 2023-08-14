@@ -1,8 +1,8 @@
 import { Table } from "@Confrontend/ui-library";
 import { useEffect, useState } from "react";
 
-import { getUsers } from "../../../api/clients/get-users";
-import { UserDto } from "../../../api/openapi/generated-clients/api-user";
+import { getUsers } from "../../api/clients/get-users";
+import { UserDto } from "../../api/openapi/generated-clients/api-user";
 import { useUserStore } from "../../stores/user-store";
 
 export type User = Omit<UserDto, "id" | "googleId" | "active"> & {

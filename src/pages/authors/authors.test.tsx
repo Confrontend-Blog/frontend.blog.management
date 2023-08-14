@@ -1,7 +1,7 @@
 import { render, screen, waitFor } from "@testing-library/react";
 
-import { getUsers } from "../../../api/clients/get-users";
-import { usersMock, usersResponseMock } from "../../../mocks/users-mock";
+import { getUsers } from "../../api/clients/get-users";
+import { usersMock, usersResponseMock } from "../../mocks/users-mock";
 import { useUserStore } from "../../stores/user-store";
 import Authors from "./authors";
 

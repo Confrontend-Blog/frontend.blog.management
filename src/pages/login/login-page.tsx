@@ -21,8 +21,11 @@ const LoginPage = () => {
   const handleLogin = () => {
     const authURL = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${
       import.meta.env.VITE_CLIENT_ID
-      // TODO dynamic backend url
-    }&redirect_uri=http://localhost:8080/api/auth/google/redirect&response_type=code&scope=openid%20email%20profile`;
+    }&redirect_uri=${
+      import.meta.env.VITE_BACKEND_URL
+    }/api/auth/google/redirect&response_type=code&scope=openid%20email%20profile`;
+
+    console.log(authURL);
 
     window.location.href = authURL;
   };

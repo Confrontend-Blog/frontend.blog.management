@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "module": "commonjs",
+    "target": "es2021",
+    "jsx": "react-jsx",
+    "checkJs": true
+  },
+  "include": [
+    "src/**/*.d.js",
+    "src/**/*.js",
+    "src/**/*.cjs",
+    "src/**/*.mjs",
+    "app/**/*.jsx"
+  ],
+  "exclude": ["node_modules"]
+}

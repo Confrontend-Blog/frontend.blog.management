@@ -1,0 +1,5 @@
+{
+  "out": "docs",
+  "entryPoints": ["src/main.tsx", "src/App.tsx", "src/root-component.tsx"],
+  "plugin": ["typedoc-plugin-missing-exports"]
+}

@@ -4,8 +4,8 @@ import { render } from "@testing-library/react";
 import { ReactElement } from "react";
 import { DefaultTheme, ThemeProvider } from "styled-components";
 
-import { AuthProvider } from "../src/providers/auth-conext";
-import { theme } from "../src/styles/theme";
+import { AuthProvider } from "../providers/auth-conext";
+import { theme } from "../styles/theme";
 
 jest.mock("jwt-decode", () => jest.fn(() => ({ name: "Mock Name" })));
 

@@ -1,9 +1,9 @@
-import { faker } from '@faker-js/faker';
+import { faker } from "@faker-js/faker";
 
 import {
   UserDto,
   UsersResponse,
-} from "./../api/openapi/generated-clients/api-user/api";
+} from "../api/openapi/generated-clients/api-user/api";
 
 const generateUser = (): UserDto => {
   return {

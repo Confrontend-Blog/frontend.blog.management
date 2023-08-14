@@ -2,14 +2,14 @@ import { Button } from "@Confrontend/ui-library";
 import debounce from "lodash/debounce";
 import { useState } from "react";
 
-import { createArticle } from "../../../api/clients/create-article";
+import { createArticle } from "../../api/clients/create-article";
 import { convertToMarkdown } from "../../utils/markdown.util";
 import { titleToSlug } from "../../utils/string.util";
 import * as S from "./composer.styled";
 
-interface ArticleCreateProps {
-  cancelCb: () => void;
-}
+// interface ArticleCreateProps {
+//   cancelCb: () => void;
+// }
 
 const modules = {
   clipboard: {
@@ -45,7 +45,7 @@ const categories = [
   "Version Control",
 ];
 
-const Composer = ({ cancelCb }: ArticleCreateProps) => {
+const Composer = () => {
   const [title, setTitle] = useState("");
   const [slug, setSlug] = useState("");
   const [summary, setSummary] = useState("");

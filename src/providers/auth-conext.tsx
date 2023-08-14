@@ -1,14 +1,16 @@
 import { createContext, ReactNode } from "react";
 
-import { UserDto } from "../../api/openapi/generated-clients/api-user";
+import { UserDto } from "../api/openapi/generated-clients/api-user";
+
+export type CurrentUser = Omit<UserDto, "email" | "active">;
 
 interface AuthContextValue {
-  user: UserDto | null;
+  user: CurrentUser | null;
   firebaseToken?: string;
 }
 
 interface AuthProviderProps {
-  user: UserDto | null;
+  user: CurrentUser | null;
   children: ReactNode;
 }
 

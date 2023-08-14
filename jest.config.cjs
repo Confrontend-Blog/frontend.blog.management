@@ -16,4 +16,6 @@ module.exports = {
     "^(?!.*\\.(js|jsx|mjs|cjs|ts|tsx|css|json)$)":
       "jest-preview/transforms/file",
   },
+  collectCoverage: true,
+  coverageReporters: ["html"],
 };

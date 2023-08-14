@@ -1,13 +1,13 @@
-import { config } from "../openapi/config";
+import { ApiConfig } from "../api-config";
 import {
   ArticleDto,
   DefaultApiFp as ArticlesApi,
-} from "../openapi/generated-clients/api";
+} from "../openapi/generated-clients/api-blog";
 
 export const getArticleBySlug = async (
   slug: string
 ): Promise<ArticleDto | null> => {
-  const { apiConfig } = config;
+  const { apiConfig } = ApiConfig;
 
   try {
     const res = await ArticlesApi(apiConfig).articlesControllerFindOne(slug);
