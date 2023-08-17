@@ -1,61 +1,58 @@
-import { act, screen, waitFor } from "@testing-library/react";
+import { waitFor } from "@testing-library/react";
+import { beforeEach, describe, expect, test, vi } from "vitest";
 
 import { getSummaries } from "../../api/clients/get-article-summaries";
-import { articlesResponseMock } from "../../mocks/articles-mock";
+import { articlesMock, articlesResponseMock } from "../../mocks/articles-mock";
 import { customRender } from "../../mocks/custom-renderer";
 import Articles from "./articles";
 
-jest.mock("../../../api/clients/get-article-summaries");
-const getSummariesMock = jest.mocked(getSummaries);
+vi.mock("../../api/clients/get-article-summaries", () => {
+  // Return an object that mocks the exports of the module
+  return {
+    getSummaries: vi.fn().mockResolvedValue(articlesResponseMock),
+  };
+});
 
 describe("Articles", () => {
   beforeEach(() => {
-    getSummariesMock.mockReturnValueOnce(Promise.resolve(articlesResponseMock));
+    // console.log(getSummariesMock);
+    // getSummariesMock.mockReturnValueOnce(Promise.resolve(articlesResponseMock));
   });
 
-  it("should render Articles' table columns", async () => {
-    act(() => {
-      customRender(<Articles />);
-    });
-
+  test("should render Articles' table columns", async () => {
+    const wrapper = customRender(<Articles />);
     await waitFor(async () => {
-      expect(await screen.findByText("Title")).toBeInTheDocument();
-      expect(await screen.findByText("Date")).toBeInTheDocument();
-      expect(await screen.findByText("Category")).toBeInTheDocument();
-      expect(await screen.findByText("Author")).toBeInTheDocument();
+      expect(await wrapper.findByText("Title")).toBeDefined();
+      expect(await wrapper.findByText("Date")).toBeDefined();
+      expect(await wrapper.findByText("Category")).toBeDefined();
+      expect(await wrapper.findByText("Author")).toBeDefined();
     });
   });
 
-  it("should toggle the collapse state when the icon button is clicked", async () => {
-    act(() => {
-      customRender(<Articles />);
-    });
-
-    const expand = screen.getByTestId("expand");
+  test("should toggle the collapse state when the icon button is clicked", async () => {
+    const wrapper = customRender(<Articles />);
+    const expand = wrapper.getByTestId("expand");
 
     // Initially collapsed
     await waitFor(() => {
-      expect(screen.queryByText("Summary")).not.toBeInTheDocument();
+      expect(wrapper.queryByText("Summary")).toBeNull();
     });
 
     await waitFor(() => {
       expand.click();
-      expect(screen.getByText("Summary")).toBeInTheDocument();
+      expect(wrapper.getByText("Summary")).toBeDefined();
     });
 
     // Should hide the summary
     await waitFor(() => {
       expand.click();
-      expect(screen.queryByText("Summary")).not.toBeInTheDocument();
+      expect(wrapper.queryByText("Summary")).toBeNull();
     });
   });
 
-  it("should toggle the collapse state when selecting a row", async () => {
-    act(() => {
-      customRender(<Articles />);
-    });
-
-    const rows = await screen.findAllByRole("row");
+  test("should toggle the collapse state when selecting a row", async () => {
+    const wrapper = customRender(<Articles />);
+    const rows = await wrapper.findAllByRole("row");
     await waitFor(() => {
       expect(rows.length).toBeGreaterThan(0);
     });
@@ -63,8 +60,8 @@ describe("Articles", () => {
     await waitFor(async () => {
       rows[1].click();
       expect(
-        await screen.findByText(articlesResponseMock.summaries[0].summary)
-      ).toBeInTheDocument();
+        await wrapper.findByText(articlesResponseMock.summaries[0].summary)
+      ).toBeDefined();
     });
   });
 });

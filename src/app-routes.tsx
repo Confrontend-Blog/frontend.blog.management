@@ -16,33 +16,28 @@ const AppRoutes = () => {
       <Route
         path={RoutePaths.Dashboard}
         element={withProtectedRoute(
-          <ContentTemplate WrappedComponent={<Dashboard />} />
+          <ContentTemplate
+            WrappedComponent={<Dashboard />}
+            title={"Dashboard"}
+          />
         )}
       />
       <Route
         path={RoutePaths.Composer}
         element={withProtectedRoute(
-          <ContentTemplate
-            WrappedComponent={
-              <Composer
-              // cancelCb={function (): void {
-              //   throw new Error("Function not implemented.");
-              // }}
-              />
-            }
-          />
+          <ContentTemplate WrappedComponent={<Composer />} title={"Composer"} />
         )}
       />
       <Route
         path={RoutePaths.Authors}
         element={withProtectedRoute(
-          <ContentTemplate WrappedComponent={<Authors />} />
+          <ContentTemplate WrappedComponent={<Authors />} title={"Authors"} />
         )}
       />
       <Route
         path={RoutePaths.Articles}
         element={withProtectedRoute(
-          <ContentTemplate WrappedComponent={<Articles />} />
+          <ContentTemplate WrappedComponent={<Articles />} title={"Articles"} />
         )}
       />
       <Route
@@ -54,19 +49,23 @@ const AppRoutes = () => {
                 <Messages />
               </>
             }
+            title={"Messages"}
           />
         )}
       />
       <Route
         path={RoutePaths.Settings}
         element={withProtectedRoute(
-          <ContentTemplate WrappedComponent={<Settings />} />
+          <ContentTemplate WrappedComponent={<Settings />} title={"Settings"} />
         )}
       />
       <Route
         path="*"
         element={withProtectedRoute(
-          <ContentTemplate WrappedComponent={<div>Dashboard</div>} />
+          <ContentTemplate
+            WrappedComponent={<Dashboard />}
+            title={"Dashboard"}
+          />
         )}
       />
     </Routes>

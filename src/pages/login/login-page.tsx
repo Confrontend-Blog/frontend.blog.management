@@ -11,6 +11,7 @@ import * as S from "./login-page.styled";
 // TODO consider token expiration
 const LoginPage = () => {
   const { user } = useContext(AuthContext);
+
   const storeUser = getLocalStorage("user");
 
   /** Do not render login page if already authenticated */

@@ -5,6 +5,18 @@ export const useAuthenticate = () => {
   const storeUser = getLocalStorage("user");
   const paramUser = useParamFromUrl("userInfo");
 
+  console.log(import.meta.env.VITE_ENVIRONMENT);
+
+  if (import.meta.env.VITE_ENVIRONMENT === "test") {
+    const testUser = {
+      id: 123,
+      googleId: "googleID",
+      displayName: "Dummy User",
+    };
+    setLocalStorage({ key: "user", value: testUser });
+    return testUser;
+  }
+
   console.log(storeUser);
 
   // Already logged in

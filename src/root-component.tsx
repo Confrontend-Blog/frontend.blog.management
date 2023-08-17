@@ -24,6 +24,7 @@ export enum RoutePaths {
 
 const RootComponent = () => {
   const user = useAuthenticate();
+  console.log(123, user);
 
   return (
     <AuthProvider user={user}>

@@ -31,3 +31,6 @@ react-dom.development.js
 react.development.js
 system.js
 docs
+/test-results/
+/playwright-report/
+/playwright/.cache/

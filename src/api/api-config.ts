@@ -2,7 +2,7 @@ import { Configuration as ApiConfiguration } from "./openapi/generated-clients/a
 
 export const articlesEndpoint = "articles";
 export const usersEndpoint = "users";
-export const baseUrl = `${import.meta.env.VITE_BACKEND_URL}/api`;
+export const baseUrl = `${process.env.VITE_API_ENDPOINT}/api`;
 
 export const getHeaders = () => ({
   Accept: "application/json",

@@ -5,7 +5,6 @@ import * as S from "./dashboard.styled";
 const Dashboard = () => {
   return (
     <>
-      <h1>Dashboard</h1>
       <S.Container>
         <Tile
           title={"Visits Overview"}

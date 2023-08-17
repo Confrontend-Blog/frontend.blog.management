@@ -1,32 +1,21 @@
-import "jest-styled-components";
-
 import { render } from "@testing-library/react";
 import { ReactElement } from "react";
 import { DefaultTheme, ThemeProvider } from "styled-components";
+import { vi } from "vitest";
 
 import { AuthProvider } from "../providers/auth-conext";
 import { theme } from "../styles/theme";
 
-jest.mock("jwt-decode", () => jest.fn(() => ({ name: "Mock Name" })));
+vi.mock("jwt-decode", () => vi.fn(() => ({ name: "Mock Name" })));
 
 type TestProvidersProps = {
-  token: string;
   isDark: boolean;
   children: ReactElement;
 };
 
-const TestProviders = ({ token, isDark, children }: TestProvidersProps) => {
+const TestProviders = ({ isDark, children }: TestProvidersProps) => {
   return (
-    <AuthProvider
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      auth={{
-        username: "",
-        accessToken: token,
-        firebaseToken: "",
-        setAccessToken: () => null,
-      }}
-    >
+    <AuthProvider user={{ id: 123, googleId: "Gid", displayName: "John Doe" }}>
       <ThemeProvider theme={theme(isDark) as DefaultTheme}>
         {children}
       </ThemeProvider>
@@ -35,12 +24,9 @@ const TestProviders = ({ token, isDark, children }: TestProvidersProps) => {
 };
 
 const customRender = (ui: ReactElement, options = {}) => {
-  const token = "token";
   const isDark = false;
   return render(ui, {
-    wrapper: (props) => (
-      <TestProviders {...props} token={token} isDark={isDark} />
-    ),
+    wrapper: (props) => <TestProviders {...props} isDark={isDark} />,
     ...options,
   });
 };

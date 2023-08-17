@@ -10,6 +10,8 @@ export const getSummaries = async (
   page = 1,
   limit = 10
 ): Promise<ArticleSummariesResponse | void> => {
+  console.log("real function");
+
   const options: AxiosRequestConfig = {
     params: {
       page,
