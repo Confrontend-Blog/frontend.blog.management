@@ -7,10 +7,6 @@ import { convertToMarkdown } from "../../utils/markdown.util";
 import { titleToSlug } from "../../utils/string.util";
 import * as S from "./composer.styled";
 
-// interface ArticleCreateProps {
-//   cancelCb: () => void;
-// }
-
 const modules = {
   clipboard: {
     matchVisual: false,
@@ -66,6 +62,8 @@ const Composer = () => {
   };
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    console.log("onsubmit", event);
+
     const contentMarkdown = convertToMarkdown(content);
     const summaryMarkdown = convertToMarkdown(summary);
 
@@ -129,7 +127,10 @@ const Composer = () => {
           onChange={onBodyChange}
         />
         <S.Footer>
-          <Button disabled={!title || !content || !slug || !category}>
+          <Button
+            type="submit"
+            disabled={!title || !content || !slug || !category}
+          >
             Create
           </Button>
         </S.Footer>

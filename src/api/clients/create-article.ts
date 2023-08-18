@@ -1,4 +1,4 @@
-import { ApiConfig } from "../api-config";
+import { ApiConfig, getHeaders } from "../api-config";
 import {
   ArticleDto,
   CreateArticleDto,
@@ -17,15 +17,18 @@ export const createArticle = async ({
   const { apiConfig } = ApiConfig;
 
   try {
-    const res = await ArticlesApi(apiConfig).articlesControllerCreate({
-      title,
-      summary,
-      date,
-      content,
-      category,
-      author,
-      slug,
-    });
+    const res = await ArticlesApi(apiConfig(true)).articlesControllerCreate(
+      {
+        title,
+        summary,
+        date,
+        content,
+        category,
+        author,
+        slug,
+      },
+      { headers: getHeaders() }
+    );
     const data = (await res()).data;
 
     return data;

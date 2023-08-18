@@ -23,7 +23,7 @@ const LoginPage = () => {
     const authURL = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${
       import.meta.env.VITE_CLIENT_ID
     }&redirect_uri=${
-      import.meta.env.VITE_BACKEND_URL
+      import.meta.env.VITE_REDIRECT_URL
     }/api/auth/google/redirect&response_type=code&scope=openid%20email%20profile`;
 
     console.log(authURL);

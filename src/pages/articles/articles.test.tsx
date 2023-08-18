@@ -1,24 +1,17 @@
 import { waitFor } from "@testing-library/react";
-import { beforeEach, describe, expect, test, vi } from "vitest";
+import { describe, expect, test, vi } from "vitest";
 
-import { getSummaries } from "../../api/clients/get-article-summaries";
-import { articlesMock, articlesResponseMock } from "../../mocks/articles-mock";
+import { articlesResponseMock } from "../../mocks/articles-mock";
 import { customRender } from "../../mocks/custom-renderer";
 import Articles from "./articles";
 
 vi.mock("../../api/clients/get-article-summaries", () => {
-  // Return an object that mocks the exports of the module
   return {
     getSummaries: vi.fn().mockResolvedValue(articlesResponseMock),
   };
 });
 
 describe("Articles", () => {
-  beforeEach(() => {
-    // console.log(getSummariesMock);
-    // getSummariesMock.mockReturnValueOnce(Promise.resolve(articlesResponseMock));
-  });
-
   test("should render Articles' table columns", async () => {
     const wrapper = customRender(<Articles />);
     await waitFor(async () => {

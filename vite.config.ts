@@ -4,8 +4,12 @@ import { defineConfig } from "vite";
 // https://vitejs.dev/config/
 export default defineConfig({
   define: {
-    "process.env.VITE_API_ENDPOINT": JSON.stringify(
-      process.env.VITE_API_ENDPOINT
+    "process.env.VITE_BACKEND_URL": JSON.stringify(
+      process.env.VITE_BACKEND_URL
+    ),
+    "process.env.VITE_CLIENT_ID": JSON.stringify(process.env.VITE_CLIENT_ID),
+    "process.env.VITE_ENVIRONMENT": JSON.stringify(
+      process.env.VITE_ENVIRONMENT
     ),
   },
   server: {
@@ -13,6 +17,11 @@ export default defineConfig({
     // TODO see why api/* wildcard isn't working
     proxy: {
       "/api/articles/summaries": {
+        target: "http://localhost:8080",
+        changeOrigin: true,
+        secure: false,
+      },
+      "/api/mgmt/articles": {
         target: "http://localhost:8080",
         changeOrigin: true,
         secure: false,

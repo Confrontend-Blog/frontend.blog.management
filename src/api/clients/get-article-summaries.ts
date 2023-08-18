@@ -10,8 +10,6 @@ export const getSummaries = async (
   page = 1,
   limit = 10
 ): Promise<ArticleSummariesResponse | void> => {
-  console.log("real function");
-
   const options: AxiosRequestConfig = {
     params: {
       page,
@@ -21,9 +19,9 @@ export const getSummaries = async (
   };
   const { apiConfig } = ApiConfig;
   try {
-    const res = await ArticlesApi(apiConfig).articlesControllerFindAllSummaries(
-      options
-    );
+    const res = await ArticlesApi(
+      apiConfig()
+    ).articlesControllerFindAllSummaries(options);
     const data = (await res()).data;
     return data;
   } catch (error) {
