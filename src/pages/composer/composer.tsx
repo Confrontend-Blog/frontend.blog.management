@@ -1,8 +1,10 @@
 import { Button } from "@Confrontend/ui-library";
 import debounce from "lodash/debounce";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import ReactQuill from "react-quill";
 
 import { createArticle } from "../../api/clients/create-article";
+import { uploadImage } from "../../api/clients/upload-image";
 import { convertToMarkdown } from "../../utils/markdown.util";
 import { titleToSlug } from "../../utils/string.util";
 import * as S from "./composer.styled";
@@ -47,12 +49,52 @@ const Composer = () => {
   const [summary, setSummary] = useState("");
   const [content, setContent] = useState("");
   const [category, setCategory] = useState(categories[0]);
+  const quillRef = useRef<ReactQuill>(null);
+
+  useEffect(() => {
+    if (quillRef.current) {
+      const quill = quillRef.current.getEditor();
+      quill.getModule("toolbar").addHandler("image", customImageHandler);
+    }
+  }, []);
+
+  const customImageHandler = () => {
+    const input = document.createElement("input");
+    input.setAttribute("type", "file");
+    input.setAttribute("accept", "image/*");
+    input.setAttribute("name", "file123");
+
+    console.log(input);
+
+    // Open user file dialog
+    input.click();
+
+    input.onchange = async () => {
+      const editor = quillRef.current!.editor;
+
+      if (editor) {
+        const file = input.files && input.files[0];
+        console.log(input.files);
+
+        const range = editor?.getSelection(true);
+
+        if (file) {
+          const imageUrl = await uploadImage(file);
+          console.log(imageUrl);
+          // TODO handle uploaded image path
+          editor.insertEmbed(range.index, "image", imageUrl);
+        }
+      }
+    };
+  };
 
   const updateSlug = debounce((title) => {
     setSlug(titleToSlug(title));
   }, 500);
 
   const onBodyChange = (value: string) => {
+    console.log(value);
+
     setContent(value);
   };
 
@@ -121,6 +163,7 @@ const Composer = () => {
           )}
         />
         <S.ContentQuill
+          ref={quillRef}
           placeholder="Content text here..."
           modules={modules}
           value={content}

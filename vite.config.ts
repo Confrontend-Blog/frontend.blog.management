@@ -21,6 +21,11 @@ export default defineConfig({
         changeOrigin: true,
         secure: false,
       },
+      "/api/mgmt/image/upload": {
+        target: "http://localhost:8080",
+        changeOrigin: true,
+        secure: false,
+      },
       "/api/mgmt/articles": {
         target: "http://localhost:8080",
         changeOrigin: true,

@@ -1,54 +1,7 @@
 {
   "openapi": "3.0.0",
   "paths": {
-    "/articles": {
-      "get": {
-        "operationId": "ArticlesController_findAll",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/ArticleDto"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "operationId": "ArticlesController_create",
-        "parameters": [],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateArticleDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ArticleDto"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/articles/summaries": {
+    "/api/articles/summaries": {
       "get": {
         "operationId": "ArticlesController_findAllSummaries",
         "summary": "Find all article summaries",
@@ -67,9 +20,29 @@
         }
       }
     },
-    "/articles/{slug}": {
+    "/api/articles/slugs": {
+      "get": {
+        "operationId": "ArticlesController_findAllSlugs",
+        "summary": "Find all slugs",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ArticleSlugsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/articles/{slug}": {
       "get": {
         "operationId": "ArticlesController_findOne",
+        "summary": "Find article of a given  slug",
         "parameters": [
           {
             "name": "slug",
@@ -94,9 +67,37 @@
         }
       }
     },
-    "/articles/{id}": {
+    "/api/mgmt/articles": {
+      "post": {
+        "operationId": "ArticlesMgmtController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateArticleDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateArticleDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/mgmt/articles/{id}": {
       "patch": {
-        "operationId": "ArticlesController_update",
+        "operationId": "ArticlesMgmtController_update",
         "parameters": [
           {
             "name": "id",
@@ -123,7 +124,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ArticleDto"
+                  "$ref": "#/components/schemas/UpdateArticleDto"
                 }
               }
             }
@@ -131,7 +132,7 @@
         }
       },
       "delete": {
-        "operationId": "ArticlesController_remove",
+        "operationId": "ArticlesMgmtController_remove",
         "parameters": [
           {
             "name": "id",
@@ -148,33 +149,6 @@
           }
         }
       }
-    },
-    "/articles/{id}/summary": {
-      "get": {
-        "operationId": "ArticlesController_getArticleSummary",
-        "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ArticleSummaryDto"
-                }
-              }
-            }
-          }
-        }
-      }
     }
   },
   "info": {
@@ -187,41 +161,6 @@
   "servers": [],
   "components": {
     "schemas": {
-      "ArticleDto": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "title": {
-            "type": "string"
-          },
-          "content": {
-            "type": "string"
-          },
-          "date": {
-            "type": "string"
-          },
-          "summary": {
-            "type": "string"
-          },
-          "category": {
-            "type": "string"
-          },
-          "author": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "id",
-          "title",
-          "content",
-          "date",
-          "summary",
-          "category",
-          "author"
-        ]
-      },
       "ArticleSummaryDto": {
         "type": "object",
         "properties": {
@@ -275,6 +214,66 @@
           "count"
         ]
       },
+      "ArticleSlugsDto": {
+        "type": "object",
+        "properties": {
+          "slug": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "slug"
+        ]
+      },
+      "ArticleSlugsResponse": {
+        "type": "object",
+        "properties": {
+          "slugs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ArticleSlugsDto"
+            }
+          }
+        },
+        "required": [
+          "slugs"
+        ]
+      },
+      "ArticleDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "content": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string"
+          },
+          "summary": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          },
+          "author": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "content",
+          "date",
+          "summary",
+          "category",
+          "author"
+        ]
+      },
       "CreateArticleDto": {
         "type": "object",
         "properties": {
@@ -312,7 +311,38 @@
       },
       "UpdateArticleDto": {
         "type": "object",
-        "properties": {}
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "content": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string"
+          },
+          "summary": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          },
+          "author": {
+            "type": "string"
+          },
+          "slug": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "title",
+          "content",
+          "date",
+          "summary",
+          "category",
+          "author",
+          "slug"
+        ]
       }
     }
   }

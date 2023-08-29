@@ -21,7 +21,7 @@ export const getUsers = async (
   const { apiConfig } = ApiConfig;
 
   try {
-    const res = await UsersApi(apiConfig()).usersControllerFindAll(options);
+    const res = await UsersApi(apiConfig).usersControllerFindAll(options);
     // pass an instance of axios with set header as parameter res(-->here<---)
     const data = (await res()).data;
     return data;

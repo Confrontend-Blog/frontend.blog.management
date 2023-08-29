@@ -19,9 +19,9 @@ export const getSummaries = async (
   };
   const { apiConfig } = ApiConfig;
   try {
-    const res = await ArticlesApi(
-      apiConfig()
-    ).articlesControllerFindAllSummaries(options);
+    const res = await ArticlesApi(apiConfig).articlesControllerFindAllSummaries(
+      options
+    );
     const data = (await res()).data;
     return data;
   } catch (error) {

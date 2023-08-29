@@ -1,8 +1,8 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
- * Blog User API
- * Api to manage users
+ * Blog image management API
+ * Api to manage media
  *
  * The version of the OpenAPI document: 1.0
  * 
@@ -23,62 +23,6 @@ import type { RequestArgs } from './base';
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, BaseAPI, RequiredError } from './base';
 
-/**
- * 
- * @export
- * @interface UserDto
- */
-export interface UserDto {
-    /**
-     * 
-     * @type {string}
-     * @memberof UserDto
-     */
-    'id': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof UserDto
-     */
-    'googleId': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof UserDto
-     */
-    'displayName': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof UserDto
-     */
-    'email': string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof UserDto
-     */
-    'active': boolean;
-}
-/**
- * 
- * @export
- * @interface UsersResponse
- */
-export interface UsersResponse {
-    /**
-     * 
-     * @type {Array<UserDto>}
-     * @memberof UsersResponse
-     */
-    'users': Array<UserDto>;
-    /**
-     * 
-     * @type {number}
-     * @memberof UsersResponse
-     */
-    'count': number;
-}
 
 /**
  * DefaultApi - axios parameter creator
@@ -88,11 +32,14 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
     return {
         /**
          * 
+         * @param {File} file 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        usersControllerFindAll: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/users`;
+        imageControllerUpload: async (file: File, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'file' is not null or undefined
+            assertParamExists('imageControllerUpload', 'file', file)
+            const localVarPath = `/api/mgmt/image/upload`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -100,15 +47,23 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+            const localVarFormParams = new ((configuration && configuration.formDataCtor) || FormData)();
 
 
+            if (file !== undefined) { 
+                localVarFormParams.append('file', file as any);
+            }
+    
+    
+            localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
     
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = localVarFormParams;
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -127,11 +82,12 @@ export const DefaultApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
+         * @param {File} file 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async usersControllerFindAll(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UsersResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.usersControllerFindAll(options);
+        async imageControllerUpload(file: File, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.imageControllerUpload(file, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -146,11 +102,12 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
     return {
         /**
          * 
+         * @param {File} file 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        usersControllerFindAll(options?: any): AxiosPromise<UsersResponse> {
-            return localVarFp.usersControllerFindAll(options).then((request) => request(axios, basePath));
+        imageControllerUpload(file: File, options?: any): AxiosPromise<object> {
+            return localVarFp.imageControllerUpload(file, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -164,12 +121,13 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
 export class DefaultApi extends BaseAPI {
     /**
      * 
+     * @param {File} file 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public usersControllerFindAll(options?: AxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).usersControllerFindAll(options).then((request) => request(this.axios, this.basePath));
+    public imageControllerUpload(file: File, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).imageControllerUpload(file, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "paths": {
-    "/users": {
+    "/api/users": {
       "get": {
         "operationId": "UsersController_findAll",
         "parameters": [],
@@ -34,7 +34,7 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "number"
+            "type": "string"
           },
           "googleId": {
             "type": "string"

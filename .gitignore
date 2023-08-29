@@ -34,3 +34,4 @@ docs
 /test-results/
 /playwright-report/
 /playwright/.cache/
+src/api/openapi/generated-clients/api-image/.openapi-generator

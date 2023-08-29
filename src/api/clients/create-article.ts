@@ -13,11 +13,11 @@ export const createArticle = async ({
   category,
   author = "",
   slug,
-}: CreateArticleDto): Promise<ArticleDto | void> => {
+}: CreateArticleDto): Promise<CreateArticleDto | void> => {
   const { apiConfig } = ApiConfig;
 
   try {
-    const res = await ArticlesApi(apiConfig(true)).articlesControllerCreate(
+    const res = await ArticlesApi(apiConfig).articlesMgmtControllerCreate(
       {
         title,
         summary,
