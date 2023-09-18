@@ -79,10 +79,9 @@ const Composer = () => {
         const range = editor?.getSelection(true);
 
         if (file) {
-          const imageUrl = await uploadImage(file);
-          console.log(imageUrl);
+          const imageInfo = await uploadImage(file);
           // TODO handle uploaded image path
-          editor.insertEmbed(range.index, "image", imageUrl);
+          editor.insertEmbed(range.index, "image", imageInfo.mobile.png);
         }
       }
     };
@@ -93,8 +92,6 @@ const Composer = () => {
   }, 500);
 
   const onBodyChange = (value: string) => {
-    console.log(value);
-
     setContent(value);
   };
 
@@ -106,8 +103,14 @@ const Composer = () => {
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     console.log("onsubmit", event);
 
+    // if (quillRef?.current) {
+    //   const json: DeltaStatic = quillRef?.current?.getEditor().getContents();
+    //   console.log(json);
+
     const contentMarkdown = convertToMarkdown(content);
     const summaryMarkdown = convertToMarkdown(summary);
+
+    console.log(contentMarkdown);
 
     event.preventDefault();
     createArticle({

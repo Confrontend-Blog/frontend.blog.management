@@ -1,7 +1,15 @@
 import axios from "axios";
 
-import { ApiConfig, baseUrl, getHeaders } from "../api-config";
-import { DefaultApiFp as ImageApi } from "../openapi/generated-clients/api-image/api";
+import { ApiConfig, baseUrl } from "../api-config";
+
+export type HostedImageInfo = {
+  web: {
+    png: string;
+  };
+  mobile: {
+    png: string;
+  };
+};
 
 // TODO see why generated api client is not working
 const api = axios.create({
@@ -11,7 +19,7 @@ const api = axios.create({
   },
 });
 
-export const uploadImage = async (file: File): Promise<void> => {
+export const uploadImage = async (file: File): Promise<HostedImageInfo> => {
   console.log(file);
 
   const { apiConfig } = ApiConfig;
@@ -19,7 +27,10 @@ export const uploadImage = async (file: File): Promise<void> => {
   formData.append("file_field_name", file);
 
   try {
-    const response = await api.post("/api/mgmt/image/upload", formData);
+    const response = await api.post<HostedImageInfo>(
+      "/api/mgmt/image/upload",
+      formData
+    );
 
     // const response = await ImageApi(apiConfig).imageControllerUpload(
     //   formData as any,
