@@ -3,7 +3,7 @@ import { useContext, useEffect } from "react";
 
 import { baseUrl } from "../../api/api-config";
 import MicroFrontend from "../../components/micro-fe/micro-frontend";
-import AuthContext from "../../providers/auth-conext";
+import AuthContext from "../../providers/auth-context";
 
 function Messages() {
   const { user } = useContext(AuthContext);

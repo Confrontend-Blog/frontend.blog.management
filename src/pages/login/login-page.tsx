@@ -2,7 +2,7 @@ import { Button } from "@Confrontend/ui-library";
 import { useContext } from "react";
 import { Navigate } from "react-router-dom";
 
-import AuthContext from "../../providers/auth-conext";
+import AuthContext from "../../providers/auth-context";
 import { RoutePaths } from "../../root-component";
 import { getLocalStorage } from "../../utils/local-storage-util";
 import { isObjectEmpty } from "../../utils/object-utils";

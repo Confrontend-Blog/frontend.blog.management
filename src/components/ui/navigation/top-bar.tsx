@@ -3,7 +3,7 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import { useContext, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
-import AuthContext from "../../../providers/auth-conext";
+import AuthContext from "../../../providers/auth-context";
 import { urlToPAgeTile } from "../../../utils/string.util";
 import * as S from "./top-bar.styled";
 

@@ -9,7 +9,7 @@
     "dev": "yarn vite",
     "local:prod": "yarn vite --mode production",
     "server:test": "yarn vite --host",
-    "build": "vite build",
+    "build": "yarn tsc && vite build",
     "lint": "eslint --fix src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "test": "vitest src/pages/articles/articles.test.tsx",
     "preview": "vite preview",

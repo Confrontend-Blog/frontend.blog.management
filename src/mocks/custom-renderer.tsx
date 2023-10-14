@@ -3,7 +3,7 @@ import { ReactElement } from "react";
 import { DefaultTheme, ThemeProvider } from "styled-components";
 import { vi } from "vitest";
 
-import { AuthProvider } from "../providers/auth-conext";
+import { AuthProvider } from "../providers/auth-context";
 import { theme } from "../styles/theme";
 
 vi.mock("jwt-decode", () => vi.fn(() => ({ name: "Mock Name" })));
