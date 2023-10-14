@@ -65,3 +65,8 @@ You also need some env variables that you need to ask the repo owner for.
 
 //npm.pkg.github.com/:\_authToken=<token>
 @Confrontend:registry=https://npm.pkg.github.com/
+
+## MicroFE CORS
+
+For this resource to access micro fe bundle mof GCP bundle cors should be set for this asset (a one time setup):
+`gsutil cors set cors-config.json gs://chat-micro-fe`

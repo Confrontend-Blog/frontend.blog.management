@@ -1,6 +1,6 @@
 import { AxiosRequestConfig } from "axios";
 
-import { ApiConfig, getHeaders } from "../api-config";
+import { ApiConfig, getCommonOptions } from "../api-config";
 import {
   ArticleSummariesResponse,
   DefaultApiFp as ArticlesApi,
@@ -15,12 +15,11 @@ export const getSummaries = async (
       page,
       limit,
     },
-    headers: getHeaders(),
   };
   const { apiConfig } = ApiConfig;
   try {
     const res = await ArticlesApi(apiConfig).articlesControllerFindAllSummaries(
-      options
+      { ...options, ...getCommonOptions() }
     );
     const data = (await res()).data;
     return data;

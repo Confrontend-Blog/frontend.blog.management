@@ -1,0 +1,12 @@
+[
+  {
+    "origin": [
+      "https://confrontend-blog-395322.uc.r.appspot.com",
+      "http://127.0.0.1:8000",
+      "http://localhost:8000"
+    ],
+    "responseHeader": ["Content-Type"],
+    "method": ["GET", "HEAD", "DELETE"],
+    "maxAgeSeconds": 3600
+  }
+]

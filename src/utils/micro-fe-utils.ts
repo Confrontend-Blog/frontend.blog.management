@@ -9,8 +9,8 @@ export type MicroFe = {
 export const loadMicroFrontend = async (): Promise<MicroFe | undefined> => {
   if (!microFrontendPromise) {
     microFrontendPromise = System.import(
-      // TODO handle url via a config or env variable
-      "http://127.0.0.1:4173/main-chat-fe.js"
+      // Public Url of micro fe bundle on GCP Bucket
+      "https://storage.googleapis.com/chat-micro-fe/main-chat-fe-1.js"
     )
       .then((module) => {
         console.log(JSON.stringify(module));

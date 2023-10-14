@@ -1,6 +1,6 @@
 import { AxiosRequestConfig } from "axios";
 
-import { ApiConfig, getHeaders } from "../api-config";
+import { ApiConfig, getCommonOptions } from "../api-config";
 import {
   DefaultApiFp as UsersApi,
   UsersResponse,
@@ -15,13 +15,14 @@ export const getUsers = async (
       page,
       limit,
     },
-    headers: getHeaders(),
-    withCredentials: true,
   };
   const { apiConfig } = ApiConfig;
 
   try {
-    const res = await UsersApi(apiConfig).usersControllerFindAll(options);
+    const res = await UsersApi(apiConfig).usersControllerFindAll({
+      ...options,
+      ...getCommonOptions(),
+    });
     // pass an instance of axios with set header as parameter res(-->here<---)
     const data = (await res()).data;
     return data;

@@ -1,4 +1,4 @@
-import { ApiConfig, getHeaders } from "../api-config";
+import { ApiConfig, getCommonOptions } from "../api-config";
 import {
   ArticleDto,
   CreateArticleDto,
@@ -27,7 +27,7 @@ export const createArticle = async ({
         author,
         slug,
       },
-      { headers: getHeaders() }
+      getCommonOptions()
     );
     const data = (await res()).data;
 

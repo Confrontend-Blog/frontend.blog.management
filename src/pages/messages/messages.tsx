@@ -9,7 +9,7 @@ function Messages() {
   const { user } = useContext(AuthContext);
   useEffect(() => {
     async function getToken() {
-      const res = await axios.post(`${baseUrl}/auth/chat-token`, {
+      const res = await axios.post(`${baseUrl}/api/auth/chat-token`, {
         id: user?.id,
       });
       return res.data;

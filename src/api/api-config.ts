@@ -4,8 +4,9 @@ export const articlesEndpoint = "articles";
 export const usersEndpoint = "users";
 export const baseUrl = `${import.meta.env.VITE_BACKEND_URL}`;
 
-export const getHeaders = () => ({
-  Accept: "application/json",
+export const getCommonOptions = () => ({
+  headers: { Accept: "application/json" },
+  withCredentials: true,
 });
 
 // Application wide api configs for auto-generated clients.
