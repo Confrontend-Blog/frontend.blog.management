@@ -74,4 +74,8 @@ const MenuItems = () => {
   );
 };
 
+MenuItems.whyDidYouRender = {
+  logOnDifferentValues: true,
+};
+
 export default MenuItems;

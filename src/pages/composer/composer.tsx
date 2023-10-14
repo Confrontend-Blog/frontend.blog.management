@@ -64,8 +64,6 @@ const Composer = () => {
     input.setAttribute("accept", "image/*");
     input.setAttribute("name", "file123");
 
-    console.log(input);
-
     // Open user file dialog
     input.click();
 
