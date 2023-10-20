@@ -1,10 +1,7 @@
 import { AxiosRequestConfig } from "axios";
 
-import { ApiConfig, getCommonOptions } from "../api-config";
-import {
-  ArticleSummariesResponse,
-  DefaultApiFp as ArticlesApi,
-} from "../openapi/generated-clients/api-blog/api";
+import { api, getCommonOptions } from "../api-config";
+import { ArticleSummariesResponse } from "../openapi/generated-clients/api-blog/api";
 
 export const getSummaries = async (
   page = 1,
@@ -16,11 +13,11 @@ export const getSummaries = async (
       limit,
     },
   };
-  const { apiConfig } = ApiConfig;
   try {
-    const res = await ArticlesApi(apiConfig).articlesControllerFindAllSummaries(
-      { ...options, ...getCommonOptions() }
-    );
+    const res = await api.articlesControllerFindAllSummaries({
+      ...options,
+      ...getCommonOptions(),
+    });
     const data = (await res()).data;
     return data;
   } catch (error) {

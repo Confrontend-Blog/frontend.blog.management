@@ -1,4 +1,7 @@
 import { Configuration as ApiConfiguration } from "./openapi/generated-clients/api-blog";
+import { DefaultApiFp as BlogApi } from "./openapi/generated-clients/api-blog/api";
+import { DefaultApiFp as ImageApi } from "./openapi/generated-clients/api-image/api";
+import { DefaultApiFp as UserApi } from "./openapi/generated-clients/api-user/api";
 
 export const articlesEndpoint = "articles";
 export const usersEndpoint = "users";
@@ -9,17 +12,15 @@ export const getCommonOptions = () => ({
   withCredentials: true,
 });
 
-// Application wide api configs for auto-generated clients.
-export const ApiConfig = {
-  isJsonMime: function (mimeType: string | undefined | null): boolean {
-    return Boolean(
-      mimeType !== null && mimeType !== undefined && mimeType.includes("json")
-    );
+const apiConfig = new ApiConfiguration({
+  baseOptions: {
+    credentials: "include",
   },
-  apiConfig: new ApiConfiguration({
-    baseOptions: {
-      credentials: "include",
-    },
-    basePath: baseUrl,
-  }),
+  basePath: baseUrl,
+});
+
+export const api = {
+  ...UserApi(apiConfig),
+  ...BlogApi(apiConfig),
+  ...ImageApi(apiConfig),
 };

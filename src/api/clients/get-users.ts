@@ -1,10 +1,7 @@
 import { AxiosRequestConfig } from "axios";
 
-import { ApiConfig, getCommonOptions } from "../api-config";
-import {
-  DefaultApiFp as UsersApi,
-  UsersResponse,
-} from "../openapi/generated-clients/api-user/api";
+import { api, getCommonOptions } from "../api-config";
+import { UsersResponse } from "../openapi/generated-clients/api-user/api";
 
 export const getUsers = async (
   page = 1,
@@ -16,10 +13,9 @@ export const getUsers = async (
       limit,
     },
   };
-  const { apiConfig } = ApiConfig;
 
   try {
-    const res = await UsersApi(apiConfig).usersControllerFindAll({
+    const res = await api.usersControllerFindAll({
       ...options,
       ...getCommonOptions(),
     });

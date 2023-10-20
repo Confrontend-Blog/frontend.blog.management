@@ -1,9 +1,5 @@
-import { ApiConfig, getCommonOptions } from "../api-config";
-import {
-  ArticleDto,
-  CreateArticleDto,
-  DefaultApiFp as ArticlesApi,
-} from "../openapi/generated-clients/api-blog/api";
+import { api, getCommonOptions } from "../api-config";
+import { CreateArticleDto } from "../openapi/generated-clients/api-blog/api";
 
 export const createArticle = async ({
   title,
@@ -14,10 +10,8 @@ export const createArticle = async ({
   author = "",
   slug,
 }: CreateArticleDto): Promise<CreateArticleDto | void> => {
-  const { apiConfig } = ApiConfig;
-
   try {
-    const res = await ArticlesApi(apiConfig).articlesMgmtControllerCreate(
+    const res = await api.articlesMgmtControllerCreate(
       {
         title,
         summary,
