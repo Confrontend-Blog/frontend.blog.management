@@ -1,8 +1,8 @@
 import { Table } from "@Confrontend/ui-library";
 import { useEffect, useState } from "react";
 
-import { getUsers } from "../../api/clients/get-users";
 import { UserDto } from "../../api/openapi/generated-clients/api-user";
+import { getUsers } from "../../api/services/get-users.service";
 import { useUserStore } from "../../stores/user-store";
 
 export type User = Omit<UserDto, "id" | "googleId" | "active"> & {
@@ -35,8 +35,8 @@ function Authors() {
     const fetchData = async () => {
       // TODO pagination
       const res = await getUsers(1, 100);
-      setUsersInStore(res);
       if (res && res.users) {
+        setUsersInStore(res);
         setTableUsers(
           res.users.map((user: UserDto) => {
             return {

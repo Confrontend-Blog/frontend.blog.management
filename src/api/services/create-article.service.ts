@@ -1,5 +1,6 @@
 import { createArticleApi } from "../api-facade";
 import { CreateArticleDto } from "../openapi/generated-clients/api-blog/api";
+import { handleResponse } from "../utils/api-response.utils";
 
 export const createArticle = async ({
   title,
@@ -9,7 +10,11 @@ export const createArticle = async ({
   category,
   author = "",
   slug,
-}: CreateArticleDto): Promise<CreateArticleDto | void> => {
+}: CreateArticleDto): Promise<
+  | CreateArticleDto
+  | undefined
+  | string /* TODO replace "string" with an error object */
+> => {
   const result = await createArticleApi({
     title,
     summary,
@@ -19,9 +24,6 @@ export const createArticle = async ({
     author,
     slug,
   });
-  if (result.data) {
-    return result.data;
-  } else if (result.error) {
-    console.log("createArticleApi", result.error);
-  }
+
+  return handleResponse<CreateArticleDto>(result);
 };

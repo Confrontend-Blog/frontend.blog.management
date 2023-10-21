@@ -3,8 +3,8 @@ import debounce from "lodash/debounce";
 import { useEffect, useRef, useState } from "react";
 import ReactQuill from "react-quill";
 
-import { createArticle } from "../../api/clients/create-article";
-import { uploadImage } from "../../api/clients/upload-image";
+import { createArticle } from "../../api/services/create-article.service";
+import { uploadImage } from "../../api/services/upload-image.service";
 import { convertToMarkdown } from "../../utils/markdown.util";
 import { titleToSlug } from "../../utils/string.util";
 import * as S from "./composer.styled";
@@ -68,7 +68,7 @@ const Composer = () => {
     input.click();
 
     input.onchange = async () => {
-      const editor = quillRef.current!.editor;
+      const editor = quillRef.current?.editor;
 
       if (editor) {
         const file = input.files && input.files[0];
@@ -79,7 +79,7 @@ const Composer = () => {
         if (file) {
           const imageInfo = await uploadImage(file);
           // TODO handle uploaded image path
-          editor.insertEmbed(range.index, "image", imageInfo.mobile.png);
+          editor.insertEmbed(range.index, "image", imageInfo?.mobile.png);
         }
       }
     };

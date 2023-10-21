@@ -1,5 +1,6 @@
 import { Configuration as ApiConfiguration } from "./openapi/generated-clients/api-blog";
 import {
+  ArticleDto,
   ArticleSummariesResponse,
   CreateArticleDto,
   DefaultApiAxiosParamCreator as ArticleAxiosApi,
@@ -13,7 +14,7 @@ export const usersEndpoint = "users";
 export const baseUrl = `${import.meta.env.VITE_BACKEND_URL}`;
 import { AxiosRequestConfig } from "axios";
 
-import { HostedImageInfo } from "./clients/upload-image";
+import { HostedImageInfo } from "./services/upload-image.service";
 import { apiRequest } from "./utils/api-request.utils";
 
 export type ApiResponse<T> = {
@@ -87,4 +88,22 @@ const uploadImageApi = async (
   });
 };
 
-export { createArticleApi, getAllSummariesApi, getAllUsersApi, uploadImageApi };
+const getArticle = async (params: string): Promise<ApiResponse<ArticleDto>> => {
+  const { url } = await ArticleAxiosApi(apiConfig).articlesControllerFindOne(
+    params
+  );
+
+  return await apiRequest<ArticleDto>({
+    method: "GET",
+    url,
+    data: params,
+  });
+};
+
+export {
+  createArticleApi,
+  getAllSummariesApi,
+  getAllUsersApi,
+  getArticle,
+  uploadImageApi,
+};
