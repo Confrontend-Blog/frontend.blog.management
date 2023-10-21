@@ -43,8 +43,9 @@ function Articles() {
 
   useEffect(() => {
     const fetchData = async () => {
+      // TODO dynamic pagination
       const res = await getSummaries(1, 100);
-      setArticleSummaries(res?.summaries);
+      setArticleSummaries(res?.data?.summaries);
     };
 
     fetchData();

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useContext, useEffect } from "react";
 
-import { baseUrl } from "../../api/api-config";
+import { baseUrl } from "../../api/api-facade";
 import MicroFrontend from "../../components/micro-fe/micro-frontend";
 import AuthContext from "../../providers/auth-context";
 

@@ -1,4 +1,4 @@
-import { api, getCommonOptions } from "../api-config";
+import { createArticleApi } from "../api-facade";
 import { CreateArticleDto } from "../openapi/generated-clients/api-blog/api";
 
 export const createArticle = async ({
@@ -10,24 +10,18 @@ export const createArticle = async ({
   author = "",
   slug,
 }: CreateArticleDto): Promise<CreateArticleDto | void> => {
-  try {
-    const res = await api.articlesMgmtControllerCreate(
-      {
-        title,
-        summary,
-        date,
-        content,
-        category,
-        author,
-        slug,
-      },
-      getCommonOptions()
-    );
-    const data = (await res()).data;
-
-    return data;
-  } catch (error) {
-    console.error("api error", error);
-    return Promise.resolve();
+  const result = await createArticleApi({
+    title,
+    summary,
+    date,
+    content,
+    category,
+    author,
+    slug,
+  });
+  if (result.data) {
+    return result.data;
+  } else if (result.error) {
+    console.log("createArticleApi", result.error);
   }
 };
