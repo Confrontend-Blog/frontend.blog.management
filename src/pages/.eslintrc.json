@@ -1,0 +1,18 @@
+{
+  "rules": {
+    "react-refresh/only-export-components": "warn",
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error",
+    "no-restricted-imports": [
+      "error",
+      {
+        "paths": [
+          {
+            "name": "../../api/facades/api-facade",
+            "message": "src/pages and src/components cannot import from facade. please import the api client from services"
+          }
+        ]
+      }
+    ]
+  }
+}
