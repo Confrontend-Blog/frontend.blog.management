@@ -1,4 +1,4 @@
-import { createArticleApi } from "../api-facade";
+import { createArticleApiFacade } from "../facades/api-facade";
 import { CreateArticleDto } from "../openapi/generated-clients/api-blog/api";
 import { handleResponse } from "../utils/api-response.utils";
 
@@ -15,7 +15,7 @@ export const createArticle = async ({
   | undefined
   | string /* TODO replace "string" with an error object */
 > => {
-  const result = await createArticleApi({
+  const result = await createArticleApiFacade({
     title,
     summary,
     date,

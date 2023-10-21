@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig } from "axios";
 
-import { ApiResponse } from "../api-facade";
+import { ApiResponse } from "../facades/api-facade";
 
 const axiosInstance = axios.create({
   baseURL: `${import.meta.env.VITE_BACKEND_URL}`,

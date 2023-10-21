@@ -1,6 +1,6 @@
 import { AxiosRequestConfig } from "axios";
 
-import { ApiResponse, getAllSummariesApi } from "../api-facade";
+import { ApiResponse, getAllSummariesApiFacade } from "../facades/api-facade";
 import { ArticleSummariesResponse } from "../openapi/generated-clients/api-blog/api";
 
 export const getSummaries = async (
@@ -14,5 +14,5 @@ export const getSummaries = async (
     },
   };
 
-  return await getAllSummariesApi(options);
+  return await getAllSummariesApiFacade(options);
 };

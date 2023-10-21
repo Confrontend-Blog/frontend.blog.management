@@ -1,4 +1,4 @@
-import { uploadImageApi } from "../api-facade";
+import { uploadImageApiFacade } from "../facades/api-facade";
 
 export type HostedImageInfo = {
   web: {
@@ -17,6 +17,6 @@ export const uploadImage = async (
   const formData = new FormData();
   formData.append("file_field_name", file);
 
-  const res = await uploadImageApi(formData as any);
+  const res = await uploadImageApiFacade(formData as any);
   return res.data;
 };

@@ -1,21 +1,32 @@
-import { Configuration as ApiConfiguration } from "./openapi/generated-clients/api-blog";
+/**
+ * API Facade Layer.
+ *
+ * Serves as an interface between the application and generated API clients.
+ * Provides unified access to various API endpoints, abstracting request configurations
+ * and error handling. Centralizes API interactions for maintainability and type safety.
+ * It could be refactored into smaller facades if the module grows.
+ *
+ * @module api-facade
+ */
+
+import { Configuration as ApiConfiguration } from "../openapi/generated-clients/api-blog";
 import {
   ArticleDto,
   ArticleSummariesResponse,
   CreateArticleDto,
   DefaultApiAxiosParamCreator as ArticleAxiosApi,
-} from "./openapi/generated-clients/api-blog/api";
-import { DefaultApiAxiosParamCreator as ImageApi } from "./openapi/generated-clients/api-image/api";
-import { UsersResponse } from "./openapi/generated-clients/api-user/api";
-import { DefaultApiAxiosParamCreator as UserAxiosApi } from "./openapi/generated-clients/api-user/api";
+} from "../openapi/generated-clients/api-blog/api";
+import { DefaultApiAxiosParamCreator as ImageApi } from "../openapi/generated-clients/api-image/api";
+import { UsersResponse } from "../openapi/generated-clients/api-user/api";
+import { DefaultApiAxiosParamCreator as UserAxiosApi } from "../openapi/generated-clients/api-user/api";
 
 export const articlesEndpoint = "articles";
 export const usersEndpoint = "users";
 export const baseUrl = `${import.meta.env.VITE_BACKEND_URL}`;
 import { AxiosRequestConfig } from "axios";
 
-import { HostedImageInfo } from "./services/upload-image.service";
-import { apiRequest } from "./utils/api-request.utils";
+import { HostedImageInfo } from "../services/upload-image.service";
+import { apiRequest } from "../utils/api-request.utils";
 
 export type ApiResponse<T> = {
   data?: T;
@@ -34,7 +45,7 @@ const apiConfig = new ApiConfiguration({
   basePath: baseUrl,
 });
 
-const getAllUsersApi = async (
+const getAllUsersApiFacade = async (
   params: AxiosRequestConfig
 ): Promise<ApiResponse<UsersResponse | null>> => {
   const { url } = await UserAxiosApi(apiConfig).usersControllerFindAll(
@@ -47,7 +58,7 @@ const getAllUsersApi = async (
   });
 };
 
-const createArticleApi = async (
+const createArticleApiFacade = async (
   params: CreateArticleDto
 ): Promise<ApiResponse<CreateArticleDto>> => {
   const { url } = await ArticleAxiosApi(apiConfig).articlesMgmtControllerCreate(
@@ -62,7 +73,7 @@ const createArticleApi = async (
   });
 };
 
-const getAllSummariesApi = async (
+const getAllSummariesApiFacade = async (
   params: AxiosRequestConfig
 ): Promise<ApiResponse<ArticleSummariesResponse>> => {
   const { url } = await ArticleAxiosApi(
@@ -76,7 +87,7 @@ const getAllSummariesApi = async (
   });
 };
 
-const uploadImageApi = async (
+const uploadImageApiFacade = async (
   params: any
 ): Promise<ApiResponse<HostedImageInfo>> => {
   const { url } = await ImageApi(apiConfig).imageControllerUpload(params);
@@ -88,7 +99,9 @@ const uploadImageApi = async (
   });
 };
 
-const getArticle = async (params: string): Promise<ApiResponse<ArticleDto>> => {
+const getArticleFacade = async (
+  params: string
+): Promise<ApiResponse<ArticleDto>> => {
   const { url } = await ArticleAxiosApi(apiConfig).articlesControllerFindOne(
     params
   );
@@ -101,9 +114,9 @@ const getArticle = async (params: string): Promise<ApiResponse<ArticleDto>> => {
 };
 
 export {
-  createArticleApi,
-  getAllSummariesApi,
-  getAllUsersApi,
-  getArticle,
-  uploadImageApi,
+  createArticleApiFacade,
+  getAllSummariesApiFacade,
+  getAllUsersApiFacade,
+  getArticleFacade,
+  uploadImageApiFacade,
 };

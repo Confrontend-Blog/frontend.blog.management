@@ -1,4 +1,4 @@
-import { ApiResponse } from "../api-facade";
+import { ApiResponse } from "../facades/api-facade";
 
 export const handleResponse = <T>(result: ApiResponse<T>) => {
   if (result.data) {
