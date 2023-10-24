@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "target": "es6",
+    "lib": ["dom", "dom.iterable", "esnext", "es6"],
     "module": "es2022",
     "moduleResolution": "Node",
-    "target": "ES5",
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowJs": true,
@@ -24,7 +24,8 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "styled.d.ts"],
+  "types": ["vite/client", "vite-plugin-svgr/client"],
+  "include": ["src/**/*", "styled.d.ts"],
   "exclude": ["node_modules"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

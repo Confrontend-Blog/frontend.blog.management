@@ -1,5 +1,6 @@
 import { faker } from "@faker-js/faker";
 
+import { ApiResponse } from "../api/facades/api-facade";
 import {
   ArticleSummariesResponse,
   ArticleSummaryDto,
@@ -23,7 +24,6 @@ export const articlesMock: ArticleSummaryDto[] = Array.from(
   generateArticles
 );
 
-export const articlesResponseMock: ArticleSummariesResponse = {
-  summaries: articlesMock,
-  count: articlesMock.length,
+export const articlesResponseMock: ApiResponse<ArticleSummariesResponse> = {
+  data: { summaries: articlesMock, count: articlesMock.length },
 };

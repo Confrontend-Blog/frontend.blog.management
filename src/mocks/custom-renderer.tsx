@@ -1,12 +1,9 @@
 import { render } from "@testing-library/react";
 import { ReactElement } from "react";
 import { DefaultTheme, ThemeProvider } from "styled-components";
-import { vi } from "vitest";
 
 import { AuthProvider } from "../providers/auth-context";
 import { theme } from "../styles/theme";
-
-vi.mock("jwt-decode", () => vi.fn(() => ({ name: "Mock Name" })));
 
 type TestProvidersProps = {
   isDark: boolean;
@@ -15,7 +12,9 @@ type TestProvidersProps = {
 
 const TestProviders = ({ isDark, children }: TestProvidersProps) => {
   return (
-    <AuthProvider user={{ id: 123, googleId: "Gid", displayName: "John Doe" }}>
+    <AuthProvider
+      user={{ id: "123", googleId: "Gid", displayName: "John Doe" }}
+    >
       <ThemeProvider theme={theme(isDark) as DefaultTheme}>
         {children}
       </ThemeProvider>
