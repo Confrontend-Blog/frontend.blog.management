@@ -1,4 +1,4 @@
-import { Table } from "@Confrontend/ui-library";
+import { Table, TableColumn } from "@Confrontend/ui-library";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import { Collapse, IconButton } from "@mui/material";
 import { useEffect, useState } from "react";
@@ -14,8 +14,13 @@ function Articles() {
     ArticleSummaryDto[] | undefined
   >([] as ArticleSummaryDto[]);
 
-  const columns = [
-    { Header: " ", Cell: ({ row }: any) => row.index + 1, width: "5%" },
+  const columns: TableColumn<ArticleSummaryDto>[] = [
+    {
+      Header: " ",
+      Cell: ({ row }: any) => row.index + 1,
+      width: "5%",
+      accessor: "id",
+    },
     {
       Header: "Summary",
       accessor: "summary", //is hidden
