@@ -1,4 +1,4 @@
-import { Table } from "@Confrontend/ui-library";
+import { Table, TableColumn } from "@Confrontend/ui-library";
 import { useEffect, useState } from "react";
 
 import { UserDto } from "../../api/openapi/generated-clients/api-user";
@@ -13,8 +13,13 @@ function Authors() {
   const { setUsersInStore } = useUserStore();
   const [tableUsers, setTableUsers] = useState<User[] | null>([] as User[]);
 
-  const columns = [
-    { Header: " ", Cell: ({ row }: any) => row.index + 1, width: "5%" },
+  const columns: TableColumn<User>[] = [
+    {
+      Header: " ",
+      Cell: ({ row }: any) => row.index + 1,
+      width: "5%",
+      accessor: "" as any,
+    },
     {
       Header: "Name",
       accessor: "displayName",

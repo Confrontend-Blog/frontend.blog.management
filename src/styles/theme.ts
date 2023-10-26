@@ -1,45 +1,34 @@
+import { colors } from "@Confrontend/ui-library";
 import { createTheme } from "@mui/material/styles";
-
-export const colors = {
-  blueMedium: "#2196f3",
-  greenMedium: "#4caf50",
-  greyDark: "#202124",
-  greyLight: "#ccc",
-  greyMedium: "#666",
-  greyVeryLight: "#F2F2F2",
-  orangeLight: "#ffb74d",
-  redMedium: "#d32f2f",
-  white: "#fff",
-};
 
 const lightTheme = {
   palette: {
     action: {
-      active: colors.greyDark,
-      disabled: colors.greyMedium,
+      active: colors.grey[900],
+      disabled: colors.grey[600],
 
-      focus: colors.greyDark,
+      focus: colors.grey[600],
 
-      hover: colors.blueMedium,
+      hover: colors.blue[500],
 
-      selected: colors.greyDark,
+      selected: colors.grey[900],
     },
     background: {
-      default: colors.greyDark,
+      default: colors.grey[900],
       paper: colors.white,
     },
-    divider: colors.greyMedium,
-    error: { main: colors.redMedium },
-    info: { main: colors.blueMedium },
-    primary: { main: colors.greyVeryLight },
-    secondary: { dark: colors.greyLight, main: colors.greyDark },
-    success: { main: colors.greenMedium },
+    divider: colors.grey[600],
+    error: { main: colors.red[500] },
+    info: { main: colors.blue[500] },
+    primary: { main: colors.grey[25] },
+    secondary: { dark: colors.grey[200], main: colors.grey[900] },
+    success: { main: colors.green[500] },
     text: {
-      disabled: colors.greyMedium,
-      primary: colors.greyDark,
-      secondary: colors.greyLight,
+      disabled: colors.grey[600],
+      primary: colors.grey[900],
+      secondary: colors.grey[200],
     },
-    warning: { main: colors.orangeLight },
+    warning: { main: colors.orange[300] },
   },
   typography: {
     // body1 is typically used for longer text elements, such as paragraphs or articles,
@@ -90,12 +79,12 @@ const darkTheme = {
   palette: {
     background: {
       default: colors.white,
-      paper: colors.greyDark,
+      paper: colors.grey[900],
     },
     text: {
-      disabled: colors.greyMedium,
-      primary: colors.greyLight,
-      secondary: colors.greyDark,
+      disabled: colors.grey[600],
+      primary: colors.grey[200],
+      secondary: colors.grey[900],
     },
   },
 } as const;

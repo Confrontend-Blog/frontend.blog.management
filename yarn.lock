@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@Confrontend/ui-library@1.24.0":
-  version "1.24.0"
-  resolved "https://npm.pkg.github.com/download/@Confrontend/ui-library/1.24.0/eda2a42b3ef891e633d2ee27feb222887e0322f6#eda2a42b3ef891e633d2ee27feb222887e0322f6"
-  integrity sha512-w/PgWKKtyt7Aq0S8k81Zx6iuS1+/1ZBw9eKqunKTgqpWudDclvqS0vTrwlgSSN7jcurcQ89C9GRrZs0mUfvCiQ==
+"@Confrontend/ui-library@1.25.0":
+  version "1.25.0"
+  resolved "https://npm.pkg.github.com/download/@Confrontend/ui-library/1.25.0/b1853789ecc886fe239d96bea5cb1728973a5c8b#b1853789ecc886fe239d96bea5cb1728973a5c8b"
+  integrity sha512-9g0BE6pShI1vR0AYFxJYwG9yeaR5qpBsn4I0zBQmCSdY4QaQVGvogxORA+NVfiZw48x1gcqU9uoaLh/M2Re5pQ==
   dependencies:
     chart.js "^4.3.0"
     react-chartjs-2 "^5.2.0"

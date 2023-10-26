@@ -19,7 +19,7 @@ function Articles() {
       Header: " ",
       Cell: ({ row }: any) => row.index + 1,
       width: "5%",
-      accessor: "id",
+      accessor: "" as any,
     },
     {
       Header: "Summary",

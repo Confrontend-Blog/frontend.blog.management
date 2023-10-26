@@ -19,7 +19,7 @@
     "test:e2e": "VITE_ENVIRONMENT=test playwright test"
   },
   "dependencies": {
-    "@Confrontend/ui-library": "1.24.0",
+    "@Confrontend/ui-library": "1.25.0",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
     "@mui/icons-material": "^5.11.16",
