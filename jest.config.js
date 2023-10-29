@@ -7,7 +7,7 @@ module.exports = {
   coverageReporters: ["json", "lcov", "text", "html", "cobertura"],
   moduleFileExtensions: ["ts", "tsx", "js", "jsx"],
   moduleNameMapper: {
-    "\\.css$": "<rootDir>/__mocks__/styleMock.js",
+    "^.+\\.css$": "jest-preview/transforms/css",
     // "^@Confrontend/ui-library$":
     //   "<rootDir>/__mocks__/@Confrontend/ui-library.js",
   },
@@ -17,11 +17,25 @@ module.exports = {
   // ],
   roots: ["<rootDir>/src"],
   setupFiles: [],
-  setupFilesAfterEnv: ["<rootDir>/src/utils/test/setup/global-imports.ts"],
+
+  setupFilesAfterEnv: [
+    "<rootDir>/src/utils/test/setup/setup-tests.ts",
+    "<rootDir>/src/utils/test/setup/global-imports.ts",
+  ],
   testRegex: "(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$",
-  testTimeout: 180000,
+  testTimeout: 100000,
   transform: {
     "^.+\\.(js|jsx|mjs|cjs|ts|tsx)$": "babel-jest",
   },
   testEnvironment: "jsdom",
+  reporters: [
+    "default",
+    [
+      "jest-html-reporters",
+      {
+        publicPath: "./html-report",
+        filename: "report.html",
+      },
+    ],
+  ],
 };

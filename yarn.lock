@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@Confrontend/ui-library@1.25.0":
-  version "1.25.0"
-  resolved "https://npm.pkg.github.com/download/@Confrontend/ui-library/1.25.0/b1853789ecc886fe239d96bea5cb1728973a5c8b#b1853789ecc886fe239d96bea5cb1728973a5c8b"
-  integrity sha512-9g0BE6pShI1vR0AYFxJYwG9yeaR5qpBsn4I0zBQmCSdY4QaQVGvogxORA+NVfiZw48x1gcqU9uoaLh/M2Re5pQ==
+"@Confrontend/ui-library@1.26.0":
+  version "1.26.0"
+  resolved "https://npm.pkg.github.com/download/@Confrontend/ui-library/1.26.0/a1b4f2f62437759550f36706cc1284ce16acd822#a1b4f2f62437759550f36706cc1284ce16acd822"
+  integrity sha512-3PWBaZIahsHBKjMmbA9oMUigle4YUBZSIuMEGbxZQ5NUMD/46kRXtW9wHcbAId/kBwZtUWR5+PItx+B8evSRoQ==
   dependencies:
     chart.js "^4.3.0"
     react-chartjs-2 "^5.2.0"
@@ -2624,6 +2624,11 @@
     "@testing-library/dom" "^9.0.0"
     "@types/react-dom" "^18.0.0"
 
+"@testing-library/user-event@^14.5.1":
+  version "14.5.1"
+  resolved "https://registry.npmjs.org/@testing-library/user-event/-/user-event-14.5.1.tgz#27337d72046d5236b32fd977edee3f74c71d332f"
+  integrity sha512-UCcUKrUYGj7ClomOo2SpNVvx4/fkd/2BbIHDCle8A0ax+P3bU7yJwDBDrS6ZwdTMARWTGODX1hEsCcO+7beJjg==
+
 "@tootallnate/once@2":
   version "2.0.0"
   resolved "https://registry.npmjs.org/@tootallnate/once/-/once-2.0.0.tgz#f544a148d3ab35801c1f633a7441fd87c2e484bf"
@@ -4988,7 +4993,7 @@ form-data@^4.0.0:
     combined-stream "^1.0.8"
     mime-types "^2.1.12"
 
-fs-extra@10.1.0:
+fs-extra@10.1.0, fs-extra@^10.0.0:
   version "10.1.0"
   resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-10.1.0.tgz#02873cfbc4084dde127eaa5f9905eef2325d1abf"
   integrity sha512-oRXApq54ETRj4eMiFzGnHWGy+zo5raudjuxN0b8H7s/RU2oW0Wvsx9O0ACRN/kRq9E8Vu/ReskGB5o3ji+FzHQ==
@@ -5979,6 +5984,14 @@ jest-haste-map@^29.7.0:
   optionalDependencies:
     fsevents "^2.3.2"
 
+jest-html-reporters@^3.1.4:
+  version "3.1.4"
+  resolved "https://registry.npmjs.org/jest-html-reporters/-/jest-html-reporters-3.1.4.tgz#2ac0cd38540f571032c1d0c6bc100baa85a747cc"
+  integrity sha512-7lLrKDKDNBNDprd5lP241HRx2mRXb/XQOuYFxX/MxydgHtYRE/lEtK2+J5XLiNTs9JL/rUjWsWhIBOBs9j3wcg==
+  dependencies:
+    fs-extra "^10.0.0"
+    open "^8.0.3"
+
 jest-leak-detector@^29.7.0:
   version "29.7.0"
   resolved "https://registry.npmjs.org/jest-leak-detector/-/jest-leak-detector-29.7.0.tgz#5b7ec0dadfdfec0ca383dc9aa016d36b5ea4c728"
@@ -6886,7 +6899,7 @@ onetime@^5.1.0, onetime@^5.1.2:
   dependencies:
     mimic-fn "^2.1.0"
 
-open@^8.4.0:
+open@^8.0.3, open@^8.4.0:
   version "8.4.2"
   resolved "https://registry.npmjs.org/open/-/open-8.4.2.tgz#5b5ffe2a8f793dcd2aad73e550cb87b59cb084f9"
   integrity sha512-7x81NCL719oNbsq/3mh+hVrAWmFuEYUqrq/Iw3kUzH8ReypT9QQ0BLoJS7/G9k6N81XjW4qHWtjWwe/9eLy1EQ==
