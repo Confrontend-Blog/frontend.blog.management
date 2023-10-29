@@ -11,8 +11,6 @@ export default function MicroFrontend({ containerId }: MicroFrontendProps) {
     let microFe: MicroFe | undefined;
     // TODO handle failed/non-ideal state
     const loader = async () => {
-      console.log(321456);
-
       microFe = await loadMicroFrontend();
       microFe && microFe.mount(containerId);
     };

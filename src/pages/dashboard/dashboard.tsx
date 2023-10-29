@@ -7,6 +7,7 @@ const Dashboard = () => {
     <>
       <S.Container>
         <Tile
+          width="350px"
           title={"Visits Overview"}
           content={
             <div>
@@ -17,6 +18,7 @@ const Dashboard = () => {
           }
         />
         <Tile
+          width="350px"
           title={"Top Article Today"}
           content={
             <div>
@@ -27,6 +29,7 @@ const Dashboard = () => {
           }
         />
         <Tile
+          width="350px"
           title={"Top Author Today"}
           content={
             <div>
@@ -37,6 +40,7 @@ const Dashboard = () => {
           }
         />
         <Tile
+          width="350px"
           title={"Visits Overview"}
           content={
             <div>
