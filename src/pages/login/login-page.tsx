@@ -1,6 +1,6 @@
 import { Button } from "@Confrontend/ui-library";
 import { useContext } from "react";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import AuthContext from "../../providers/auth-context";
 import { RoutePaths } from "../../root-component";
@@ -11,12 +11,14 @@ import * as S from "./login-page.styled";
 // TODO consider token expiration
 const LoginPage = () => {
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const storeUser = getLocalStorage("user");
 
   /** Do not render login page if already authenticated */
   if ((user && !isObjectEmpty(user)) || storeUser) {
-    return <Navigate to={RoutePaths.Dashboard} replace />;
+    navigate(RoutePaths.Dashboard);
+    return null;
   }
 
   const handleLogin = () => {
