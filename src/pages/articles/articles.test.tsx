@@ -1,8 +1,8 @@
 import { screen, waitFor } from "@testing-library/react";
 
 import { getSummaries } from "../../api/services/get-article-summaries.service";
-import { articlesResponseMock } from "../../mocks/articles-mock";
-import { customRender } from "../../mocks/custom-renderer";
+import { articlesResponseMock } from "../../data-mocks/articles-mock";
+import { customRender } from "../../data-mocks/custom-renderer";
 import Articles from "./articles";
 
 jest.mock("../../api/services/get-article-summaries.service");

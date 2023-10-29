@@ -72,7 +72,6 @@ const Composer = () => {
 
       if (editor) {
         const file = input.files && input.files[0];
-        console.log(input.files);
 
         const range = editor?.getSelection(true);
 
@@ -99,16 +98,12 @@ const Composer = () => {
   };
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    console.log("onsubmit", event);
-
     // if (quillRef?.current) {
     //   const json: DeltaStatic = quillRef?.current?.getEditor().getContents();
     //   console.log(json);
 
     const contentMarkdown = convertToMarkdown(content);
     const summaryMarkdown = convertToMarkdown(summary);
-
-    console.log(contentMarkdown);
 
     event.preventDefault();
     createArticle({

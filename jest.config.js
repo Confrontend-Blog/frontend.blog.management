@@ -8,6 +8,7 @@ module.exports = {
   moduleFileExtensions: ["ts", "tsx", "js", "jsx"],
   moduleNameMapper: {
     "^.+\\.css$": "jest-preview/transforms/css",
+    "react-quill": "<rootDir>/__mocks__/react-quill.js",
     // "^@Confrontend/ui-library$":
     //   "<rootDir>/__mocks__/@Confrontend/ui-library.js",
   },
@@ -16,7 +17,7 @@ module.exports = {
   //   "<rootDir>/node_modules/(?!@Confrontend/ui-library)",
   // ],
   roots: ["<rootDir>/src"],
-  setupFiles: [],
+  setupFiles: ["jest-date-mock"],
 
   setupFilesAfterEnv: [
     "<rootDir>/src/utils/test/setup/setup-tests.ts",
