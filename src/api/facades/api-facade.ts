@@ -54,8 +54,6 @@ const getAllUsersApiFacade = async (
     commonOptions
   );
 
-  console.log("urlurlurlurl", url);
-
   return await apiRequest<UsersResponse>({
     url,
     ...params,

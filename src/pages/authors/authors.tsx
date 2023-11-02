@@ -42,7 +42,7 @@ function Authors() {
       // TODO pagination
       try {
         const res = await getUsers(1, 100);
-        console.log("resresresres", res);
+
         if (res && res.users) {
           setIsLoading(false);
           setUsersInStore(res);

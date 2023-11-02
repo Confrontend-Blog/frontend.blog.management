@@ -22,7 +22,7 @@ const TopBar = () => {
         <span>{user?.displayName}</span>
       </>
     );
-  }, []);
+  }, [location, user]);
 
   return (
     <S.NavigationWrapper>
