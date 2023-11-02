@@ -1,51 +1,13 @@
 {
   "openapi": "3.0.0",
   "paths": {
-    "/api/articles/summaries": {
-      "get": {
-        "operationId": "ArticlesController_findAllSummaries",
-        "summary": "Find all article summaries",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ArticleSummariesResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/articles/slugs": {
-      "get": {
-        "operationId": "ArticlesController_findAllSlugs",
-        "summary": "Find all slugs",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ArticleSlugsResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/articles/{slug}": {
+    "/api/v1/articles/{id}": {
       "get": {
         "operationId": "ArticlesController_findOne",
         "summary": "Find article of a given  slug",
         "parameters": [
           {
-            "name": "slug",
+            "name": "id",
             "required": true,
             "in": "path",
             "schema": {
@@ -67,7 +29,7 @@
         }
       }
     },
-    "/api/mgmt/articles": {
+    "/api/v1/mgmt/articles": {
       "post": {
         "operationId": "ArticlesMgmtController_create",
         "parameters": [],
@@ -95,7 +57,7 @@
         }
       }
     },
-    "/api/mgmt/articles/{id}": {
+    "/api/v1/mgmt/articles/{id}": {
       "patch": {
         "operationId": "ArticlesMgmtController_update",
         "parameters": [
@@ -149,96 +111,56 @@
           }
         }
       }
+    },
+    "/api/v1/summaries": {
+      "get": {
+        "operationId": "SummariesController_findAllSummaries",
+        "summary": "Find all article summaries",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ArticleSummariesResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/slugs": {
+      "get": {
+        "operationId": "SlugsController_findAllSlugs",
+        "summary": "Find all slugs",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ArticleSlugsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "info": {
     "title": "Blog Article API",
     "description": "Api to manage articles",
-    "version": "1.0",
+    "version": "v1",
     "contact": {}
   },
   "tags": [],
   "servers": [],
   "components": {
     "schemas": {
-      "ArticleSummaryDto": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "title": {
-            "type": "string"
-          },
-          "date": {
-            "type": "string"
-          },
-          "category": {
-            "type": "string"
-          },
-          "author": {
-            "type": "string"
-          },
-          "summary": {
-            "type": "string"
-          },
-          "slug": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "id",
-          "title",
-          "date",
-          "category",
-          "author",
-          "summary",
-          "slug"
-        ]
-      },
-      "ArticleSummariesResponse": {
-        "type": "object",
-        "properties": {
-          "summaries": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ArticleSummaryDto"
-            }
-          },
-          "count": {
-            "type": "number"
-          }
-        },
-        "required": [
-          "summaries",
-          "count"
-        ]
-      },
-      "ArticleSlugsDto": {
-        "type": "object",
-        "properties": {
-          "slug": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "slug"
-        ]
-      },
-      "ArticleSlugsResponse": {
-        "type": "object",
-        "properties": {
-          "slugs": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ArticleSlugsDto"
-            }
-          }
-        },
-        "required": [
-          "slugs"
-        ]
-      },
       "ArticleDto": {
         "type": "object",
         "properties": {
@@ -342,6 +264,84 @@
           "category",
           "author",
           "slug"
+        ]
+      },
+      "ArticleSummaryDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          },
+          "author": {
+            "type": "string"
+          },
+          "summary": {
+            "type": "string"
+          },
+          "slug": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "date",
+          "category",
+          "author",
+          "summary",
+          "slug"
+        ]
+      },
+      "ArticleSummariesResponse": {
+        "type": "object",
+        "properties": {
+          "summaries": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ArticleSummaryDto"
+            }
+          },
+          "count": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "summaries",
+          "count"
+        ]
+      },
+      "ArticleSlugsDto": {
+        "type": "object",
+        "properties": {
+          "slug": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "slug"
+        ]
+      },
+      "ArticleSlugsResponse": {
+        "type": "object",
+        "properties": {
+          "slugs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ArticleSlugsDto"
+            }
+          }
+        },
+        "required": [
+          "slugs"
         ]
       }
     }

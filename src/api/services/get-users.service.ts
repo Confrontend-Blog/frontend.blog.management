@@ -1,5 +1,5 @@
 import { getAllUsersApiFacade } from "../facades/api-facade";
-import { UsersResponse } from "../openapi/generated-clients/api-user/api";
+import { UsersResponse } from "../openapi/generated-clients/api-users";
 
 export const getUsers = async (
   page = 1,

@@ -16,27 +16,27 @@ export default defineConfig({
     port: 8000,
     // TODO see why api/* wildcard isn't working
     proxy: {
-      "/api/articles/summaries": {
+      "/api/v1/articles/summaries": {
         target: "http://localhost:9000",
         changeOrigin: true,
         secure: false,
       },
-      "/api/mgmt/image/upload": {
+      "/api/v1/mgmt/image/upload": {
         target: "http://localhost:9000",
         changeOrigin: true,
         secure: false,
       },
-      "/api/mgmt/articles": {
+      "/api/v1/mgmt/articles": {
         target: "http://localhost:9000",
         changeOrigin: true,
         secure: false,
       },
-      "/api/auth/chat-token": {
+      "/api/v1/auth/chat-token": {
         target: "http://localhost:9000",
         changeOrigin: true,
         secure: false,
       },
-      "/api/users": {
+      "/api/v1/users": {
         target: "http://localhost:9000",
         changeOrigin: true,
         secure: false,

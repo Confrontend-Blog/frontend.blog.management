@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "paths": {
-    "/api/users": {
+    "/api/v1/users": {
       "get": {
         "operationId": "UsersController_findAll",
         "parameters": [],
@@ -23,7 +23,7 @@
   "info": {
     "title": "Blog User API",
     "description": "Api to manage users",
-    "version": "1.0",
+    "version": "v1",
     "contact": {}
   },
   "tags": [],

@@ -1,7 +1,7 @@
-import { Table, TableColumn } from "@Confrontend/ui-library";
+import { Table, TableColumn, WithLoading } from "@Confrontend/ui-library";
 import { useEffect, useState } from "react";
 
-import { UserDto } from "../../api/openapi/generated-clients/api-user";
+import { UserDto } from "../../api/openapi/generated-clients/api-users";
 import { getUsers } from "../../api/services/get-users.service";
 import { useUserStore } from "../../stores/user-store";
 
@@ -12,6 +12,7 @@ export type User = Omit<UserDto, "id" | "googleId" | "active"> & {
 function Authors() {
   const { setUsersInStore } = useUserStore();
   const [tableUsers, setTableUsers] = useState<User[] | null>([] as User[]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const columns: TableColumn<User>[] = [
     {
@@ -39,18 +40,24 @@ function Authors() {
   useEffect(() => {
     const fetchData = async () => {
       // TODO pagination
-      const res = await getUsers(1, 100);
-      if (res && res.users) {
-        setUsersInStore(res);
-        setTableUsers(
-          res.users.map((user: UserDto) => {
-            return {
-              displayName: user.displayName,
-              email: user.email,
-              active: user.active ? "Active" : "Inactive",
-            };
-          })
-        );
+      try {
+        const res = await getUsers(1, 100);
+        console.log("resresresres", res);
+        if (res && res.users) {
+          setIsLoading(false);
+          setUsersInStore(res);
+          setTableUsers(
+            res.users.map((user: UserDto) => {
+              return {
+                displayName: user.displayName,
+                email: user.email,
+                active: user.active ? "Active" : "Inactive",
+              };
+            })
+          );
+        }
+      } catch (error) {
+        setIsLoading(false);
       }
     };
 
@@ -58,15 +65,17 @@ function Authors() {
   }, []);
 
   return (
-    <div>
-      {tableUsers?.length && (
-        <Table<User>
-          data={tableUsers}
-          //  onRowClick={onRowClick}
-          columns={columns}
-        />
-      )}
-    </div>
+    <WithLoading isLoading={isLoading}>
+      <>
+        {tableUsers?.length && (
+          <Table<User>
+            data={tableUsers}
+            //  onRowClick={onRowClick}
+            columns={columns}
+          />
+        )}
+      </>
+    </WithLoading>
   );
 }
 

@@ -26,9 +26,7 @@ const LoginPage = () => {
       import.meta.env.VITE_CLIENT_ID
     }&redirect_uri=${
       import.meta.env.VITE_REDIRECT_URL
-    }/api/auth/google/redirect&response_type=code&scope=openid%20email%20profile`;
-
-    console.log(authURL);
+    }/api/v1/auth/google/redirect&response_type=code&scope=openid%20email%20profile`;
 
     window.location.href = authURL;
   };

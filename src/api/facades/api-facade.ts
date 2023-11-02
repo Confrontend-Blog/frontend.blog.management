@@ -9,16 +9,18 @@
  * @module api-facade
  */
 
-import { Configuration as ApiConfiguration } from "../openapi/generated-clients/api-blog";
 import {
   ArticleDto,
   ArticleSummariesResponse,
+  Configuration as ApiConfiguration,
   CreateArticleDto,
   DefaultApiAxiosParamCreator as ArticleAxiosApi,
-} from "../openapi/generated-clients/api-blog/api";
-import { DefaultApiAxiosParamCreator as ImageApi } from "../openapi/generated-clients/api-image/api";
-import { UsersResponse } from "../openapi/generated-clients/api-user/api";
-import { DefaultApiAxiosParamCreator as UserAxiosApi } from "../openapi/generated-clients/api-user/api";
+} from "../openapi/generated-clients/api-articles";
+import { DefaultApiAxiosParamCreator as ImageAxiosApi } from "../openapi/generated-clients/api-media";
+import {
+  DefaultApiAxiosParamCreator as UsersAxiosApi,
+  UsersResponse,
+} from "../openapi/generated-clients/api-users";
 
 export const articlesEndpoint = "articles";
 export const usersEndpoint = "users";
@@ -48,9 +50,11 @@ const apiConfig = new ApiConfiguration({
 const getAllUsersApiFacade = async (
   params: AxiosRequestConfig
 ): Promise<ApiResponse<UsersResponse | null>> => {
-  const { url } = await UserAxiosApi(apiConfig).usersControllerFindAll(
+  const { url } = await UsersAxiosApi(apiConfig).usersControllerFindAll(
     commonOptions
   );
+
+  console.log("urlurlurlurl", url);
 
   return await apiRequest<UsersResponse>({
     url,
@@ -78,7 +82,7 @@ const getAllSummariesApiFacade = async (
 ): Promise<ApiResponse<ArticleSummariesResponse>> => {
   const { url } = await ArticleAxiosApi(
     apiConfig
-  ).articlesControllerFindAllSummaries(commonOptions);
+  ).summariesControllerFindAllSummaries(commonOptions);
 
   return await apiRequest<ArticleSummariesResponse>({
     method: "GET",
@@ -90,7 +94,7 @@ const getAllSummariesApiFacade = async (
 const uploadImageApiFacade = async (
   params: any
 ): Promise<ApiResponse<HostedImageInfo>> => {
-  const { url } = await ImageApi(apiConfig).imageControllerUpload(params);
+  const { url } = await ImageAxiosApi(apiConfig).imageControllerUpload(params);
 
   return await apiRequest<HostedImageInfo>({
     method: "POST",

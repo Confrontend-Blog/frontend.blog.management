@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "paths": {
-    "/api/mgmt/image/upload": {
+    "/api/v1/mgmt/image/upload": {
       "post": {
         "operationId": "ImageController_upload",
         "parameters": [],
@@ -33,7 +33,7 @@
   "info": {
     "title": "Blog image management API",
     "description": "Api to manage media",
-    "version": "1.0",
+    "version": "v1",
     "contact": {}
   },
   "tags": [],
