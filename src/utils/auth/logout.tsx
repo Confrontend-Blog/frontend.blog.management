@@ -1,17 +1,15 @@
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
+import AuthContext from "../../providers/auth-context";
 import { RoutePaths } from "../../root-component";
-import { removeLocalStorage } from "../local-storage-util";
 
 export const useLogout = () => {
   const navigate = useNavigate();
+  const { logout } = useContext(AuthContext);
 
-  const handleLogout = () => {
-    console.log("handleLogout");
-    removeLocalStorage("user");
-
+  return () => {
+    logout();
     navigate(RoutePaths.Login);
   };
-
-  return handleLogout;
 };

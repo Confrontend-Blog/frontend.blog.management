@@ -1,34 +1,37 @@
-import { getLocalStorage, setLocalStorage } from "../local-storage-util";
+import { UserDto } from "../../api/openapi/generated-clients/api-users";
+import { useSyncedLocalStorage } from "../local-storage-util";
 import useParamFromUrl from "../url-utils";
 
 export const useAuthenticate = () => {
-  const storeUser = getLocalStorage("user");
+  const [storedValue, setStorage] = useSyncedLocalStorage<UserDto | null>(
+    "user",
+    null
+  );
   const paramUser = useParamFromUrl("userInfo");
-
-  console.log(import.meta.env.VITE_ENVIRONMENT);
 
   if (import.meta.env.VITE_ENVIRONMENT === "test") {
     const testUser = {
-      id: 123,
+      id: "123",
       googleId: "googleID",
       displayName: "Dummy User",
+      active: true,
+      email: "test@test.test",
     };
-    setLocalStorage({ key: "user", value: testUser });
+    setStorage(testUser);
     return testUser;
   }
 
-  console.log(storeUser);
-
+  console.log("storedValue", storedValue);
   // Already logged in
-  if (storeUser) {
-    return storeUser;
+  if (storedValue) {
+    return storedValue;
   }
 
   const parsedParamUser = paramUser ? JSON.parse(paramUser) : {};
 
   // Only update local storage and context if parsedParamUser is not empty
   if (Object.keys(parsedParamUser).length > 0) {
-    setLocalStorage({ key: "user", value: parsedParamUser });
+    setStorage(parsedParamUser);
   }
 
   return parsedParamUser;

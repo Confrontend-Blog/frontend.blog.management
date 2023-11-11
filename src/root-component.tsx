@@ -24,11 +24,10 @@ export enum RoutePaths {
 
 const RootComponent = () => {
   const user = useAuthenticate();
-  console.log(123, user);
 
   return (
     <ErrorBoundaryWrapper>
-      <AuthProvider user={user}>
+      <AuthProvider>
         <Routes>
           <Route path={RoutePaths.Inactive} element={<UserInactive />} />
           <Route path={RoutePaths.Login} element={<LoginPage />} />
