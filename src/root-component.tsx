@@ -5,7 +5,7 @@ import LoginPage from "./pages/login/login-page";
 import UserInactive from "./pages/user-inactive/user-inactive";
 import { AuthProvider } from "./providers/auth-context";
 import { useAuthenticate } from "./utils/auth/useAuthenticate";
-import ErrorBoundaryWrapper from "./utils/error-handling/error-boundary-wrapper";
+import ErrorBoundaryWrapper from "./utils/error-handling/error-boundty";
 import { isObjectEmpty } from "./utils/object-utils";
 
 /** Security: Only fetch application code  chunk for authenticated user. */
