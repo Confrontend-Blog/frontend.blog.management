@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { UserDto } from "../../api/openapi/generated-clients/api-users";
 import AuthContext from "../../providers/auth-context";
 import { RoutePaths } from "../../root-component";
-import { useSyncedLocalStorage } from "../../utils/local-storage-util";
+import { useSyncedLocalStorage } from "../../utils/local-storage/useSyncedLocalStorage";
 import { isObjectEmpty } from "../../utils/object-utils";
 import * as S from "./login-page.styled";
 
@@ -16,8 +16,6 @@ const LoginPage = () => {
   const [storedValue] = useSyncedLocalStorage<UserDto | null>("user", null);
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
-
-  console.log("LOGIN", user, storedValue);
 
   useEffect(() => {
     /** Do not render login page if already authenticated */

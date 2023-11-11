@@ -1,38 +1,11 @@
 import { useCallback, useEffect, useState } from "react";
 
-function safelyParseJSON<T>(jsonString: string | null): T | null {
-  try {
-    return jsonString ? JSON.parse(jsonString) : null;
-  } catch (e) {
-    return null;
-  }
-}
-
-function setLocalStorage<T>(key: string, value: T): void {
-  try {
-    localStorage.setItem(key, JSON.stringify(value));
-  } catch (error) {
-    console.error(`Error setting ${key} in localStorage: ${error}`);
-  }
-}
-
-function getLocalStorage<T>(key: string): T | null {
-  try {
-    const value = localStorage.getItem(key);
-    return safelyParseJSON<T>(value);
-  } catch (error) {
-    console.error(`Error retrieving ${key} from localStorage: ${error}`);
-    return null;
-  }
-}
-
-function removeLocalStorage(key: string): void {
-  try {
-    localStorage.removeItem(key);
-  } catch (error) {
-    console.error(`Error removing ${key} from localStorage: ${error}`);
-  }
-}
+import {
+  getLocalStorage,
+  removeLocalStorage,
+  safelyParseJSON,
+  setLocalStorage,
+} from "./local-storage-util";
 
 type UseSyncedLocalStorageReturnType<T> = [
   T | null,
@@ -40,6 +13,17 @@ type UseSyncedLocalStorageReturnType<T> = [
   () => void
 ];
 
+/**
+ * Custom hook for synchronizing a piece of state with local storage.
+ * It provides an easy way to store, retrieve, and update data in local storage
+ * in a component, with the state staying in sync across different browser tabs.
+ *
+ * @param {string} key - The key to be used in local storage for storing the data.
+ * @param {T} initialValue - The initial value of the state, if not already set in local storage.
+ * @returns {UseSyncedLocalStorageReturnType<T>} A tuple containing the stored value,
+ *          a setter function to update the value, and a remover function to delete the key from local storage.
+ * @template T - The type of the data to be stored in local storage.
+ */
 export function useSyncedLocalStorage<T>(
   key: string,
   initialValue: T

@@ -2,7 +2,7 @@ import { createContext, ReactNode, useState } from "react";
 
 import { UserDto } from "../api/openapi/generated-clients/api-users";
 import { useAuthenticate } from "../utils/auth/useAuthenticate";
-import { useSyncedLocalStorage } from "../utils/local-storage-util";
+import { useSyncedLocalStorage } from "../utils/local-storage/useSyncedLocalStorage";
 
 export type CurrentUser = Omit<UserDto, "email" | "active">;
 

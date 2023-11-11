@@ -5,6 +5,7 @@ import ReactQuill from "react-quill";
 
 import { createArticle } from "../../api/services/create-article.service";
 import { uploadImage } from "../../api/services/upload-image.service";
+import logger from "../../utils/error-handling/logger";
 import { convertToMarkdown } from "../../utils/markdown.util";
 import { titleToSlug } from "../../utils/string.util";
 import * as S from "./composer.styled";
@@ -100,7 +101,7 @@ const Composer = () => {
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     // if (quillRef?.current) {
     //   const json: DeltaStatic = quillRef?.current?.getEditor().getContents();
-    //   console.log(json);
+    //   logger.log(json);
 
     const contentMarkdown = convertToMarkdown(content);
     const summaryMarkdown = convertToMarkdown(summary);
@@ -115,8 +116,8 @@ const Composer = () => {
       date: new Date().toISOString(),
       author: "H",
     })
-      .then(console.log)
-      .catch(console.log);
+      .then(logger.debug)
+      .catch(logger.error);
   };
 
   return (

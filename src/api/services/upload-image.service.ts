@@ -1,3 +1,4 @@
+import logger from "../../utils/error-handling/logger";
 import { uploadImageApiFacade } from "../facades/api-facade";
 
 export type HostedImageInfo = {
@@ -12,7 +13,7 @@ export type HostedImageInfo = {
 export const uploadImage = async (
   file: File
 ): Promise<HostedImageInfo | undefined> => {
-  console.log(file);
+  logger.debug(file);
 
   const formData = new FormData();
   formData.append("file_field_name", file);

@@ -1,3 +1,5 @@
+import logger from "./error-handling/logger";
+
 let microFrontendPromise: Promise<any> | null = null;
 
 export type MicroFe = {
@@ -13,12 +15,12 @@ export const loadMicroFrontend = async (): Promise<MicroFe | undefined> => {
       "https://storage.googleapis.com/chat-micro-fe/main-chat-fe-1.js"
     )
       .then((module) => {
-        console.log(JSON.stringify(module));
+        logger.info(JSON.stringify(module));
 
         return { ...module }; // protect against mutation
       })
       .catch((err) => {
-        console.error("Failed to load microfrontend", err);
+        logger.error(`"Failed to load microfrontend", ${err}`);
         // If loading fails, we should allow retries.
         microFrontendPromise = null;
         throw err;

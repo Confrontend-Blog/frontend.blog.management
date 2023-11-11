@@ -2,6 +2,7 @@ import { Button } from "@Confrontend/ui-library";
 import React, { Component, ReactElement } from "react";
 
 import { RoutePaths } from "../../root-component";
+import logger from "./logger";
 
 type ErrorBoundaryProps = {
   children: ReactElement;
@@ -24,7 +25,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo): void {
     // You can log the error to an error reporting service
-    console.error(error, errorInfo);
+    logger.error(`${error} ${errorInfo}`);
   }
 
   render() {

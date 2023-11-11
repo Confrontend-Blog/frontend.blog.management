@@ -1,8 +1,20 @@
 import { UserDto } from "../../api/openapi/generated-clients/api-users";
-import { useSyncedLocalStorage } from "../local-storage-util";
+import { useSyncedLocalStorage } from "../local-storage/useSyncedLocalStorage";
 import useParamFromUrl from "../url-utils";
 
-export const useAuthenticate = () => {
+/**
+ * Custom hook for handling user authentication in a React application.
+ * It checks for user information in local storage and URL parameters,
+ * and sets the user state accordingly. This hook is primarily used
+ * for initializing user state on application startup or when the relevant
+ * URL parameters are present.
+ *
+ * In test environments, it sets a predefined test user.
+ *
+ * @returns {UserDto | null | object} The authenticated user's data if available,
+ *          or an object parsed from URL parameters, or `null` if neither is available.
+ */
+export const useAuthenticate = (): UserDto | null => {
   const [storedValue, setStorage] = useSyncedLocalStorage<UserDto | null>(
     "user",
     null
@@ -21,13 +33,12 @@ export const useAuthenticate = () => {
     return testUser;
   }
 
-  console.log("storedValue", storedValue);
   // Already logged in
   if (storedValue) {
     return storedValue;
   }
 
-  const parsedParamUser = paramUser ? JSON.parse(paramUser) : {};
+  const parsedParamUser: UserDto = paramUser ? JSON.parse(paramUser) : {};
 
   // Only update local storage and context if parsedParamUser is not empty
   if (Object.keys(parsedParamUser).length > 0) {

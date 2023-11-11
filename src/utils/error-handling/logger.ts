@@ -34,20 +34,36 @@ function assertUnreachable(x: never): never {
   throw new Error(`Unexpected object: ${x}`);
 }
 
-function info<T>(data: T): void {
-  log("info", data);
-}
+/**
+ * Centralized logging module providing a unified interface for logging messages
+ * at different levels (info, warn, error, debug). This module abstracts
+ * console logging, allowing for consistent message formatting and potential
+ * future enhancements like log filtering, sending logs to external services,
+ * or conditionally disabling logs for production builds.
+ *
+ * Usage:
+ * ```
+ * import logger from './logger';
+ *
+ * logger.info('This is an info message');
+ * logger.warn('This is a warning');
+ * logger.error('This is an error message');
+ * logger.debug('This is a debug message');
+ * ```
+ */
+const logger = {
+  info<T>(data: T): void {
+    log("info", data);
+  },
+  warn<T>(data: T): void {
+    log("warn", data);
+  },
+  error<T>(data: T): void {
+    log("error", data);
+  },
+  debug<T>(data: T): void {
+    log("debug", data);
+  },
+};
 
-function warn<T>(data: T): void {
-  log("warn", data);
-}
-
-function error<T>(data: T): void {
-  log("error", data);
-}
-
-function debug<T>(data: T): void {
-  log("debug", data);
-}
-
-export { debug, error, info, warn };
+export default logger;

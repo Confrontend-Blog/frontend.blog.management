@@ -1,9 +1,11 @@
 import axios from "axios";
 import { useContext, useEffect } from "react";
 
+// FIXME
 import { baseUrl } from "../../api/facades/api-facade";
 import MicroFrontend from "../../components/micro-fe/micro-frontend";
 import AuthContext from "../../providers/auth-context";
+import logger from "../../utils/error-handling/logger";
 
 function Messages() {
   const { user } = useContext(AuthContext);
@@ -16,9 +18,9 @@ function Messages() {
     }
     getToken()
       .then((data) => {
-        console.log(data);
+        logger.info(data);
       })
-      .catch(console.error);
+      .catch(logger.error);
   }, []);
   return <MicroFrontend containerId="chat-microfrontend-container" />;
 }
