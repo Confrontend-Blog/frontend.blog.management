@@ -37,3 +37,5 @@ docs
 src/api/openapi/generated-clients/api-image/.openapi-generator
 .env.production
 html-report
+project-to-txt.js
+project-as-text.txt

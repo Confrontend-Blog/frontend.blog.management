@@ -58,7 +58,6 @@ const logger = {
   },
   error<T>(data: T): void {
     log("error", data);
-    // Additional Sentry logic here if needed
   },
   debug<T>(data: T): void {
     log("debug", data);

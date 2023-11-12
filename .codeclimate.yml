@@ -1,0 +1,44 @@
+version: "2"
+exclude_patterns:
+  - "src/api/openapi/**/*"
+
+plugins:
+  eslint:
+    enabled: true
+    channel: "eslint-7"
+    config:
+      config: .eslintrc.json
+  typescript:
+    enabled: true
+    channel: "typescript-3"
+
+# Define your engines and their configurations
+engines:
+  duplication:
+    enabled: true
+    config:
+      languages:
+        - javascript
+        - typescript
+  # Additional engines can be configured here
+
+ratings:
+  paths:
+    - "**.ts"
+    - "**.tsx"
+    - "**.js"
+    - "**.jsx"
+
+# Adjust the checks and thresholds as needed
+checks:
+  argument_count:
+    config:
+      threshold: 4
+  complex_logic:
+    enabled: true
+    config:
+      threshold: 4
+  file_lines:
+    enabled: true
+    config:
+      threshold: 250
