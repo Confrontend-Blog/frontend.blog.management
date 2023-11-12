@@ -1,3 +1,4 @@
+import { withSentryReactRouterV6Routing } from "@sentry/react";
 import { lazy, Suspense } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 
@@ -24,11 +25,12 @@ export enum RoutePaths {
 
 const RootComponent = () => {
   const user = useAuthenticate();
+  const SentryRoutes = withSentryReactRouterV6Routing(Routes);
 
   return (
     <ErrorBoundaryWrapper>
       <AuthProvider>
-        <Routes>
+        <SentryRoutes>
           <Route path={RoutePaths.Inactive} element={<UserInactive />} />
           <Route path={RoutePaths.Login} element={<LoginPage />} />
           <Route
@@ -43,7 +45,7 @@ const RootComponent = () => {
               )
             }
           />
-        </Routes>
+        </SentryRoutes>
       </AuthProvider>
     </ErrorBoundaryWrapper>
   );

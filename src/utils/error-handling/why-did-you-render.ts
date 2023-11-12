@@ -5,7 +5,6 @@ export async function initWhyDidYouRender() {
     const whyDidYouRender = await import(
       "@welldone-software/why-did-you-render"
     );
-
     whyDidYouRender.default(React, {
       logOwnerReasons: true,
     });

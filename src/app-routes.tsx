@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 
 import withProtectedRoute from "./components/routing/with-protected-route";
